@@ -1,4 +1,7 @@
 // src/components/home/IndustriesSection.tsx
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   Building2,
@@ -13,6 +16,27 @@ import {
 } from "lucide-react";
 
 export default function IndustriesSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.12 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const industries = [
     {
       title: "Construction & Real Estate",
@@ -53,15 +77,26 @@ export default function IndustriesSection() {
   ];
 
   return (
-    <section id="industries" className="py-24 lg:py-28 bg-[#f8f9fb] border-t border-slate-200/80 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      ref={sectionRef}
+      id="industries"
+      className="py-24 lg:py-32 bg-[#f8f9fb] border-t border-slate-200/80 relative overflow-hidden"
+    >
+      {/* Subtle Background Radial Pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:28px_28px] opacity-40 pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+        {/* Section Header with Ingress Reveal */}
+        <div
+          className={`flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 transition-all duration-1000 ease-out transform ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 mb-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
-              <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#c39967]">
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#c39967] shadow-[0_0_8px_#c39967]" />
+              <span className="text-[10.5px] font-bold tracking-[0.25em] uppercase text-[#c39967] font-mono">
                 Sectors &amp; Expertise
               </span>
             </div>
@@ -73,41 +108,46 @@ export default function IndustriesSection() {
             </h2>
           </div>
 
-          <p className="text-xs sm:text-sm text-[#64748b] max-w-md leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#64748b] max-w-md leading-relaxed font-normal">
             Supporting businesses across Dubai and the Emirates with sector-specific operational models, regulatory insight, and measurable growth frameworks.
           </p>
         </div>
 
-        {/* 6 Core Industries Grid (Crisp White Cards on Off-White Surface) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 6 Core Industries Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
           {industries.map((ind, i) => {
             const Icon = ind.icon;
+            const delayStyle = { transitionDelay: `${i * 75}ms` };
+
             return (
               <div
                 key={i}
-                className="group relative flex flex-col justify-between p-7 rounded-2xl border border-slate-200/90 bg-white hover:border-[#c39967]/70 hover:shadow-xl transition-all duration-300 shadow-sm"
+                style={delayStyle}
+                className={`group relative flex flex-col justify-between p-7 sm:p-8 rounded-2xl border border-slate-200/90 bg-white hover:border-[#c39967]/70 hover:shadow-[0_20px_45px_rgba(0,0,0,0.06)] hover:-translate-y-1.5 transition-all duration-500 shadow-xs overflow-hidden transform ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                }`}
               >
                 {/* Top Gold Hover Hairline */}
                 <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[#c39967] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div>
                   {/* Icon & Sector Index */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-11 h-11 rounded-xl bg-[#c39967]/15 flex items-center justify-center text-[#c39967] group-hover:bg-[#c39967] group-hover:text-white transition-colors duration-200">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-[#c39967]/15 border border-[#c39967]/30 flex items-center justify-center text-[#c39967] group-hover:bg-[#c39967] group-hover:text-white group-hover:shadow-[0_0_16px_rgba(195,153,103,0.4)] group-hover:scale-105 transition-all duration-300 shadow-2xs">
                       <Icon className="w-5 h-5 stroke-[2]" />
                     </div>
-                    <span className="text-xs font-mono font-bold text-slate-400 group-hover:text-[#c39967] transition-colors">
+                    <span className="font-mono text-xs font-bold text-slate-400 group-hover:text-[#c39967] transition-colors">
                       0{i + 1}
                     </span>
                   </div>
 
                   {/* Sector Title */}
-                  <h3 className="text-base font-bold text-[#111827] mb-2 group-hover:text-[#c39967] transition-colors">
+                  <h3 className="text-lg font-bold text-[#111827] mb-2.5 group-hover:text-[#c39967] transition-colors leading-snug">
                     {ind.title}
                   </h3>
 
                   {/* Sector Description */}
-                  <p className="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-6 font-normal">
                     {ind.desc}
                   </p>
                 </div>
@@ -118,7 +158,7 @@ export default function IndustriesSection() {
                     {ind.tags.map((tag, idx) => (
                       <span
                         key={idx}
-                        className="text-[10px] font-semibold text-[#475569] bg-slate-100/90 px-2 py-0.5 rounded"
+                        className="text-[10px] font-semibold text-[#475569] bg-slate-100/90 group-hover:bg-[#c39967]/10 group-hover:text-[#a87d4a] px-2.5 py-1 rounded-md transition-colors duration-200"
                       >
                         {tag}
                       </span>
@@ -131,23 +171,29 @@ export default function IndustriesSection() {
         </div>
 
         {/* Featured Institutional Banner */}
-        <div className="mt-8 rounded-2xl bg-gradient-to-r from-[#0b0f17] via-[#121622] to-[#0b0f17] border border-white/10 p-8 sm:p-10 text-white relative overflow-hidden shadow-2xl">
-          <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-[#c39967]/10 blur-[90px] pointer-events-none" />
+        <div
+          className={`mt-10 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#0b0f17] via-[#121622] to-[#0b0f17] border border-white/10 p-8 sm:p-10 lg:p-12 text-white relative overflow-hidden shadow-2xl transition-all duration-1000 delay-300 transform ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          {/* Ambient Gold Glow Halo */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-[#c39967]/15 blur-[100px] pointer-events-none rounded-full" />
+          <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
 
           <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-            <div className="flex items-start gap-5">
-              <div className="w-13 h-13 rounded-xl bg-[#c39967]/20 border border-[#c39967]/40 flex items-center justify-center text-[#c39967] flex-shrink-0">
+            <div className="flex items-start gap-5 sm:gap-6">
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#c39967]/20 border border-[#c39967]/40 flex items-center justify-center text-[#c39967] shadow-lg flex-shrink-0">
                 <Landmark className="w-6 h-6 stroke-[1.8]" />
               </div>
-              <div className="space-y-1.5">
-                <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#c39967]">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-[#c39967] font-mono">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  Specialized Institutional Engagements
+                  <span>Specialized Institutional Engagements</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-snug">
                   Startups, Corporate Enterprises &amp; Government Support Projects
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal">
                   We configure bespoke cross-functional task forces capable of managing high-compliance public sector initiatives, rapid-scaling venture frameworks, and enterprise reorganization.
                 </p>
               </div>
@@ -155,10 +201,10 @@ export default function IndustriesSection() {
 
             <Link
               href="#contact"
-              className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-xs font-bold uppercase tracking-wider text-[#0b0f17] bg-[#c39967] hover:bg-[#b28755] transition-all shadow-lg shadow-[#c39967]/25 cursor-pointer whitespace-nowrap self-start lg:self-center font-sans font-bold"
+              className="flex-shrink-0 inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl text-xs font-bold uppercase tracking-wider text-[#0b0f17] bg-[#c39967] hover:bg-[#d6b48a] hover:shadow-[0_0_25px_rgba(195,153,103,0.35)] transition-all duration-200 cursor-pointer whitespace-nowrap self-start lg:self-center font-sans group shadow-lg"
             >
               <span>Consult On Your Industry</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
         </div>

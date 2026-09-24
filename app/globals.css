@@ -33,19 +33,30 @@ body {
   color: #ffffff;
 }
 
-/* Add these smooth keyframes at the bottom of src/app/globals.css */
+/* ==========================================================
+   KEYFRAME ANIMATIONS
+   ========================================================== */
 
-@keyframes fadeInUp {
-  from {
+/* Staggered Drop In for Text & Buttons */
+@keyframes textDropIn {
+  0% {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(-26px) scale(0.98);
+    filter: blur(8px);
   }
-  to {
+  60% {
+    opacity: 0.9;
+    transform: translateY(2px) scale(1.005);
+    filter: blur(0px);
+  }
+  100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
   }
 }
 
+/* Background Slow Ambient Zoom */
 @keyframes slowZoom {
   0% {
     transform: scale(1);
@@ -55,6 +66,7 @@ body {
   }
 }
 
+/* Atmospheric Glow Pulse */
 @keyframes ambientPulse {
   0%, 100% {
     opacity: 0.15;
@@ -66,6 +78,7 @@ body {
   }
 }
 
+/* Shimmering Metallic Gradient Effect */
 @keyframes goldShimmer {
   0% {
     background-position: 0% 50%;
@@ -78,9 +91,33 @@ body {
   }
 }
 
-/* Helper animation classes */
-.hero-fade-in {
-  animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Subtle Floating Elements */
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Border & Shadow Pulse */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(195, 153, 103, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(195, 153, 103, 0.45);
+  }
+}
+
+/* ==========================================================
+   UTILITY CLASSES
+   ========================================================== */
+
+.hero-drop {
+  opacity: 0;
+  animation: textDropIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .hero-zoom-bg {
@@ -91,27 +128,17 @@ body {
   animation: ambientPulse 8s ease-in-out infinite;
 }
 
+.gold-gradient-text {
+  background: linear-gradient(135deg, #c39967 0%, #f6e6d1 50%, #c39967 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 6s ease infinite;
+}
+
 .text-gold-shimmer {
   background-size: 200% auto;
   animation: goldShimmer 6s linear infinite;
-}
-/* Smooth Scroll & Interactive Keyframes */
-@keyframes subtleFloat {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(195, 153, 103, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(195, 153, 103, 0.45);
-  }
 }
 
 .animate-float {
@@ -120,4 +147,41 @@ body {
 
 .glow-card {
   animation: pulseGlow 4s ease-in-out infinite;
+}
+/* Lenis Recommended Reset for zero scroll stutter */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+/* Card Stacking & Smooth Scale Physics */
+.service-fold {
+  will-change: transform, opacity;
+  transform-origin: top center;
+}
+/* Executive 3D Origami Shift */
+.perspective-stage {
+  perspective: 1400px;
+  perspective-origin: center top;
+}
+
+.fold-panel {
+  transform-style: preserve-3d;
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
 }
