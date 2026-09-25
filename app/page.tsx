@@ -10,6 +10,7 @@ import ContactCtaSection from "@/components/home/ContactCtaSection";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import Footer from "@/components/layout/Footer";
 import FaqSection from "@/components/home/FaqSection";
+import CapabilitiesTape from "@/components/home/CapabilitiesTape";
 
 export default function HomePage() {
   return (
@@ -30,6 +31,8 @@ export default function HomePage() {
 
       {/* 4. Services Section (Continuous Scroll Scrubbing internally handles entrance) */}
       <ServicesSection />
+
+      <CapabilitiesTape />
 
       {/* 5. Portfolio Section Reveal */}
       <ScrollReveal direction="up" distance={40} threshold={0.15}>

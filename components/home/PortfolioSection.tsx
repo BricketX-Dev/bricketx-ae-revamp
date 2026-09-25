@@ -31,9 +31,9 @@ export default function PortfolioSection() {
     {
       id: "01",
       title: "Digital Projects",
-      desc: "Platforms, products and technology projects we have planned, managed and delivered end-to-end.",
-      link: "/portfolio/digital-projects",
-      linkText: "View Digital Projects",
+      desc: "Platforms, products and technology projects we plan, manage and deliver end-to-end with disciplined milestones.",
+      link: "/services/project-management",
+      linkText: "Explore Digital Delivery",
       icon: Cpu,
       tag: "Technology & Infrastructure",
       image:
@@ -43,9 +43,9 @@ export default function PortfolioSection() {
     {
       id: "02",
       title: "Advertising Campaigns",
-      desc: "Billboard, outdoor and digital campaigns that put UAE brands in front of the right audience.",
-      link: "/portfolio/advertising-campaigns",
-      linkText: "View Campaigns",
+      desc: "Billboard, outdoor and digital media activations that place UAE brands directly in front of the right audience.",
+      link: "/services/advertising",
+      linkText: "Explore Media & Campaigns",
       icon: Megaphone,
       tag: "OOH & Performance Media",
       image:
@@ -54,10 +54,10 @@ export default function PortfolioSection() {
     },
     {
       id: "03",
-      title: "Consulting Projects",
-      desc: "Strategy and operations engagements that helped UAE businesses work smarter and grow faster.",
-      link: "/portfolio/consulting-projects",
-      linkText: "View Consulting Work",
+      title: "Consulting Engagements",
+      desc: "Operational reviews and strategy frameworks designed to help UAE organizations eliminate bottlenecks and scale.",
+      link: "/services/business-consultancy",
+      linkText: "Explore Advisory Work",
       icon: TrendingUp,
       tag: "Strategy & Operations",
       image:
@@ -69,7 +69,7 @@ export default function PortfolioSection() {
   return (
     <section
       ref={sectionRef}
-      id="portfolio"
+      id="work"
       className="relative py-14 lg:py-20 bg-[#090d14] text-white border-t border-white/10"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,26 +81,26 @@ export default function PortfolioSection() {
         >
           <div className="max-w-2xl">
             <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] uppercase text-[#c39967] block mb-2">
-              OUR PORTFOLIO
+              WHAT WE DELIVER
             </span>
 
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-[1.18]">
-              Results That Speak for Our{" "}
-              <span className="text-[#c39967]">Work in Dubai</span>
+              Proven Capabilities Across{" "}
+              <span className="text-[#c39967]">Dubai &amp; the UAE</span>
             </h2>
 
             <p className="mt-2.5 text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
-              From digital projects delivered on schedule to campaigns seen across Dubai and consulting engagements that improved performance, our portfolio shows how BricketX turns plans into measurable outcomes.
+              Whether deploying high-compliance digital systems, securing prime outdoor media, or refining corporate operations, our team provides hands-on execution that turns objectives into tangible results.
             </p>
           </div>
 
           {/* Desktop Global CTA */}
           <div className="hidden lg:block flex-shrink-0">
             <Link
-              href="/portfolio"
+              href="#services"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-colors"
             >
-              <span>SEE ALL OUR WORK</span>
+              <span>EXPLORE OUR WORK</span>
               <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
@@ -128,7 +128,7 @@ export default function PortfolioSection() {
                   />
                   <div className="absolute inset-0 bg-black/25" />
 
-                  {/* Clean Corner Counter */}
+                  {/* Clean Corner Icon */}
                   <div className="absolute top-3 left-3 flex items-center gap-2">
                     <div className="w-8 h-8 rounded-lg bg-black/70 backdrop-blur-sm border border-white/15 flex items-center justify-center text-[#c39967]">
                       <Icon className="w-4 h-4 stroke-[1.8]" />
@@ -177,10 +177,10 @@ export default function PortfolioSection() {
         {/* Mobile Global CTA */}
         <div className="flex justify-center lg:hidden">
           <Link
-            href="/portfolio"
+            href="#services"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-colors"
           >
-            <span>SEE ALL OUR WORK</span>
+            <span>EXPLORE OUR WORK</span>
             <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
