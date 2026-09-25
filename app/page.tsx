@@ -8,6 +8,8 @@ import ProcessSection from "@/components/home/ProcessSection";
 import IndustriesSection from "@/components/home/IndustriesSection";
 import ContactCtaSection from "@/components/home/ContactCtaSection";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import Footer from "@/components/layout/Footer";
+import FaqSection from "@/components/home/FaqSection";
 
 export default function HomePage() {
   return (
@@ -42,6 +44,11 @@ export default function HomePage() {
       {/* 7. Industries Section Reveal */}
       <ScrollReveal direction="up" distance={40} threshold={0.15}>
         <IndustriesSection />
+      </ScrollReveal>      
+      
+      
+      <ScrollReveal direction="up" distance={40} threshold={0.15}>
+        <FaqSection />
       </ScrollReveal>
 
       {/* 8. Contact Consultation CTA */}

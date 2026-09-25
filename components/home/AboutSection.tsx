@@ -4,7 +4,6 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
-  ShieldCheck,
   CheckCircle2,
   ArrowUpRight,
   Building2,
@@ -20,7 +19,7 @@ export default function AboutSection() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect(); // Animate once cleanly
+          observer.disconnect();
         }
       },
       { threshold: 0.18 }
@@ -50,35 +49,37 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="py-20 lg:py-28 bg-[#f8f9fb] border-y border-slate-200/80 relative overflow-hidden"
+      className="py-14 lg:py-20 bg-[#f8f9fb] border-y border-slate-200/80 relative"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           
           {/* ========================================================
-              LEFT COLUMN: Visual Frame with Slide & Scale Animation
+              LEFT COLUMN: Clean Visual Card Frame
              ======================================================== */}
           <div
-            className={`lg:col-span-5 relative transition-all duration-1000 ease-out transform ${
+            className={`lg:col-span-5 relative transition-all duration-700 ease-out transform ${
               isVisible
-                ? "opacity-100 translate-x-0 scale-100"
-                : "opacity-0 -translate-x-10 scale-95"
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-6"
             }`}
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/90 aspect-[4/5] bg-slate-900 group">
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200/90 aspect-[4/5] min-h-[440px] bg-slate-900 group">
               <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
                 style={{
                   backgroundImage:
                     "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80')",
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f17]/90 via-[#0b0f17]/25 to-transparent" />
+              {/* Deep smooth gradient to prevent text hiding */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f17]/95 via-[#0b0f17]/40 to-transparent" />
 
-              <div className="absolute bottom-6 left-6 right-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-[#c39967]/40 text-[10px] font-bold uppercase tracking-widest text-[#c39967] mb-2">
-                  <Building2 className="w-3 h-3" />
-                  Dubai Corporate Office
+              {/* Bottom Card Copy (Cleanly spaced & never clipped) */}
+              <div className="absolute bottom-6 left-6 right-6 z-10">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/10 backdrop-blur-md border border-white/15 text-[10.5px] font-medium text-white mb-2.5">
+                  <Building2 className="w-3.5 h-3.5 text-[#c39967]" />
+                  <span>Dubai Corporate Office</span>
                 </div>
                 <h4 className="text-base sm:text-lg font-bold text-white leading-snug">
                   Transforming Strategic Initiatives into Measurable Impact
@@ -86,63 +87,63 @@ export default function AboutSection() {
               </div>
             </div>
 
-            {/* Floating Luxury Counter Badge */}
+            {/* Clean Institutional Floating Badge */}
             <div
-              className={`absolute -bottom-5 -right-3 sm:right-6 bg-white rounded-xl shadow-xl border border-slate-200/90 p-4 hidden sm:flex items-center gap-3.5 transition-all duration-1000 delay-500 transform ${
-                isVisible
-                  ? "opacity-100 translate-y-0 animate-float"
-                  : "opacity-0 translate-y-6"
-              }`}
-            >
-              <div className="w-11 h-11 rounded-lg bg-[#c39967]/15 flex items-center justify-center text-[#c39967] flex-shrink-0">
-                <Award className="w-5 h-5 stroke-[2]" />
-              </div>
-              <div>
-                <div className="text-xs font-bold text-[#111827]">UAE Registered Entity</div>
-                <div className="text-[11px] text-[#64748b]">Full Commercial Licensing</div>
-              </div>
-            </div>
-          </div>
-
-          {/* ========================================================
-              RIGHT COLUMN: Staggered Content Cascade
-             ======================================================== */}
-          <div className="lg:col-span-7 space-y-6">
-            
-            {/* 1. Eyebrow */}
-            <div
-              className={`inline-flex items-center gap-2 transition-all duration-700 delay-100 transform ${
+              className={`absolute -bottom-4 right-4 bg-white rounded-xl shadow-lg border border-slate-200/90 p-3 hidden sm:flex items-center gap-3 transition-all duration-700 delay-300 transform ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
             >
+              <div className="w-9 h-9 rounded-lg bg-[#c39967]/15 flex items-center justify-center text-[#c39967] flex-shrink-0">
+                <Award className="w-4 h-4 stroke-[2]" />
+              </div>
+              <div>
+                <div className="text-xs font-bold text-[#111827]">UAE Registered Entity</div>
+                <div className="text-[10.5px] text-[#64748b]">Full Commercial Licensing</div>
+              </div>
+            </div>
+          </div>
+
+          {/* ========================================================
+              RIGHT COLUMN: Structured Editorial Copy
+             ======================================================== */}
+          <div className="lg:col-span-7 space-y-4">
+            
+            {/* 1. Clean Eyebrow (No squished letters or clipping) */}
+            <div
+              className={`flex items-center gap-2 transition-all duration-700 delay-100 transform ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-3"
+              }`}
+            >
               <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
-              <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#c39967]">
+              <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-[#c39967]">
                 Institutional Overview
               </span>
             </div>
 
             {/* 2. Main Heading */}
             <h2
-              className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.15] transition-all duration-700 delay-200 transform ${
+              className={`text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] tracking-tight leading-[1.2] transition-all duration-700 delay-200 transform ${
                 isVisible
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
+                  : "opacity-0 translate-y-4"
               }`}
             >
               Delivering Business Excellence Through{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c39967] to-[#a87d4a]">
+              <span className="text-[#c39967]">
                 Strategy &amp; Disciplined Execution
               </span>
             </h2>
 
             {/* 3. Narrative Copy */}
             <p
-              className={`text-sm sm:text-base text-[#4b5563] leading-relaxed transition-all duration-700 delay-300 transform ${
+              className={`text-xs sm:text-sm text-[#4b5563] leading-relaxed transition-all duration-700 delay-300 transform ${
                 isVisible
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
+                  : "opacity-0 translate-y-4"
               }`}
             >
               At BricketX Project Management L.L.C, we partner with enterprises and government-backed entities across Dubai and the UAE to simplify complex initiatives, expand regional brand presence, and safeguard capital through rigorous project governance.
@@ -150,53 +151,53 @@ export default function AboutSection() {
 
             {/* 4. Core Highlights Checklist */}
             <div
-              className={`space-y-2.5 pt-1 transition-all duration-700 delay-400 transform ${
+              className={`space-y-2 pt-1 transition-all duration-700 delay-400 transform ${
                 isVisible
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
+                  : "opacity-0 translate-y-4"
               }`}
             >
               {highlights.map((item, i) => (
-                <div key={i} className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-[#1e293b]">
+                <div key={i} className="flex items-center gap-2.5 text-xs sm:text-[13px] font-medium text-[#1e293b]">
                   <CheckCircle2 className="w-4 h-4 text-[#c39967] flex-shrink-0" />
                   <span>{item}</span>
                 </div>
               ))}
             </div>
 
-            {/* 5. 4 Performance Metric Counters */}
+            {/* 5. Performance Metric Counters */}
             <div
-              className={`grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 transition-all duration-700 delay-500 transform ${
+              className={`grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2 transition-all duration-700 delay-500 transform ${
                 isVisible
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+                  : "opacity-0 translate-y-4"
               }`}
             >
               {stats.map((stat, i) => (
                 <div
                   key={i}
-                  className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-2xs hover:border-[#c39967]/50 transition-all duration-300 hover:-translate-y-0.5"
+                  className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs hover:border-[#c39967]/50 transition-colors"
                 >
-                  <div className="text-2xl font-black text-[#c39967] tracking-tight font-mono">
+                  <div className="text-xl font-black text-[#c39967] tracking-tight font-mono">
                     {stat.value}
                   </div>
                   <div className="text-xs font-bold text-[#111827] mt-0.5">{stat.label}</div>
-                  <div className="text-[10px] text-[#94a3b8] mt-0.5">{stat.detail}</div>
+                  <div className="text-[10px] text-[#94a3b8] mt-0.5 leading-tight">{stat.detail}</div>
                 </div>
               ))}
             </div>
 
             {/* 6. Action Button Links */}
             <div
-              className={`pt-2 flex flex-wrap items-center gap-4 transition-all duration-700 delay-600 transform ${
+              className={`pt-3 flex flex-wrap items-center gap-4 transition-all duration-700 delay-600 transform ${
                 isVisible
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-6"
+                  : "opacity-0 translate-y-4"
               }`}
             >
               <Link
                 href="#contact"
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-[#c39967] hover:bg-[#b28755] px-6 py-3.5 rounded-lg shadow-md transition-all cursor-pointer hover:shadow-lg hover:shadow-[#c39967]/20"
+                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white bg-[#c39967] hover:bg-[#b28755] px-5 py-3 rounded-lg shadow-sm transition-colors cursor-pointer"
               >
                 <span>Partner With Us</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -204,7 +205,7 @@ export default function AboutSection() {
 
               <Link
                 href="/about"
-                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#111827] hover:text-[#c39967] px-3 py-3.5 transition-colors font-semibold"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#111827] hover:text-[#c39967] px-2 py-3 transition-colors"
               >
                 <span>Read Full Company Profile</span>
                 <span>→</span>
