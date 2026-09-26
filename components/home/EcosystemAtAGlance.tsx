@@ -1,27 +1,27 @@
 // src/components/home/EcosystemAtAGlance.tsx
-import { Briefcase, ShieldCheck, Layers, Sparkles } from "lucide-react";
+import Image from "next/image";
 
 export default function EcosystemAtAGlance() {
   const pillars = [
     {
       title: "End-to-End Governance",
       desc: "Single-vendor execution from scoping to delivery",
-      icon: Briefcase,
+      icon: "/icons/ecosystem/governance.png", // Update path manually in /public
     },
     {
       title: "UAE Mainland Licensed",
       desc: "Full statutory compliance across municipal decrees",
-      icon: ShieldCheck,
+      icon: "/icons/ecosystem/license.png", // Update path manually in /public
     },
     {
       title: "3 Integrated Practices",
       desc: "PM, OOH/Digital Media & Strategic Advisory",
-      icon: Layers,
+      icon: "/icons/ecosystem/practices.png", // Update path manually in /public
     },
     {
       title: "Transparent Dashboards",
       desc: "Real-time milestones with zero stakeholder ambiguity",
-      icon: Sparkles,
+      icon: "/icons/ecosystem/dashboards.png", // Update path manually in /public
     },
   ];
 
@@ -37,28 +37,31 @@ export default function EcosystemAtAGlance() {
 
         {/* 4 Pillars In Exactly One Clean Row on Desktop */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-0 lg:divide-x lg:divide-white/10">
-          {pillars.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={idx}
-                className="group flex items-start gap-4 lg:px-6 first:lg:pl-0 last:lg:pr-0 transition-all duration-200"
-              >
-                <div className="w-8 h-8 rounded-lg bg-white/[0.04] flex items-center justify-center text-[#c39967] flex-shrink-0 group-hover:bg-[#c39967]/15 group-hover:text-white transition-colors">
-                  <Icon className="w-4 h-4 stroke-[1.8]" />
-                </div>
-
-                <div className="space-y-0.5 min-w-0">
-                  <h3 className="text-xs sm:text-[13px] font-semibold text-white tracking-wide group-hover:text-[#c39967] transition-colors truncate">
-                    {item.title}
-                  </h3>
-                  <p className="text-[11px] sm:text-xs text-slate-400 font-normal leading-relaxed line-clamp-2">
-                    {item.desc}
-                  </p>
-                </div>
+          {pillars.map((item, idx) => (
+            <div
+              key={idx}
+              className="group flex items-start gap-4 lg:px-6 first:lg:pl-0 last:lg:pr-0 transition-all duration-200"
+            >
+              <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-[#c39967]/15 group-hover:border-[#c39967]/30 transition-all">
+                <Image
+                  src={item.icon}
+                  alt={item.title}
+                  width={20}
+                  height={20}
+                  className="w-4 h-4 object-contain brightness-95 group-hover:brightness-110 transition-all"
+                />
               </div>
-            );
-          })}
+
+              <div className="space-y-0.5 min-w-0">
+                <h3 className="text-xs sm:text-[13px] font-semibold text-white tracking-wide group-hover:text-[#c39967] transition-colors truncate">
+                  {item.title}
+                </h3>
+                <p className="text-[11px] sm:text-xs text-slate-400 font-normal leading-relaxed line-clamp-2">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

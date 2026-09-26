@@ -2,70 +2,63 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 export default function CapabilitiesTape() {
-  const rowOne = [
+  // 6 Specified Deliverables
+  const deliverables = [
     {
-      title: "Enterprise Architecture & Infrastructure",
-      category: "Digital PM",
-      img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+      title: "Digital Projects",
+      desc: "Platforms, products and technology projects we plan, manage and deliver end-to-end.",
+      link: "/services/project-management",
+      linkText: "View Digital Projects",
+      img: "/images/capabilities/digital-projects.webp", // Update path manually in /public
     },
     {
-      title: "Sheikh Zayed Road Outdoor Media Concessions",
-      category: "OOH Media",
-      img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=85",
+      title: "Advertising Campaigns",
+      desc: "Billboard, outdoor and digital campaigns that put UAE brands in front of the right audience.",
+      link: "/services/advertising",
+      linkText: "View Campaigns",
+      img: "/images/capabilities/advertising-campaigns.webp", // Update path manually in /public
     },
     {
-      title: "Corporate Governance & Project Delivery",
-      category: "Governance",
-      img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85",
+      title: "Consulting Projects",
+      desc: "Strategy and operations engagements that helped UAE businesses work smarter and grow faster.",
+      link: "/services/business-consultancy",
+      linkText: "View Consulting Work",
+      img: "/images/capabilities/consulting-projects.webp", // Update path manually in /public
     },
     {
-      title: "Performance Advertising & Acquisition Funnels",
-      category: "Acquisition",
-      img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+      title: "Branding & Creative",
+      desc: "Brand identities, visual design and ad creatives that give UAE businesses a look people remember.",
+      link: "/services/advertising",
+      linkText: "View Branding Work",
+      img: "/images/capabilities/branding-creative.webp", // Update path manually in /public
     },
     {
-      title: "Strategic Corporate Restructuring",
-      category: "Consultancy",
-      img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=85",
-    },
-  ];
-
-  const rowTwo = [
-    {
-      title: "Urban LED Concessions & Digital OOH",
-      category: "Media Concessions",
-      img: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=85",
+      title: "SEO & Performance Marketing",
+      desc: "SEO, Google Ads and social campaigns that grew traffic, visibility and qualified leads.",
+      link: "/services/advertising",
+      linkText: "View Growth Results",
+      img: "/images/capabilities/seo-performance.webp", // Update path manually in /public
     },
     {
-      title: "Executive Milestone & SLA Oversight",
-      category: "Milestone Audit",
-      img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=85",
-    },
-    {
-      title: "Operational Workflow Diagnostics",
-      category: "Advisory",
-      img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=85",
-    },
-    {
-      title: "Digital Platform Engineering",
-      category: "Platform Systems",
-      img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=85",
-    },
-    {
-      title: "Omnichannel UAE Brand Launches",
-      category: "Brand Rollout",
-      img: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=85",
+      title: "Digital Transformation",
+      desc: "Roadmaps and system upgrades that helped businesses modernise operations and move faster.",
+      link: "/services/project-management",
+      linkText: "View Transformation Work",
+      img: "/images/capabilities/digital-transformation.webp", // Update path manually in /public
     },
   ];
 
-  const marqueeOne = [...rowOne, ...rowOne];
-  const marqueeTwo = [...rowTwo, ...rowTwo];
+  // Distribute across both directions and duplicate for continuous seamless infinite looping
+  const rowOne = [...deliverables, ...deliverables];
+  const rowTwo = [...deliverables.slice().reverse(), ...deliverables.slice().reverse()];
 
   return (
     <section className="relative py-12 lg:py-16 bg-[#07090e] border-y border-white/10 overflow-hidden">
-      {/* Edge Gradient Scrims for seamless entry & exit */}
+      {/* Edge Gradient Scrims for smooth fade in/out */}
       <div className="absolute left-0 top-0 bottom-0 w-28 sm:w-48 bg-gradient-to-r from-[#07090e] to-transparent z-20 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-28 sm:w-48 bg-gradient-to-l from-[#07090e] to-transparent z-20 pointer-events-none" />
 
@@ -82,33 +75,44 @@ export default function CapabilitiesTape() {
         </span>
       </div>
 
-      <div className="space-y-2 sm:space-y-3">
+      <div className="space-y-3 sm:space-y-4">
         {/* Row 1: Sliding Left */}
         <div className="flex w-max animate-marquee-left pause-hover">
-          {marqueeOne.map((item, idx) => (
+          {rowOne.map((item, idx) => (
             <div
               key={idx}
-              className="relative w-[340px] sm:w-[420px] lg:w-[480px] h-[200px] sm:h-[240px] lg:h-[270px] flex-shrink-0 overflow-hidden group mr-2 sm:mr-3"
+              className="relative w-[340px] sm:w-[420px] lg:w-[460px] h-[220px] sm:h-[250px] lg:h-[270px] flex-shrink-0 overflow-hidden group mr-3 sm:mr-4 rounded-xl border border-white/10 bg-[#0f141f]"
             >
               <Image
                 src={item.img}
                 alt={item.title}
                 fill
-                sizes="(max-width: 768px) 340px, 480px"
-                className="object-cover object-center brightness-90 group-hover:brightness-105 group-hover:scale-[1.02] transition-all duration-700 ease-out"
+                sizes="(max-width: 768px) 340px, 460px"
+                className="object-cover object-center brightness-90 group-hover:scale-105 group-hover:brightness-100 transition-all duration-700 ease-out"
               />
 
-              {/* Natural Bottom Shadow Vignette */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
+              {/* Natural Deep Gradient Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/60 to-transparent pointer-events-none" />
 
-              {/* Clean Overlaid Typography Tag */}
-              <div className="absolute bottom-4 left-4 right-4 z-10">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#c39967] block mb-1">
-                  {item.category}
-                </span>
-                <p className="text-xs sm:text-[13px] font-bold text-white tracking-tight leading-snug line-clamp-1">
+              {/* Content Overlay */}
+              <div className="absolute bottom-4 left-4 right-4 z-10 flex flex-col justify-end">
+                <h4 className="text-sm sm:text-base font-bold text-white tracking-tight leading-snug">
                   {item.title}
+                </h4>
+
+                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal mt-1 line-clamp-2">
+                  {item.desc}
                 </p>
+
+                <div className="pt-2.5 mt-2 border-t border-white/10">
+                  <Link
+                    href={item.link}
+                    className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold text-[#c39967] hover:text-white transition-colors"
+                  >
+                    <span>{item.linkText}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
@@ -116,30 +120,41 @@ export default function CapabilitiesTape() {
 
         {/* Row 2: Sliding Right */}
         <div className="flex w-max animate-marquee-right pause-hover">
-          {marqueeTwo.map((item, idx) => (
+          {rowTwo.map((item, idx) => (
             <div
               key={idx}
-              className="relative w-[340px] sm:w-[420px] lg:w-[480px] h-[200px] sm:h-[240px] lg:h-[270px] flex-shrink-0 overflow-hidden group mr-2 sm:mr-3"
+              className="relative w-[340px] sm:w-[420px] lg:w-[460px] h-[220px] sm:h-[250px] lg:h-[270px] flex-shrink-0 overflow-hidden group mr-3 sm:mr-4 rounded-xl border border-white/10 bg-[#0f141f]"
             >
               <Image
                 src={item.img}
                 alt={item.title}
                 fill
-                sizes="(max-width: 768px) 340px, 480px"
-                className="object-cover object-center brightness-90 group-hover:brightness-105 group-hover:scale-[1.02] transition-all duration-700 ease-out"
+                sizes="(max-width: 768px) 340px, 460px"
+                className="object-cover object-center brightness-90 group-hover:scale-105 group-hover:brightness-100 transition-all duration-700 ease-out"
               />
 
-              {/* Natural Bottom Shadow Vignette */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
+              {/* Natural Deep Gradient Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/60 to-transparent pointer-events-none" />
 
-              {/* Clean Overlaid Typography Tag */}
-              <div className="absolute bottom-4 left-4 right-4 z-10">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#c39967] block mb-1">
-                  {item.category}
-                </span>
-                <p className="text-xs sm:text-[13px] font-bold text-white tracking-tight leading-snug line-clamp-1">
+              {/* Content Overlay */}
+              <div className="absolute bottom-4 left-4 right-4 z-10 flex flex-col justify-end">
+                <h4 className="text-sm sm:text-base font-bold text-white tracking-tight leading-snug">
                   {item.title}
+                </h4>
+
+                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal mt-1 line-clamp-2">
+                  {item.desc}
                 </p>
+
+                <div className="pt-2.5 mt-2 border-t border-white/10">
+                  <Link
+                    href={item.link}
+                    className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold text-[#c39967] hover:text-white transition-colors"
+                  >
+                    <span>{item.linkText}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

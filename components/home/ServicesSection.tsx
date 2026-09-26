@@ -3,10 +3,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
-  KanbanSquare,
-  Megaphone,
-  TrendingUp,
   ArrowUpRight,
   ShieldCheck,
   CheckCircle2,
@@ -42,9 +40,8 @@ export default function ServicesSection() {
       statLine: "From discovery to post-launch support, one accountable team.",
       metricVal: "100%",
       metricLabel: "Milestone Delivery SLA",
-      image:
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80",
-      icon: KanbanSquare,
+      image: "/images/services/project-management.webp", // Update path manually in /public
+      icon: "/images/icons/services/project-management.png", // Update path manually in /public
     },
     {
       id: "service-02",
@@ -68,9 +65,8 @@ export default function ServicesSection() {
       statLine: "Outdoor, digital and creative, managed by one team.",
       metricVal: "3.2M+",
       metricLabel: "Targeted UAE Impressions",
-      image:
-        "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80",
-      icon: Megaphone,
+      image: "/images/services/advertising.webp", // Update path manually in /public
+      icon: "/images/icons/services/advertising.png", // Update path manually in /public
     },
     {
       id: "service-03",
@@ -93,9 +89,8 @@ export default function ServicesSection() {
       statLine: "Clear strategy. Leaner operations. Measurable growth.",
       metricVal: "35%+",
       metricLabel: "Operational Efficiency Gain",
-      image:
-        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80",
-      icon: TrendingUp,
+      image: "/images/services/consulting.webp", // Update path manually in /public
+      icon: "/images/icons/services/consulting.png", // Update path manually in /public
     },
   ];
 
@@ -177,36 +172,42 @@ export default function ServicesSection() {
         {/* Floating Switcher Rail */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6 sm:mt-8">
           {pillars.map((p) => {
-            const Icon = p.icon;
             const isActive = activePractice === p.id;
 
             return (
               <a
                 key={p.id}
                 href={`#${p.id}`}
-                className={`group flex items-center justify-between p-3 rounded-xl border transition-colors ${
+                className={`group flex items-center justify-between p-3.5 rounded-xl border transition-all ${
                   isActive
-                    ? "border-[#c39967] bg-[#faf8f5]"
-                    : "border-slate-200 hover:border-slate-300 bg-white"
+                    ? "border-[#c39967] bg-[#faf8f5] shadow-xs"
+                    : "border-slate-200/90 hover:border-slate-300 bg-white"
                 }`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3.5">
+                  {/* High-contrast container for gold icons */}
                   <div
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+                    className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all ${
                       isActive
-                        ? "bg-[#c39967] text-white"
-                        : "bg-[#c39967]/10 text-[#c39967] group-hover:bg-[#c39967] group-hover:text-white"
+                        ? "bg-[#07090e] border border-[#07090e] shadow-sm"
+                        : "bg-slate-100/80 border border-slate-200/80 group-hover:bg-[#c39967]/10 group-hover:border-[#c39967]/30"
                     }`}
                   >
-                    <Icon className="w-4 h-4 stroke-[1.8]" />
+                    <Image
+                      src={p.icon}
+                      alt={p.title}
+                      width={24}
+                      height={24}
+                      className="w-6 h-6 object-contain transition-transform duration-200 group-hover:scale-105"
+                    />
                   </div>
                   <div>
-                    <span className="text-[9.5px] font-mono text-slate-400 block uppercase">
+                    <span className="text-[9.5px] font-mono text-slate-400 block uppercase font-medium">
                       Practice {p.number}
                     </span>
                     <span
-                      className={`text-xs sm:text-[13px] font-bold block transition-colors ${
-                        isActive ? "text-[#111827]" : "text-[#4b5563] group-hover:text-[#111827]"
+                      className={`text-xs sm:text-[13.5px] font-bold block transition-colors ${
+                        isActive ? "text-[#111827]" : "text-[#334155] group-hover:text-[#111827]"
                       }`}
                     >
                       {p.title}
@@ -214,7 +215,7 @@ export default function ServicesSection() {
                   </div>
                 </div>
                 <ArrowUpRight
-                  className={`w-3.5 h-3.5 transition-transform ${
+                  className={`w-4 h-4 transition-transform ${
                     isActive
                       ? "text-[#c39967] translate-x-0.5 -translate-y-0.5"
                       : "text-slate-300 group-hover:text-[#c39967]"
@@ -229,7 +230,6 @@ export default function ServicesSection() {
       {/* 2. Interactive Real-Time Fold Stacking Stage */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {pillars.map((pillar, index) => {
-          const Icon = pillar.icon;
           const isAlt = index % 2 === 1;
 
           return (
@@ -247,28 +247,38 @@ export default function ServicesSection() {
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
                 
-                {/* Visual Imagery Canvas */}
+                {/* Visual Imagery Canvas (Local Image with fill) */}
                 <div
                   className={`lg:col-span-5 relative ${
                     isAlt ? "lg:order-2" : "lg:order-1"
                   }`}
                 >
                   <div className="rounded-xl overflow-hidden border border-slate-200 bg-slate-900 flex flex-col">
-                    {/* Clean photo without overlapping text */}
                     <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">
-                      <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out hover:scale-105"
-                        style={{ backgroundImage: `url('${pillar.image}')` }}
+                      <Image
+                        src={pillar.image}
+                        alt={pillar.title}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 40vw"
+                        className="object-cover object-center transition-transform duration-700 ease-out hover:scale-105"
                       />
-                      <div className="absolute top-3 left-3">
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/75 text-white text-[10px] font-mono uppercase tracking-wider backdrop-blur-xs">
-                          <Icon className="w-3 h-3 text-[#c39967]" />
+                      
+                      {/* Top Pill with local gold icon */}
+                      <div className="absolute top-3 left-3 z-10">
+                        <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#07090e]/85 text-white text-[10.5px] font-mono uppercase tracking-wider backdrop-blur-xs border border-white/10">
+                          <Image
+                            src={pillar.icon}
+                            alt={pillar.title}
+                            width={16}
+                            height={16}
+                            className="w-4 h-4 object-contain"
+                          />
                           <span>Pillar {pillar.number}</span>
                         </span>
                       </div>
                     </div>
 
-                    {/* Grounded Metric Footer: Completely unclipped */}
+                    {/* Grounded Metric Footer */}
                     <div className="p-3.5 bg-[#0b0f17] text-white flex items-center justify-between border-t border-white/10">
                       <div>
                         <div className="text-xl font-bold font-mono text-[#c39967]">

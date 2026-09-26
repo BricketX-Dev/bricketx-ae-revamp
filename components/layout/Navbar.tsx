@@ -3,6 +3,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   Menu,
@@ -10,9 +11,6 @@ import {
   ArrowUpRight,
   Phone,
   ChevronDown,
-  KanbanSquare,
-  Megaphone,
-  TrendingUp,
   Layers,
   ArrowRight,
 } from "lucide-react";
@@ -71,21 +69,21 @@ export default function Navbar() {
       title: "Digital Project Management",
       desc: "Scope governance, critical-path milestones, and platform engineering.",
       href: "/services/project-management",
-      icon: KanbanSquare,
+      icon: "/images/icons/services/project-management.png", // Update path manually in /public
     },
     {
       code: "PRACTICE 02",
       title: "Advertising & Media",
       desc: "Sheikh Zayed Rd billboards, transit concessions, and digital acquisition.",
       href: "/services/advertising",
-      icon: Megaphone,
+      icon: "/images/icons/services/advertising.png", // Update path manually in /public
     },
     {
       code: "PRACTICE 03",
       title: "Business Consultancy",
       desc: "Operational restructuring, SOPs, and UAE commercial market entry.",
       href: "/services/business-consultancy",
-      icon: TrendingUp,
+      icon: "/images/icons/services/consulting.png", // Update path manually in /public
     },
   ];
 
@@ -186,7 +184,7 @@ export default function Navbar() {
                           Unified Practice Delivery in Dubai
                         </h4>
                         <p className="text-[11px] text-slate-400 mt-2 leading-relaxed font-normal">
-                          We manage project governance, media placements, and corporate advisory under single-vendor accountability[cite: 2].
+                          We manage project governance, media placements, and corporate advisory under single-vendor accountability.
                         </p>
                       </div>
 
@@ -202,7 +200,6 @@ export default function Navbar() {
                     {/* Right Practice Links Column */}
                     <div className="col-span-7 space-y-1.5 flex flex-col justify-center">
                       {serviceItems.map((item) => {
-                        const Icon = item.icon;
                         const isCurrent = pathname === item.href;
 
                         return (
@@ -215,8 +212,14 @@ export default function Navbar() {
                                 : "bg-transparent border-transparent hover:bg-white/[0.04] hover:border-white/10"
                             }`}
                           >
-                            <div className="w-8 h-8 rounded-lg bg-[#c39967]/15 border border-[#c39967]/30 flex items-center justify-center text-[#c39967] flex-shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
-                              <Icon className="w-4 h-4 stroke-[1.8]" />
+                            <div className="w-9 h-9 rounded-lg bg-black/60 border border-white/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-105 group-hover:border-[#c39967]/40 transition-all">
+                              <Image
+                                src={item.icon}
+                                alt={item.title}
+                                width={20}
+                                height={20}
+                                className="w-5 h-5 object-contain"
+                              />
                             </div>
 
                             <div className="min-w-0 flex-1">
@@ -359,9 +362,16 @@ export default function Navbar() {
                   <Link
                     key={s.href}
                     href={s.href}
-                    className="block text-xs text-slate-300 hover:text-white px-2 py-1.5"
+                    className="flex items-center gap-2.5 text-xs text-slate-300 hover:text-white px-2 py-1.5"
                   >
-                    {s.title}
+                    <Image
+                      src={s.icon}
+                      alt={s.title}
+                      width={16}
+                      height={16}
+                      className="w-4 h-4 object-contain flex-shrink-0"
+                    />
+                    <span>{s.title}</span>
                   </Link>
                 ))}
               </div>

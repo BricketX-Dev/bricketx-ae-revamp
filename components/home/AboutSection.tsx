@@ -3,6 +3,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   CheckCircle2,
   ArrowUpRight,
@@ -55,7 +56,7 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           
           {/* ========================================================
-              LEFT COLUMN: Clean Visual Card Frame
+              LEFT COLUMN: Visual Frame with Local Next.js Image
              ======================================================== */}
           <div
             className={`lg:col-span-5 relative transition-all duration-700 ease-out transform ${
@@ -65,17 +66,19 @@ export default function AboutSection() {
             }`}
           >
             <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200/90 aspect-[4/5] min-h-[440px] bg-slate-900 group">
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80')",
-                }}
+              {/* Local manual image path */}
+              <Image
+                src="/images/about/about-main.webp" // Update path manually in /public
+                alt="BricketX Dubai Corporate Headquarters"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              {/* Deep smooth gradient to prevent text hiding */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f17]/95 via-[#0b0f17]/40 to-transparent" />
 
-              {/* Bottom Card Copy (Cleanly spaced & never clipped) */}
+              {/* Deep smooth gradient to maintain text contrast */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f17]/95 via-[#0b0f17]/40 to-transparent pointer-events-none" />
+
+              {/* Bottom Card Copy */}
               <div className="absolute bottom-6 left-6 right-6 z-10">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/10 backdrop-blur-md border border-white/15 text-[10.5px] font-medium text-white mb-2.5">
                   <Building2 className="w-3.5 h-3.5 text-[#c39967]" />
@@ -110,7 +113,7 @@ export default function AboutSection() {
              ======================================================== */}
           <div className="lg:col-span-7 space-y-4">
             
-            {/* 1. Clean Eyebrow (No squished letters or clipping) */}
+            {/* 1. Eyebrow */}
             <div
               className={`flex items-center gap-2 transition-all duration-700 delay-100 transform ${
                 isVisible
@@ -196,8 +199,8 @@ export default function AboutSection() {
               }`}
             >
               <Link
-                href="#contact"
-                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white bg-[#c39967] hover:bg-[#b28755] px-5 py-3 rounded-lg shadow-sm transition-colors cursor-pointer"
+                href="/contact"
+                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white bg-[#c39967] hover:bg-[#b28755] px-5 py-3 rounded-lg shadow-sm transition-colors cursor-pointer font-sans"
               >
                 <span>Partner With Us</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -205,7 +208,7 @@ export default function AboutSection() {
 
               <Link
                 href="/about"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#111827] hover:text-[#c39967] px-2 py-3 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#111827] hover:text-[#c39967] px-2 py-3 transition-colors font-sans"
               >
                 <span>Read Full Company Profile</span>
                 <span>→</span>
