@@ -3,72 +3,103 @@ import type { Metadata } from "next";
 import ServicePageLayout, { ServiceDetailProps } from "@/components/services/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Digital Project Management Services Dubai | BricketX",
+  title: "Project Management Company in Dubai | Digital Projects | BricketX UAE",
   description:
-    "End-to-end digital project management in Dubai. Scope control, technical milestones, resource governance, and QA delivery for UAE enterprises.",
+    "BricketX is a project management company in Dubai that takes digital projects, web platforms and tech initiatives from plan to live launch with single-vendor accountability.",
 };
 
 const pmData: ServiceDetailProps = {
   number: "01",
   category: "PROJECT MANAGEMENT",
-  title: "End-to-End Digital Project Management in Dubai",
+  title: "Project Management Company in Dubai for Digital Projects",
   subheadline:
-    "We take enterprise technology, platform architectures, and digital transformation initiatives from blueprint through to live handover.",
+    "BricketX is a project management company in Dubai that takes your digital projects, web platforms and technology initiatives from plan to live launch.",
   description:
-    "BricketX provides single-vendor accountability across every milestone. We align engineering teams, external contractors, and executive leadership under strict critical-path governance to ensure your technology investments deliver on time and to specification.",
-  heroImage:
-    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=85",
+    "One accountable team manages your scope, timelines, developers and stakeholders at every stage. You get clear milestones, regular updates and a project delivered on time, on budget and to the agreed standard.",
+  heroImage: "/images/services/project-management.webp", // Update path manually in /public
   slaMetrics: [
-    { value: "100%", label: "Milestone Delivery SLA", sublabel: "Critical-path schedule adherence" },
-    { value: "Zero", label: "Vendor Silos", sublabel: "Single direct accountable project desk" },
-    { value: "24h", label: "Executive Reporting Cycle", sublabel: "Live sprint burndowns & risk audits" },
+    {
+      value: "End-to-End",
+      label: "Delivery Model",
+      sublabel: "Planning to post-launch support",
+    },
+    {
+      value: "1 Team",
+      label: "Point of Contact",
+      sublabel: "One accountable project lead",
+    },
+    {
+      value: "Weekly",
+      label: "Progress Reporting",
+      sublabel: "Milestone updates & risk tracking",
+    },
   ],
   capabilities: [
     {
-      title: "Technical Scoping & Architecture Planning",
+      title: "Technology Project Planning",
       description:
-        "Full technical breakdown, dependency mapping, and infrastructure feasibility audits prior to writing code or procuring vendors.",
+        "We map out your project before any code is written: scope, technology choices, budget, risks and a realistic timeline everyone agrees on.",
       deliverables: [
-        "Work Breakdown Structure (WBS)",
-        "Technical Stack Feasibility Report",
-        "Risk Assessment Matrix",
-        "Statutory UAE Data Protection Review",
+        "Project Scope & Work Breakdown",
+        "Technology & Feasibility Assessment",
+        "Risk Assessment Plan",
+        "Budget & Timeline Roadmap",
       ],
     },
     {
-      title: "Agile & Critical-Path Milestone Delivery",
+      title: "Project Execution & Delivery",
       description:
-        "Active day-to-day coordination of developers, systems integrators, and business stakeholders under disciplined sprint cadences.",
+        "We coordinate your developers, vendors and stakeholders day to day, using agile sprints to keep work moving and milestones on track.",
       deliverables: [
-        "Sprint Governance & Backlog Prioritization",
-        "Live Milestone Dashboards",
-        "Cross-Vendor Blocker Resolution",
-        "Weekly Steering Committee Decks",
+        "Sprint Planning & Backlog Management",
+        "Live Progress Dashboard",
+        "Vendor & Blocker Coordination",
+        "Regular Progress Reports",
       ],
     },
     {
-      title: "Quality Assurance & Production Handover",
+      title: "Quality Assurance & Launch Support",
       description:
-        "Rigorous functional, load, and security verification before production release, supported by comprehensive handover documentation.",
+        "Before launch, we test every feature for function, performance and security, then hand over complete documentation and ongoing support.",
       deliverables: [
-        "User Acceptance Testing (UAT) Audits",
-        "Penetration & Security Checklists",
-        "System Architecture Handover Docs",
-        "Post-Launch SLA Maintenance Plans",
+        "User Acceptance Testing (UAT)",
+        "Performance & Security Testing",
+        "Handover Documentation",
+        "Post-Launch Support Plan",
       ],
     },
   ],
   workflow: [
-    { step: "1", phase: "Discovery", title: "Scope Scrutiny & Feasibility", deliverable: "Technical Roadmap Document" },
-    { step: "2", phase: "Architecture", title: "Resource & Milestone Planning", deliverable: "Critical Path Timeline SLA" },
-    { step: "3", phase: "Execution", title: "Sprint Coordination & Testing", deliverable: "Staging Platform Sign-off" },
-    { step: "4", phase: "Handover", title: "Live Handover & Governance", deliverable: "30-Day Post-Launch SLA" },
+    {
+      step: "1",
+      phase: "DISCOVERY",
+      title: "Scope & Feasibility Review",
+      deliverable: "Project Roadmap Document",
+    },
+    {
+      step: "2",
+      phase: "PLANNING",
+      title: "Resources & Milestone Planning",
+      deliverable: "Approved Timeline & Budget",
+    },
+    {
+      step: "3",
+      phase: "EXECUTION",
+      title: "Sprint Delivery & Testing",
+      deliverable: "Tested Build Ready for Sign-off",
+    },
+    {
+      step: "4",
+      phase: "LAUNCH",
+      title: "Go-Live & Handover",
+      deliverable: "Live Launch + Support Plan",
+    },
   ],
   governanceSpecs: [
-    "Strict non-disclosure NDA protocols across all systems",
-    "Continuous sprint burn-down tracking with zero hidden delays",
-    "Mainland commercial legal agreements governed under UAE courts",
-    "Single point of technical escalation for leadership",
+    "NDA signed before every project, keeping your data and ideas confidential",
+    "Live progress tracking, so delays are flagged early, never hidden",
+    "Clear written agreements under UAE law",
+    "One project lead as your single point of contact",
   ],
 };
 

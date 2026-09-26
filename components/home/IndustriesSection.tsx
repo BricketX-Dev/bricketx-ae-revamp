@@ -3,17 +3,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import {
-  Building2,
-  Cpu,
-  HeartPulse,
-  UtensilsCrossed,
-  ShoppingBag,
-  Truck,
-  Landmark,
-  ArrowUpRight,
-  ShieldCheck,
-} from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
 export default function IndustriesSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -39,40 +30,46 @@ export default function IndustriesSection() {
 
   const industries = [
     {
+      code: "01",
       title: "Construction & Real Estate",
-      desc: "Capital project coordination, developer marketing roadmaps, and milestone governance for UAE prime properties.",
-      icon: Building2,
-      tags: ["Off-Plan Launches", "Milestone Tracking", "OOH Billboards"],
+      desc: "Capital project coordination, developer marketing roadmaps, and critical-path milestone governance for UAE prime developments.",
+      icon: "/images/icons/industries/construction.png",
+      deliverables: ["Off-Plan Launches", "Milestone Tracking", "Highway OOH Media"],
     },
     {
+      code: "02",
       title: "Technology & E-commerce",
-      desc: "Full-lifecycle digital platform delivery, performance marketing, and conversion architecture for tech ventures.",
-      icon: Cpu,
-      tags: ["Digital Transformation", "Performance PPC", "Platform Delivery"],
+      desc: "Full-lifecycle platform architectures, enterprise product management, and high-yield acquisition funnels across the GCC.",
+      icon: "/images/icons/industries/technology.png",
+      deliverables: ["Platform Architecture", "Performance Funnels", "Cloud Scaling"],
     },
     {
+      code: "03",
       title: "Healthcare & Education",
-      desc: "Institutional workflow optimization, healthcare marketing compliance, and facility management planning.",
-      icon: HeartPulse,
-      tags: ["Operational Review", "Brand Positioning", "Regulatory Compliance"],
+      desc: "Institutional workflow optimization, DHA/MOH regulatory advertising adherence, and facility operational planning.",
+      icon: "/images/icons/industries/healthcare.png",
+      deliverables: ["Operational Audits", "MOH Permitting", "Institutional Branding"],
     },
     {
+      code: "04",
       title: "Hospitality & F&B",
-      desc: "Concept rollout management, guest acquisition strategies, and multi-location operational streamlining.",
-      icon: UtensilsCrossed,
-      tags: ["Brand Activations", "Location Expansion", "Digital Campaigns"],
+      desc: "Concept rollout management, landmark media activations, and multi-location operational streamlining in primary tourist corridors.",
+      icon: "/images/icons/industries/hospitality.png",
+      deliverables: ["Brand Rollouts", "Prime Footfall Media", "Multi-Site Ops"],
     },
     {
+      code: "05",
       title: "Retail & Manufacturing",
-      desc: "Omnichannel inventory workflows, consumer advertising campaigns, and operational supply chain alignment.",
-      icon: ShoppingBag,
-      tags: ["Supply Optimization", "Omnichannel Growth", "Brand Visibility"],
+      desc: "Omnichannel inventory workflows, nationwide brand visibility campaigns, and supply chain governance for regional brands.",
+      icon: "/images/icons/industries/retail.png",
+      deliverables: ["Supply Chain Alignment", "Omnichannel Reach", "Retail Media"],
     },
     {
+      code: "06",
       title: "Professional Services & Logistics",
-      desc: "B2B lead generation, fleet and distribution workflow advisory, and corporate transformation roadmaps.",
-      icon: Truck,
-      tags: ["Process Engineering", "Corporate Branding", "B2B Growth"],
+      desc: "B2B commercial positioning, cross-emirate transport advisory, and corporate restructuring roadmaps for GCC operators.",
+      icon: "/images/icons/industries/logistics.png",
+      deliverables: ["Process Engineering", "B2B Acquisition", "Corporate Strategy"],
     },
   ];
 
@@ -80,75 +77,88 @@ export default function IndustriesSection() {
     <section
       ref={sectionRef}
       id="industries"
-      className="py-14 lg:py-20 bg-[#f8f9fb] border-t border-slate-200/80 relative"
+      className="py-16 sm:py-24 bg-[#f8f9fb] text-[#0f172a] border-t border-slate-200/80 relative"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         
         {/* Section Header */}
         <div
-          className={`flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-12 gap-6 transition-all duration-700 ease-out transform ${
+          className={`flex flex-col lg:flex-row lg:items-end justify-between mb-12 sm:mb-16 gap-6 transition-all duration-700 ease-out transform ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
           <div className="max-w-2xl">
-            <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] uppercase text-[#c39967] block mb-2">
-              Sectors &amp; Expertise
-            </span>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
+              <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-[#c39967]">
+                Sectors &amp; Practice Scope
+              </span>
+            </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] tracking-tight leading-[1.18]">
-              Tailored Solutions Across{" "}
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0f172a] tracking-tight leading-[1.14]">
+              Targeted Practice Solutions Across <br />
               <span className="text-[#c39967]">Key UAE Economic Sectors</span>
             </h2>
           </div>
 
-          <p className="text-xs sm:text-sm text-[#64748b] max-w-md leading-relaxed font-normal">
-            Supporting businesses across Dubai and the Emirates with sector-specific operational models, regulatory insight, and measurable growth frameworks.
+          <p className="text-xs sm:text-sm text-[#475569] max-w-md leading-relaxed font-normal">
+            Every sector in Dubai operates under unique regulatory frameworks and capital cycles. We adapt project governance and media delivery specifically to your vertical.
           </p>
         </div>
 
-        {/* 6 Clean Editorial Industry Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        {/* 6 Clean Premium Cards (Warm Gold Vessels) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
           {industries.map((ind, i) => {
-            const Icon = ind.icon;
-            const delay = i * 70;
+            const delay = i * 60;
 
             return (
               <div
-                key={i}
+                key={ind.code}
                 style={{ transitionDelay: `${delay}ms` }}
-                className={`group flex flex-col justify-between p-6 rounded-xl border border-slate-200/90 bg-white hover:border-[#c39967]/60 transition-all duration-300 shadow-2xs transform ${
+                className={`group relative p-7 sm:p-8 rounded-2xl bg-white border border-slate-200/80 hover:border-[#c39967]/70 transition-all duration-300 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(195,153,103,0.12)] transform ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 }`}
               >
                 <div>
-                  {/* Top: Icon & Numeric Index */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-10 h-10 rounded-lg bg-[#c39967]/10 flex items-center justify-center text-[#c39967] group-hover:bg-[#c39967] group-hover:text-white transition-colors">
-                      <Icon className="w-4 h-4 stroke-[1.8]" />
+                  {/* Top Bar: Warm Gold Chamfered Vessel + Monospace Code */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-13 h-13 rounded-xl bg-[#faf6f0] border border-[#c39967]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#c39967]/15 group-hover:border-[#c39967]/60 group-hover:scale-105 transition-all duration-300">
+                      <Image
+                        src={ind.icon}
+                        alt={ind.title}
+                        width={28}
+                        height={28}
+                        className="w-7 h-7 object-contain"
+                      />
                     </div>
-                    <span className="font-mono text-xs font-semibold text-slate-400 group-hover:text-[#c39967] transition-colors">
-                      0{i + 1}
+                    <span className="font-mono text-xs font-bold tracking-widest text-[#94a3b8] group-hover:text-[#c39967] transition-colors">
+                      {ind.code}
                     </span>
                   </div>
 
-                  <h3 className="text-base font-bold text-[#111827] mb-2 leading-snug group-hover:text-[#c39967] transition-colors">
+                  {/* Title */}
+                  <h3 className="text-base sm:text-lg font-bold text-[#0f172a] mb-2 leading-snug group-hover:text-[#c39967] transition-colors">
                     {ind.title}
                   </h3>
 
-                  <p className="text-xs text-[#64748b] leading-relaxed mb-6 font-normal">
+                  {/* Description */}
+                  <p className="text-xs sm:text-[13px] text-[#475569] leading-relaxed font-normal mb-6">
                     {ind.desc}
                   </p>
                 </div>
 
-                {/* Capability Tags */}
-                <div className="pt-3.5 border-t border-slate-100">
+                {/* Sub-Specializations Footnote */}
+                <div className="pt-4 border-t border-slate-100">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#94a3b8] block mb-2 font-medium">
+                    Specialized Delivery Focus:
+                  </span>
                   <div className="flex flex-wrap gap-1.5">
-                    {ind.tags.map((tag, idx) => (
+                    {ind.deliverables.map((item, dIdx) => (
                       <span
-                        key={idx}
-                        className="text-[10px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded"
+                        key={dIdx}
+                        className="text-[11px] font-medium text-[#334155] bg-[#f1f5f9] border border-slate-200/60 px-2.5 py-0.5 rounded-md"
                       >
-                        {tag}
+                        {item}
                       </span>
                     ))}
                   </div>
@@ -158,36 +168,43 @@ export default function IndustriesSection() {
           })}
         </div>
 
-        {/* Featured Institutional Banner */}
+        {/* Featured Institutional Banner (High-Contrast Anchor) */}
         <div
-          className={`mt-8 rounded-2xl bg-[#090d14] border border-white/10 p-6 sm:p-8 text-white relative transition-all duration-700 delay-200 transform ${
+          className={`mt-10 rounded-2xl bg-[#07090e] border border-white/10 p-7 sm:p-10 text-white transition-all duration-700 delay-200 transform shadow-xl ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-            <div className="flex items-start gap-4 sm:gap-5">
-              <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#c39967] flex-shrink-0">
-                <Landmark className="w-5 h-5 stroke-[1.8]" />
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div className="flex items-start gap-4 sm:gap-6">
+              <div className="w-13 h-13 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center flex-shrink-0">
+                <Image
+                  src="/images/icons/industries/institutional.png"
+                  alt="Specialized Institutional Engagements"
+                  width={30}
+                  height={30}
+                  className="w-7 h-7 object-contain"
+                />
               </div>
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#c39967] block">
-                  Specialized Institutional Engagements
+
+              <div className="space-y-1.5 max-w-2xl">
+                <span className="text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#c39967] block">
+                  Public Sector &amp; Enterprise Governance
                 </span>
                 <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                  Startups, Corporate Enterprises &amp; Government Support Projects
+                  Startups, Corporate Holdings &amp; Municipal Engagements
                 </h3>
-                <p className="text-xs text-slate-400 max-w-2xl leading-relaxed font-normal">
-                  We configure bespoke cross-functional task forces capable of managing high-compliance public sector initiatives, rapid-scaling venture frameworks, and enterprise reorganization.
+                <p className="text-xs sm:text-[13px] text-slate-400 leading-relaxed font-normal">
+                  We configure bespoke cross-functional delivery units to steer high-compliance mainland initiatives, regional brand launches, and multi-entity reorganizations.
                 </p>
               </div>
             </div>
 
             <Link
-              href="#contact"
-              className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-colors cursor-pointer whitespace-nowrap self-start lg:self-center font-sans"
+              href="/contact"
+              className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-colors whitespace-nowrap self-start lg:self-center font-sans shadow-md"
             >
               <span>Consult On Your Industry</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
         </div>

@@ -6,22 +6,22 @@ export default function EcosystemAtAGlance() {
     {
       title: "End-to-End Governance",
       desc: "Single-vendor execution from scoping to delivery",
-      icon: "/icons/ecosystem/governance.png", // Update path manually in /public
+      icon: "/images/icons/ecosystem/governance.png", 
     },
     {
       title: "UAE Mainland Licensed",
       desc: "Full statutory compliance across municipal decrees",
-      icon: "/icons/ecosystem/license.png", // Update path manually in /public
+      icon: "/images/icons/ecosystem/license.png", 
     },
     {
       title: "3 Integrated Practices",
       desc: "PM, OOH/Digital Media & Strategic Advisory",
-      icon: "/icons/ecosystem/practices.png", // Update path manually in /public
+      icon: "/images/icons/ecosystem/practices.png", 
     },
     {
       title: "Transparent Dashboards",
       desc: "Real-time milestones with zero stakeholder ambiguity",
-      icon: "/icons/ecosystem/dashboards.png", // Update path manually in /public
+      icon: "/images/icons/ecosystem/dashboards.png", 
     },
   ];
 
