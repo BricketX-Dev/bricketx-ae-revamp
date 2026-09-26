@@ -111,7 +111,7 @@ export default function HeroSection() {
           </Link>
 
           <Link
-            href="#services"
+            href="/services"
             className="w-full sm:w-auto px-6 py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-white border border-white/15 hover:border-[#c39967] hover:text-[#c39967] hover:bg-white/[0.04] bg-white/[0.02] backdrop-blur-sm transition-all flex items-center justify-center gap-2.5 group cursor-pointer font-sans"
           >
             <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#c39967]/20 transition-colors">

@@ -1,8 +1,9 @@
 // src/components/about/AboutPillars.tsx
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, ArrowUpRight } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function AboutPillars() {
@@ -11,6 +12,8 @@ export default function AboutPillars() {
       num: "01",
       title: "Project Management",
       icon: "/images/icons/services/project-management.png", // Update path manually in /public
+      href: "/services/project-management",
+      buttonText: "Explore Project Management",
       summary:
         "End-to-end management of digital projects, web platforms and products, delivered on time and on budget with clear scope control.",
       deliverables: [
@@ -24,6 +27,8 @@ export default function AboutPillars() {
       num: "02",
       title: "Advertising",
       icon: "/images/icons/services/advertising.png", // Update path manually in /public
+      href: "/services/advertising",
+      buttonText: "Explore Advertising",
       summary:
         "Billboard, outdoor and digital advertising that puts your brand in front of the right audience across Dubai and the UAE.",
       deliverables: [
@@ -37,6 +42,8 @@ export default function AboutPillars() {
       num: "03",
       title: "Business Consultancy",
       icon: "/images/icons/services/consulting.png", // Update path manually in /public
+      href: "/services/business-consultancy",
+      buttonText: "Explore Consultancy",
       summary:
         "Practical business consultancy that diagnoses what's slowing you down and builds a clear roadmap for leaner operations and growth.",
       deliverables: [
@@ -78,7 +85,7 @@ export default function AboutPillars() {
             <ScrollReveal key={p.num} direction="up" distance={24} delay={idx * 100}>
               <div className="group p-7 sm:p-8 rounded-2xl border border-slate-200/90 bg-[#ffffff] hover:border-[#c39967]/70 transition-all duration-300 flex flex-col justify-between h-full shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(195,153,103,0.1)]">
                 <div>
-                  {/* Top Bar: Warm Gold Icon Chamber + Monospace Pillar Tag */}
+                  {/* Top Bar: Icon + Monospace Pillar Tag */}
                   <div className="flex items-center justify-between mb-6">
                     <div className="w-13 h-13 rounded-xl bg-[#faf6f0] border border-[#c39967]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#c39967]/15 group-hover:border-[#c39967]/60 group-hover:scale-105 transition-all duration-300">
                       <Image
@@ -103,18 +110,32 @@ export default function AboutPillars() {
                   </p>
                 </div>
 
-                {/* Deliverables Checklist */}
-                <div className="pt-4 border-t border-slate-100 space-y-2.5">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#94a3b8] block mb-2 font-medium">
-                    What We Deliver:
-                  </span>
-                  {p.deliverables.map((item, i) => (
-                    <div key={i} className="flex items-start gap-2.5 text-xs font-medium text-slate-700 leading-snug">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#c39967] flex-shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
+                <div>
+                  {/* Deliverables Checklist */}
+                  <div className="pt-4 border-t border-slate-100 space-y-2.5 mb-6">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#94a3b8] block mb-2 font-medium">
+                      What We Deliver:
+                    </span>
+                    {p.deliverables.map((item, i) => (
+                      <div key={i} className="flex items-start gap-2.5 text-xs font-medium text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#c39967] flex-shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Direct Service Redirection Button */}
+                  <div className="pt-3 border-t border-slate-100">
+                    <Link
+                      href={p.href}
+                      className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#faf6f0] border border-[#c39967]/40 hover:bg-[#c39967] hover:border-[#c39967] hover:text-[#080b11] transition-all duration-200 font-sans shadow-2xs group/btn"
+                    >
+                      <span>{p.buttonText}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-[#c39967] group-hover/btn:text-[#080b11] transition-colors" />
+                    </Link>
+                  </div>
                 </div>
+
               </div>
             </ScrollReveal>
           ))}
