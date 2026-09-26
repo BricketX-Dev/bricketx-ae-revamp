@@ -17,7 +17,6 @@ export default function Footer() {
     { label: "About BricketX", href: "/about" },
     { label: "How We Work", href: "/how-we-work" },
     { label: "Why Us", href: "/why-us" },
-    { label: "Company Profile (PDF)", href: "/company-profile.pdf", target: "_blank" },
     { label: "Contact & Consultations", href: "/contact" },
   ];
 
@@ -82,7 +81,6 @@ export default function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    target={item.target}
                     className="text-slate-400 hover:text-white transition-colors"
                   >
                     {item.label}
