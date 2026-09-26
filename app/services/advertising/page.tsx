@@ -3,72 +3,161 @@ import type { Metadata } from "next";
 import ServicePageLayout, { ServiceDetailProps } from "@/components/services/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Billboard & Digital Advertising Agency Dubai | BricketX",
+  title: "Advertising Agency in Dubai | Outdoor & Digital Campaigns | BricketX UAE",
   description:
-    "High-impact billboard concessions on Sheikh Zayed Road, digital performance campaigns, and omnichannel media distribution across the UAE.",
+    "BricketX is an advertising agency in Dubai combining prime highway billboards on Sheikh Zayed Road with high-performance Google Ads, SEO and social media campaigns.",
 };
 
 const adData: ServiceDetailProps = {
   number: "02",
-  category: "ADVERTISING & MEDIA",
-  title: "Strategic Advertising & Out-of-Home Media Across the UAE",
+  category: "ADVERTISING",
+  title: "Advertising Agency in Dubai for Outdoor & Digital Campaigns",
   subheadline:
-    "From Sheikh Zayed Road billboard concessions to high-intent Google and programmatic funnels, we position your brand where decision-makers look.",
+    "From billboards on Sheikh Zayed Road to Google Ads and social media, BricketX is an advertising agency in Dubai that puts your brand where your customers are looking.",
   description:
-    "BricketX plans, produces, and manages integrated media campaigns tailored for Dubai's competitive corporate landscape. We combine high-impact outdoor physical presence with measurable digital acquisition funnels to turn market attention into qualified pipeline.",
-  heroImage:
-    "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=85",
+    "We plan, create and manage campaigns that combine outdoor visibility with measurable digital results. One team handles your strategy, creative, media and reporting, turning attention into real leads for your business across the UAE.",
+  heroImage: "/images/services/advertising.webp", // Update path manually in /public
   slaMetrics: [
-    { value: "3.2M+", label: "Targeted UAE Reach", sublabel: "Prime highway & digital captive volume" },
-    { value: "Prime", label: "OOH Concession Access", sublabel: "Sheikh Zayed Rd, Al Khail & Financial Center" },
-    { value: "Real-Time", label: "Attribution Dashboards", sublabel: "Verified impression & lead verification" },
+    {
+      value: "Outdoor + Digital",
+      label: "Channels",
+      sublabel: "Billboards, OOH, search & social",
+    },
+    {
+      value: "Dubai-Wide",
+      label: "Key Locations",
+      sublabel: "Sheikh Zayed Rd, Al Khail & more",
+    },
+    {
+      value: "Transparent",
+      label: "Campaign Reporting",
+      sublabel: "Impressions, clicks & leads tracked",
+    },
+  ],
+  capabilitiesTape: [
+    {
+      title: "Billboard Advertising",
+      desc: "Prime static and digital hoardings along Sheikh Zayed Road, Al Khail, and high-traffic Dubai arterials.",
+      link: "/contact",
+      linkText: "Check Locations",
+      img: "/images/capabilities/billboard-advertising.webp",
+    },
+    {
+      title: "Google Ads (PPC)",
+      desc: "High-intent search, display, and YouTube campaigns tuned for qualified inbound leads and controlled CPL.",
+      link: "/contact",
+      linkText: "View PPC Setup",
+      img: "/images/capabilities/google-ads.webp",
+    },
+    {
+      title: "Outdoor Advertising (OOH)",
+      desc: "Lampposts, bridge banners, unipoles, and transit media with end-to-end permit handling.",
+      link: "/contact",
+      linkText: "Explore OOH Sites",
+      img: "/images/capabilities/outdoor-advertising.webp",
+    },
+    {
+      title: "SEO Services",
+      desc: "Technical site optimization, local Dubai search intent, and bilingual organic visibility for sustainable traffic.",
+      link: "/contact",
+      linkText: "Request SEO Audit",
+      img: "/images/capabilities/seo-services.webp",
+    },
+    {
+      title: "Digital Marketing",
+      desc: "Integrated multi-channel performance funnels converting clicks into verified business inquiries across the UAE.",
+      link: "/contact",
+      linkText: "Plan Marketing Scope",
+      img: "/images/capabilities/digital-marketing.webp",
+    },
+    {
+      title: "Branding & Creative Design",
+      desc: "Memorable brand identities, high-contrast highway ad visuals, and bilingual Arabic/English campaign copy.",
+      link: "/contact",
+      linkText: "See Creative Specs",
+      img: "/images/capabilities/branding-creative.webp",
+    },
+    {
+      title: "Social Media Marketing",
+      desc: "Paid acquisition on Meta, LinkedIn, and TikTok structured for audience targeting and measurable return.",
+      link: "/contact",
+      linkText: "Review Social Plans",
+      img: "/images/capabilities/social-media.webp",
+    },
+    {
+      title: "Lead Generation",
+      desc: "High-converting landing pages, lead capture automation, and continuous cost-per-lead optimization.",
+      link: "/contact",
+      linkText: "Get Acquisition Plan",
+      img: "/images/capabilities/lead-generation.webp",
+    },
   ],
   capabilities: [
     {
-      title: "Highway & Urban OOH Concessions",
+      title: "Billboard & Outdoor Advertising",
       description:
-        "Procurement, municipality permitting, and high-spec production for prime billboard and bridge banner installations in Dubai and Abu Dhabi.",
+        "We find the right billboard and outdoor locations across Dubai and the UAE, handle the permits, and manage production and installation from start to finish.",
       deliverables: [
-        "Site Location Analysis & Traffic Audits",
-        "RTA & Municipal Permit Management",
-        "High-Resolution Print Production Oversight",
-        "Structural Verification & Lighting Specs",
+        "Location Analysis & Traffic Insights",
+        "RTA & Municipality Permit Handling",
+        "Print Production & Installation",
+        "Media Buying & Booking",
       ],
     },
     {
-      title: "Digital Acquisition & Search Marketing",
+      title: "Digital Marketing & Lead Generation",
       description:
-        "Precision B2B and consumer customer acquisition via Google Search, Meta platforms, and programmatic display across the GCC region.",
+        "We run Google Ads, SEO and social media campaigns that reach the right B2B and consumer audiences across the UAE and turn clicks into qualified leads.",
       deliverables: [
-        "High-Intent Keyword Funnel Engineering",
-        "Conversion Rate Architecture (CRO)",
-        "Targeted UAE Demographics Profiling",
-        "Weekly Cost-Per-Acquisition Optimization",
+        "Google Ads & SEO",
+        "Social Media Marketing",
+        "Landing Page & Conversion Optimization",
+        "Ongoing Cost-per-Lead Optimization",
       ],
     },
     {
-      title: "Brand Strategy & Production Creative",
+      title: "Brand Strategy & Creative Design",
       description:
-        "Institutional brand identity assets, creative positioning, and campaign assets developed strictly to international standards.",
+        "We shape how your brand looks and sounds, then create campaign visuals and copy that work on billboards, screens and social feeds.",
       deliverables: [
-        "Corporate Brand Identity Systems",
-        "High-Impact Advertising Copywriting",
-        "Multi-Format Digital & OOH Media Kits",
-        "Localized Arabic & English Campaign Proofs",
+        "Brand Identity Design",
+        "Brand Strategy & Positioning",
+        "Ad Copywriting & Creative Design",
+        "Bilingual Arabic & English Creatives",
       ],
     },
   ],
   workflow: [
-    { step: "1", phase: "Research", title: "Audience Profiling & Media Audit", deliverable: "Media Plan & Budget Allocation" },
-    { step: "2", phase: "Creative", title: "Asset Production & Permits", deliverable: "Approved Creatives & RTA Permits" },
-    { step: "3", phase: "Flight", title: "Campaign Launch & Monitoring", deliverable: "Live Performance Tracking" },
-    { step: "4", phase: "Audit", title: "Attribution & Lead Reporting", deliverable: "Post-Campaign Attribution Dossier" },
+    {
+      step: "1",
+      phase: "RESEARCH",
+      title: "Audience & Market Research",
+      deliverable: "Media Plan & Budget",
+    },
+    {
+      step: "2",
+      phase: "CREATIVE",
+      title: "Creative Production & Permits",
+      deliverable: "Approved Creatives & Permits",
+    },
+    {
+      step: "3",
+      phase: "LAUNCH",
+      title: "Campaign Launch & Monitoring",
+      deliverable: "Live Performance Tracking",
+    },
+    {
+      step: "4",
+      phase: "RESULTS",
+      title: "Reporting & Optimization",
+      deliverable: "Campaign Results Report",
+    },
   ],
   governanceSpecs: [
-    "Full compliance with National Media Council (NMC) advertising decrees",
-    "Pre-approved municipality permits eliminating launch delays",
-    "Transparent media pass-through rates with zero disguised markups",
-    "Dual-language (Arabic/English) statutory copy verification",
+    "Campaigns that follow UAE Media Council advertising standards",
+    "Permit applications handled early to avoid launch delays",
+    "Transparent media pricing, with no hidden markups",
+    "Arabic and English ad copy checked for accuracy and compliance",
   ],
 };
 

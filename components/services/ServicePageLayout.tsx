@@ -8,9 +8,16 @@ import {
   ShieldCheck,
   CheckCircle2,
   Building2,
-  Workflow,
 } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+
+export interface CapabilitiesTapeItem {
+  title: string;
+  desc: string;
+  img: string;
+  link?: string;
+  linkText?: string;
+}
 
 export interface ServiceDetailProps {
   number: string;
@@ -24,6 +31,7 @@ export interface ServiceDetailProps {
     label: string;
     sublabel: string;
   }[];
+  capabilitiesTape?: CapabilitiesTapeItem[];
   capabilities: {
     title: string;
     description: string;
@@ -39,13 +47,16 @@ export interface ServiceDetailProps {
 }
 
 export default function ServicePageLayout({ data }: { data: ServiceDetailProps }) {
+  const tapeList = data.capabilitiesTape || [];
+  const rowOne = [...tapeList, ...tapeList];
+  const rowTwo = [...tapeList.slice().reverse(), ...tapeList.slice().reverse()];
+
   return (
     <main className="min-h-screen bg-[#ffffff] text-[#111827]">
       {/* ========================================================
           1. HEADER OVERVIEW & PRIMARY SCOPE (Executive Dark Anchor)
          ======================================================== */}
       <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 bg-[#07090e] text-white border-b border-white/10 overflow-hidden">
-        {/* Subtle ambient lighting */}
         <div className="absolute top-1/4 left-1/4 w-[600px] h-[350px] bg-[#c39967]/[0.05] blur-[150px] pointer-events-none rounded-full" />
         <div className="absolute bottom-10 right-10 w-[450px] h-[300px] bg-[#c39967]/[0.03] blur-[130px] pointer-events-none rounded-full" />
 
@@ -55,7 +66,6 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
             {/* Left Narrative Column */}
             <div className="lg:col-span-7 space-y-5">
               <ScrollReveal direction="up" distance={20}>
-                {/* Eyebrow */}
                 <div className="flex items-center gap-2 mb-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
                   <span className="text-[10.5px] font-mono font-bold tracking-widest uppercase text-[#c39967]">
@@ -63,22 +73,18 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
                   </span>
                 </div>
 
-                {/* H1 */}
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.14]">
                   {data.title}
                 </h1>
 
-                {/* Lead Paragraph */}
                 <p className="mt-4 text-sm sm:text-base text-slate-200 leading-relaxed font-normal max-w-xl">
                   {data.subheadline}
                 </p>
 
-                {/* Supporting Paragraph */}
                 <p className="mt-2 text-xs sm:text-sm text-slate-400 leading-relaxed font-normal max-w-xl">
                   {data.description}
                 </p>
 
-                {/* CTAs */}
                 <div className="pt-4 flex flex-wrap items-center gap-3.5">
                   <Link
                     href="/contact"
@@ -115,14 +121,13 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f17] via-transparent to-transparent opacity-90 pointer-events-none" />
 
-                    {/* Image Header Badge */}
                     <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs">
                       <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-white/15 text-slate-200 font-mono text-[10px]">
-                        <Building2 className="w-3 h-3 text-[#c39967]" />
+                        <Building2 className="w-3.5 h-3.5 text-[#c39967]" />
                         <span>Business Bay, Dubai</span>
                       </div>
                       <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-white/15 text-emerald-400 font-mono text-[10px]">
-                        <ShieldCheck className="w-3 h-3" />
+                        <ShieldCheck className="w-3.5 h-3.5" />
                         <span>Licensed Entity</span>
                       </div>
                     </div>
@@ -159,6 +164,108 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
       </section>
 
       {/* ========================================================
+          CAPABILITIES TAPE SHOWCASE (Identical to Homepage Tape)
+         ======================================================== */}
+      {tapeList.length > 0 && (
+        <section className="relative py-12 lg:py-16 bg-[#07090e] border-b border-white/10 overflow-hidden">
+          {/* Edge Gradient Scrims */}
+          <div className="absolute left-0 top-0 bottom-0 w-28 sm:w-48 bg-gradient-to-r from-[#07090e] to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-28 sm:w-48 bg-gradient-to-l from-[#07090e] to-transparent z-20 pointer-events-none" />
+
+          {/* Clean Editorial Header */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
+              <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-[#c39967]">
+                Featured Deliverables &amp; Execution Workstreams
+              </span>
+            </div>
+            <span className="text-[11px] text-slate-500 font-mono tracking-wider uppercase hidden sm:inline">
+              Dubai • Abu Dhabi • Regional GCC
+            </span>
+          </div>
+
+          <div className="space-y-3 sm:space-y-4">
+            {/* Row 1: Sliding Left */}
+            <div className="flex w-max animate-marquee-left pause-hover">
+              {rowOne.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="relative w-[340px] sm:w-[420px] lg:w-[460px] h-[220px] sm:h-[250px] lg:h-[270px] flex-shrink-0 overflow-hidden group mr-3 sm:mr-4 rounded-xl border border-white/10 bg-[#0f141f]"
+                >
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 340px, 460px"
+                    className="object-cover object-center brightness-90 group-hover:scale-105 group-hover:brightness-100 transition-all duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/60 to-transparent pointer-events-none" />
+
+                  <div className="absolute bottom-4 left-4 right-4 z-10 flex flex-col justify-end">
+                    <h4 className="text-sm sm:text-base font-bold text-white tracking-tight leading-snug">
+                      {item.title}
+                    </h4>
+                    <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal mt-1 line-clamp-2">
+                      {item.desc}
+                    </p>
+
+                    <div className="pt-2.5 mt-2 border-t border-white/10">
+                      <Link
+                        href={item.link || "/contact"}
+                        className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold text-[#c39967] hover:text-white transition-colors"
+                      >
+                        <span>{item.linkText || "Learn More"}</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Row 2: Sliding Right */}
+            <div className="flex w-max animate-marquee-right pause-hover">
+              {rowTwo.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="relative w-[340px] sm:w-[420px] lg:w-[460px] h-[220px] sm:h-[250px] lg:h-[270px] flex-shrink-0 overflow-hidden group mr-3 sm:mr-4 rounded-xl border border-white/10 bg-[#0f141f]"
+                >
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 340px, 460px"
+                    className="object-cover object-center brightness-90 group-hover:scale-105 group-hover:brightness-100 transition-all duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/60 to-transparent pointer-events-none" />
+
+                  <div className="absolute bottom-4 left-4 right-4 z-10 flex flex-col justify-end">
+                    <h4 className="text-sm sm:text-base font-bold text-white tracking-tight leading-snug">
+                      {item.title}
+                    </h4>
+                    <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal mt-1 line-clamp-2">
+                      {item.desc}
+                    </p>
+
+                    <div className="pt-2.5 mt-2 border-t border-white/10">
+                      <Link
+                        href={item.link || "/contact"}
+                        className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold text-[#c39967] hover:text-white transition-colors"
+                      >
+                        <span>{item.linkText || "Learn More"}</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ========================================================
           2. HOW WE DELIVER: 3 STAGES DECK (Crisp White Canvas)
          ======================================================== */}
       <section id="stages" className="py-16 sm:py-24 bg-[#ffffff] border-b border-slate-200/90">
@@ -174,11 +281,11 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] tracking-tight leading-[1.18]">
-                Our Project Management Process in Three Stages
+                Our {data.category.toLowerCase().includes("advertising") ? "Advertising" : data.category.toLowerCase().includes("consultancy") ? "Consultancy" : "Project Management"} Process in Three Stages
               </h2>
 
               <p className="mt-3 text-xs sm:text-sm text-[#4b5563] leading-relaxed font-normal">
-                A clear, step-by-step approach that takes your digital project from first idea to a stable, fully supported launch.
+                A clear, step-by-step approach that takes your initiative from first idea to measurable, supported execution.
               </p>
             </div>
           </ScrollReveal>
@@ -240,7 +347,7 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
               </div>
 
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] tracking-tight leading-[1.18]">
-                Step-by-Step Project Delivery Roadmap
+                Step-by-Step Delivery Roadmap
               </h3>
 
               <p className="mt-3 text-xs sm:text-sm text-[#4b5563] leading-relaxed font-normal">

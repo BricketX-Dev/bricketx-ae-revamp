@@ -3,72 +3,147 @@ import type { Metadata } from "next";
 import ServicePageLayout, { ServiceDetailProps } from "@/components/services/ServicePageLayout";
 
 export const metadata: Metadata = {
-  title: "Business Consultancy & Growth Advisory Dubai | BricketX",
+  title: "Business Consultancy in Dubai | Strategy, Operations & Growth | BricketX UAE",
   description:
-    "Practical business consulting in Dubai. Operational streamlining, market expansion roadmaps, and corporate governance for UAE enterprises.",
+    "BricketX is a business consultancy in Dubai that works with leadership teams to fix bottlenecks, optimize operations, and build practical growth roadmaps across the UAE.",
 };
 
 const consultingData: ServiceDetailProps = {
   number: "03",
   category: "BUSINESS CONSULTANCY",
-  title: "Operational & Strategic Business Advisory in Dubai",
+  title: "Business Consultancy in Dubai for Strategy, Operations & Growth",
   subheadline:
-    "We partner with business owners and executive committees to identify operational friction, realign cost structures, and build measurable growth roadmaps.",
+    "BricketX is a business consultancy in Dubai that works with owners and leadership teams to fix what's slowing growth, cut unnecessary costs and build a clear roadmap forward.",
   description:
-    "BricketX cuts through theoretical frameworks to deliver grounded corporate strategy. Our advisory engagements evaluate your end-to-end operations, eliminate administrative bottlenecks, and structure your corporate model for long-term scalability across the UAE mainland and free zones.",
-  heroImage:
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=85",
+    "We focus on strategy and operations, not company setup. Our consultants review how your business runs end to end, remove bottlenecks and design a structure that scales, for mainland and free zone companies across the UAE.",
+  heroImage: "/images/services/consulting.webp", // Update path manually in /public
   slaMetrics: [
-    { value: "35%+", label: "Operational Velocity Gain", sublabel: "Elimination of redundant procedural gates" },
-    { value: "Bespoke", label: "Roadmap Engineering", sublabel: "Zero generic playbook templates" },
-    { value: "Direct", label: "Executive Oversight", sublabel: "Partner-level involvement throughout" },
+    {
+      value: "Tailored",
+      label: "Our Approach",
+      sublabel: "Practical roadmaps, not generic templates",
+    },
+    {
+      value: "Direct",
+      label: "Leadership Involvement",
+      sublabel: "Senior consultants on every engagement",
+    },
+    {
+      value: "3-in-1",
+      label: "Focus Areas",
+      sublabel: "Strategy, operations & growth",
+    },
+  ],
+  capabilitiesTape: [
+    {
+      title: "Business Strategy Consulting",
+      desc: "Market positioning, competitive intelligence, and revenue model restructuring for UAE enterprises.",
+      link: "/contact",
+      linkText: "Request Strategy Review",
+      img: "/images/capabilities/strategy-consulting.webp",
+    },
+    {
+      title: "Operations Consulting",
+      desc: "Comprehensive diagnostic of workflows, department handovers, and resource utilization to cut cost leaks.",
+      link: "/contact",
+      linkText: "Explore Operations Scope",
+      img: "/images/capabilities/operations-consulting.webp",
+    },
+    {
+      title: "Process Optimization & SOPs",
+      desc: "Institutional documentation, standard operating procedure blueprints, and team accountability frameworks.",
+      link: "/contact",
+      linkText: "View SOP Framework",
+      img: "/images/capabilities/process-sops.webp",
+    },
+    {
+      title: "Digital Transformation Consulting",
+      desc: "Practical roadmaps and tool adoption steering to modernize internal business systems and reporting.",
+      link: "/contact",
+      linkText: "Plan Transformation",
+      img: "/images/capabilities/digital-transformation.webp",
+    },
+    {
+      title: "Business Analysis & Feasibility Studies",
+      desc: "Rigorous unit economics, commercial viability assessments, and Capex forecasting before market expansion.",
+      link: "/contact",
+      linkText: "Order Feasibility Study",
+      img: "/images/capabilities/feasibility-studies.webp",
+    },
+    {
+      title: "Change Management & Advisory",
+      desc: "Leadership steering committees, stakeholder workshops, and KPI scorecards that ensure structural changes stick.",
+      link: "/contact",
+      linkText: "Book Advisory Briefing",
+      img: "/images/capabilities/change-management.webp",
+    },
   ],
   capabilities: [
     {
-      title: "Operations & Process Re-Engineering",
+      title: "Operations Consulting & Process Optimization",
       description:
-        "Comprehensive diagnostic of internal workflows, handover dependencies, and cost leaks to establish lean operating systems.",
+        "We review how work actually flows through your business, find the bottlenecks and cost leaks, and build leaner, simpler ways of working.",
       deliverables: [
-        "As-Is vs. To-Be Workflow Blueprints",
-        "Operational Bottleneck Diagnostics",
+        "Current vs. Future Workflow Maps",
+        "Bottleneck & Cost Analysis",
         "Standard Operating Procedures (SOPs)",
-        "Resource Utilization Reviews",
+        "Team & Resource Utilization Review",
       ],
     },
     {
-      title: "UAE Market Strategy & Expansion",
+      title: "Business Strategy & Growth Advisory",
       description:
-        "Market viability assessments, regulatory alignment, and competitive positioning strategies for commercial growth in the Emirates.",
+        "We assess your market, competitors and numbers to build a clear strategy for growth, whether you're launching, expanding or repositioning in the UAE.",
       deliverables: [
-        "Regional Competitive Landscape Audits",
-        "Go-To-Market (GTM) Commercial Plans",
-        "Pricing & Unit Economics Modeling",
-        "Mainland Licensing Feasibility Audits",
+        "Market & Competitor Analysis",
+        "Go-To-Market & Growth Plans",
+        "Pricing & Profitability Modeling",
+        "Feasibility Studies",
       ],
     },
     {
-      title: "Change Management & Task-Force Governance",
+      title: "Digital Transformation & Change Management",
       description:
-        "Structured change execution frameworks that ensure newly introduced technology, operational structures, and policies take root.",
+        "We help your team adopt new technology, structures and ways of working, so changes actually stick instead of fading after launch.",
       deliverables: [
-        "Executive Steering Committee Frameworks",
+        "Digital Transformation Roadmap",
         "Stakeholder Alignment Workshops",
-        "Departmental KPI Re-Alignment Scorecards",
-        "Quarterly Performance Review Protocols",
+        "KPI & Performance Scorecards",
+        "Regular Performance Reviews",
       ],
     },
   ],
   workflow: [
-    { step: "1", phase: "Diagnostic", title: "Operational & Financial Review", deliverable: "Executive Gap Analysis" },
-    { step: "2", phase: "Strategy", title: "Target Operating Model (TOM)", deliverable: "Restructuring Blueprint" },
-    { step: "3", phase: "Rollout", title: "Milestone-Based Implementation", deliverable: "SOP Handover & Training" },
-    { step: "4", phase: "Review", title: "Performance Audits & Retention", deliverable: "Quarterly ROI Assessment" },
+    {
+      step: "1",
+      phase: "DIAGNOSE",
+      title: "Business & Operations Review",
+      deliverable: "Gap Analysis Report",
+    },
+    {
+      step: "2",
+      phase: "PLAN",
+      title: "Strategy & Operating Model Design",
+      deliverable: "Improvement Roadmap",
+    },
+    {
+      step: "3",
+      phase: "IMPLEMENT",
+      title: "Step-by-Step Rollout",
+      deliverable: "SOPs & Team Training",
+    },
+    {
+      step: "4",
+      phase: "MEASURE",
+      title: "Performance Review",
+      deliverable: "Results & ROI Report",
+    },
   ],
   governanceSpecs: [
-    "Aligns with UAE commercial law decrees and labor regulations",
-    "Grounded in pragmatic EBITDA impact rather than abstract slide decks",
-    "Complete confidentiality under mutual commercial NDAs",
-    "Direct stakeholder interviews and bottom-up data verification",
+    "Recommendations that work within UAE business and labour regulations",
+    "Focused on profit and performance, not just slide decks",
+    "Full confidentiality, protected by a mutual NDA",
+    "Built on direct conversations with your team and your real data",
   ],
 };
 
