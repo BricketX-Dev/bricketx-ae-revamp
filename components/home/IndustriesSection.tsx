@@ -77,13 +77,13 @@ export default function IndustriesSection() {
     <section
       ref={sectionRef}
       id="industries"
-      className="py-16 sm:py-24 bg-[#f8f9fb] text-[#0f172a] border-t border-slate-200/80 relative"
+      className="py-16 sm:py-24 bg-[#f8f9fb] text-[#0f172a] border-t border-slate-200/80 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         
         {/* Section Header */}
         <div
-          className={`flex flex-col lg:flex-row lg:items-end justify-between mb-12 sm:mb-16 gap-6 transition-all duration-700 ease-out transform ${
+          className={`flex flex-col lg:flex-row lg:items-end justify-between mb-10 sm:mb-16 gap-6 transition-all duration-700 ease-out transform ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
@@ -106,8 +106,16 @@ export default function IndustriesSection() {
           </p>
         </div>
 
-        {/* 6 Clean Premium Cards (Warm Gold Vessels) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+        {/* 
+          6 Cards:
+          - Mobile (<md): Swipeable horizontal carousel with peeking 2nd card (w-[82vw])
+          - Desktop (md+): Original static responsive grid
+        */}
+        <div
+          data-lenis-prevent="true"
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 overflow-x-auto md:overflow-visible pb-4 md:pb-0 -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 snap-x snap-mandatory scrollbar-none touch-pan-x overscroll-x-contain"
+          style={{ WebkitOverflowScrolling: "touch" }}
+        >
           {industries.map((ind, i) => {
             const delay = i * 60;
 
@@ -115,7 +123,7 @@ export default function IndustriesSection() {
               <div
                 key={ind.code}
                 style={{ transitionDelay: `${delay}ms` }}
-                className={`group relative p-7 sm:p-8 rounded-2xl bg-white border border-slate-200/80 hover:border-[#c39967]/70 transition-all duration-300 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(195,153,103,0.12)] transform ${
+                className={`group relative flex-shrink-0 w-[82vw] sm:w-[84vw] md:w-auto snap-center p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/80 hover:border-[#c39967]/70 transition-all duration-300 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(195,153,103,0.12)] transform ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 }`}
               >
@@ -166,6 +174,9 @@ export default function IndustriesSection() {
               </div>
             );
           })}
+
+          {/* Right margin cushion for snap alignment on mobile */}
+          <div className="w-2 flex-shrink-0 md:hidden pointer-events-none" />
         </div>
 
         {/* Featured Institutional Banner (High-Contrast Anchor) */}

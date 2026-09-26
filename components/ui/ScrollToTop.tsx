@@ -2,34 +2,31 @@
 "use client";
 
 import { useEffect, useLayoutEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function ScrollToTop() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
-  // 1. Permanently stop the browser from trying to remember scroll positions on route changes
+  // 1. Permanently stop the browser from trying to restore previous scroll positions
   useEffect(() => {
     if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
   }, []);
 
-  // 2. Synchronous & Raf-backed scroll execution
+  // 2. Reset scroll coordinate synchronously on route changes
   const useIsomorphicLayoutEffect =
     typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
   useIsomorphicLayoutEffect(() => {
-    // If the URL has an anchor hash (e.g. #service-02), let standard anchor handling take over
+    // If the URL has an anchor hash (e.g. #service-02), let in-page anchor handling take over
     if (typeof window !== "undefined" && window.location.hash) {
       return;
     }
 
     const forceScrollTop = () => {
-      // Direct window reset
       window.scrollTo(0, 0);
 
-      // Reset document root & body in case overflow styling is on html/body
       if (document.documentElement) {
         document.documentElement.scrollTop = 0;
       }
@@ -37,7 +34,7 @@ export default function ScrollToTop() {
         document.body.scrollTop = 0;
       }
 
-      // If SmoothScrollProvider uses Lenis on window (common in Next.js smooth scroll setups)
+      // If Lenis smooth scroll instance is mounted on window
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const win = window as any;
       if (win.lenis && typeof win.lenis.scrollTo === "function") {
@@ -45,22 +42,16 @@ export default function ScrollToTop() {
       }
     };
 
-    // Immediate attempt before paint
+    // Immediate execution
     forceScrollTop();
 
-    // Secondary attempt on the next animation frame (after Next.js commits DOM swap)
-    const rafId = requestAnimationFrame(() => {
-      forceScrollTop();
-    });
-
-    // Third safety attempt (catches async image/chunk hydration)
-    const timerId = setTimeout(forceScrollTop, 30);
+    // Next animation frame execution after Next.js completes DOM reconciliation
+    const rafId = requestAnimationFrame(forceScrollTop);
 
     return () => {
       cancelAnimationFrame(rafId);
-      clearTimeout(timerId);
     };
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   return null;
 }

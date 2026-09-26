@@ -3,137 +3,161 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { CheckCircle2, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronRight } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function AboutPillars() {
   const practices = [
     {
       num: "01",
+      code: "PRJ-MGT",
       title: "Project Management",
-      icon: "/images/icons/services/project-management.png", // Update path manually in /public
+      icon: "/images/icons/services/project-management.png",
       href: "/services/project-management",
-      buttonText: "Explore Project Management",
+      buttonText: "Explore Practice",
       summary:
-        "End-to-end management of digital projects, web platforms and products, delivered on time and on budget with clear scope control.",
+        "End-to-end management of digital initiatives, software platforms, and technology infrastructure delivered with disciplined scope control.",
       deliverables: [
-        "Project Planning & Timeline Management",
-        "Quality Assurance & Testing",
-        "Resource & Team Coordination",
-        "Post-Launch Support & Maintenance",
+        "Critical-path scheduling & risk mitigation",
+        "Technical QA governance & acceptance testing",
+        "Cross-functional developer & vendor coordination",
+        "Post-launch SLA stability & maintenance",
       ],
     },
     {
       num: "02",
-      title: "Advertising",
-      icon: "/images/icons/services/advertising.png", // Update path manually in /public
+      code: "ADV-OOH",
+      title: "Advertising & Media",
+      icon: "/images/icons/services/advertising.png",
       href: "/services/advertising",
-      buttonText: "Explore Advertising",
+      buttonText: "Explore Practice",
       summary:
-        "Billboard, outdoor and digital advertising that puts your brand in front of the right audience across Dubai and the UAE.",
+        "High-visibility highway billboard concessions on Sheikh Zayed Road paired with high-intent digital acquisition funnels across the GCC.",
       deliverables: [
-        "Billboard & Outdoor Advertising",
-        "Google Ads & SEO",
-        "Social Media Marketing",
-        "Lead Generation Campaigns",
+        "Highway unipoles, bridge banners & transit media",
+        "RTA & Dubai Municipality permit governance",
+        "High-conversion Google Ads & paid search funnels",
+        "Bilingual Arabic & English creative direction",
       ],
     },
     {
       num: "03",
+      code: "BUS-CON",
       title: "Business Consultancy",
-      icon: "/images/icons/services/consulting.png", // Update path manually in /public
+      icon: "/images/icons/services/consulting.png",
       href: "/services/business-consultancy",
-      buttonText: "Explore Consultancy",
+      buttonText: "Explore Practice",
       summary:
-        "Practical business consultancy that diagnoses what's slowing you down and builds a clear roadmap for leaner operations and growth.",
+        "Operational diagnostics, standard operating procedure blueprints, and restructuring advisory designed to remove cost leaks and scale operations.",
       deliverables: [
-        "Business Strategy Consulting",
-        "Process Optimization",
-        "Feasibility Studies & Business Analysis",
-        "Change Management",
+        "Operational bottleneck & workflow mapping",
+        "Standard Operating Procedure (SOP) blueprints",
+        "Unit economics & commercial feasibility studies",
+        "Executive change management & KPI scorecards",
       ],
     },
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-[#ffffff] text-[#111827] border-b border-slate-200/90 relative">
+    <section className="py-20 sm:py-28 bg-[#fafbfc] text-[#0f172a] border-b border-slate-200/80 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <ScrollReveal direction="up" distance={20}>
-          <div className="max-w-2xl mb-12 sm:mb-16">
-            <div className="flex items-center gap-2 mb-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
-              <span className="text-[10.5px] font-mono font-bold tracking-widest uppercase text-[#c39967]">
-                HOW WE WORK
-              </span>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 sm:mb-20">
+            <div className="max-w-xl">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
+                <span className="text-[11px] font-mono font-bold tracking-[0.2em] uppercase text-[#c39967]">
+                  Operational Framework
+                </span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#090d16] tracking-tight leading-[1.12]">
+                The Three-Pillar <br />
+                <span className="text-[#c39967]">Delivery Model</span>
+              </h2>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] tracking-tight leading-[1.16]">
-              The Three-Pillar Delivery Model
-            </h2>
-
-            <p className="mt-3 text-xs sm:text-sm text-[#4b5563] leading-relaxed font-normal">
-              Most businesses lose time and money juggling separate agencies, consultants and tech vendors. BricketX brings project management, advertising and business consultancy together under one accountable team in Dubai.
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-md">
+              Most enterprises lose capital juggling disjointed agencies, consultants, and contractors. BricketX unifies delivery under single-vendor legal accountability in Dubai.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* 3 Pillar Cards */}
+        {/* 3 Pillar Architectural Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {practices.map((p, idx) => (
             <ScrollReveal key={p.num} direction="up" distance={24} delay={idx * 100}>
-              <div className="group p-7 sm:p-8 rounded-2xl border border-slate-200/90 bg-[#ffffff] hover:border-[#c39967]/70 transition-all duration-300 flex flex-col justify-between h-full shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(195,153,103,0.1)]">
+              <div className="group relative bg-[#ffffff] border border-slate-200/90 rounded-xl p-7 sm:p-8 flex flex-col justify-between h-full transition-all duration-300 hover:border-slate-300 hover:shadow-[0_12px_40px_rgba(15,23,42,0.06)]">
+                
+                {/* Structural Accent Top-Line */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent group-hover:bg-[#c39967] transition-colors duration-300 rounded-t-xl" />
+
                 <div>
-                  {/* Top Bar: Icon + Monospace Pillar Tag */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-13 h-13 rounded-xl bg-[#faf6f0] border border-[#c39967]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#c39967]/15 group-hover:border-[#c39967]/60 group-hover:scale-105 transition-all duration-300">
+                  {/* Top Technical Header */}
+                  <div className="flex items-start justify-between pb-6 mb-6 border-b border-slate-100">
+                    <div className="w-12 h-12 rounded-lg bg-[#07090e] border border-black/10 flex items-center justify-center p-2.5 shadow-sm transition-transform duration-300 group-hover:scale-105">
                       <Image
                         src={p.icon}
                         alt={p.title}
-                        width={28}
-                        height={28}
-                        className="w-7 h-7 object-contain"
+                        width={24}
+                        height={24}
+                        className="w-6 h-6 object-contain"
                       />
                     </div>
-                    <span className="text-xs font-mono font-bold tracking-widest text-[#94a3b8] group-hover:text-[#c39967] transition-colors">
-                      Pillar {p.num}
-                    </span>
+
+                    <div className="text-right">
+                      <span className="block font-mono text-[10.5px] font-semibold text-[#c39967] tracking-wider uppercase">
+                        // {p.code}
+                      </span>
+                      <span className="block font-mono text-[22px] font-extrabold text-slate-200 group-hover:text-slate-300 transition-colors leading-none mt-1">
+                        {p.num}
+                      </span>
+                    </div>
                   </div>
 
-                  <h3 className="text-lg sm:text-xl font-bold text-[#111827] mb-2.5 leading-snug group-hover:text-[#c39967] transition-colors">
+                  {/* Title & Editorial Description */}
+                  <h3 className="text-xl font-bold text-[#090d16] tracking-tight mb-2.5">
                     {p.title}
                   </h3>
 
-                  <p className="text-xs sm:text-[13px] text-[#4b5563] leading-relaxed mb-6 font-normal">
+                  <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal mb-8">
                     {p.summary}
                   </p>
-                </div>
 
-                <div>
-                  {/* Deliverables Checklist */}
-                  <div className="pt-4 border-t border-slate-100 space-y-2.5 mb-6">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#94a3b8] block mb-2 font-medium">
-                      What We Deliver:
-                    </span>
+                  {/* Structured Deliverables Specification */}
+                  <div className="space-y-0 border-t border-slate-100 mb-8">
+                    <div className="py-2.5">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-slate-400">
+                        Operational Scope:
+                      </span>
+                    </div>
                     {p.deliverables.map((item, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-xs font-medium text-slate-700 leading-snug">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#c39967] flex-shrink-0 mt-0.5" />
-                        <span>{item}</span>
+                      <div
+                        key={i}
+                        className="py-2.5 border-t border-slate-100/80 flex items-start gap-2.5 text-xs text-slate-700 font-medium leading-snug group/item"
+                      >
+                        <ChevronRight className="w-3.5 h-3.5 text-[#c39967] flex-shrink-0 mt-0.5" />
+                        <span className="group-hover/item:text-[#090d16] transition-colors">{item}</span>
                       </div>
                     ))}
                   </div>
+                </div>
 
-                  {/* Direct Service Redirection Button */}
-                  <div className="pt-3 border-t border-slate-100">
-                    <Link
-                      href={p.href}
-                      className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#faf6f0] border border-[#c39967]/40 hover:bg-[#c39967] hover:border-[#c39967] hover:text-[#080b11] transition-all duration-200 font-sans shadow-2xs group/btn"
-                    >
-                      <span>{p.buttonText}</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-[#c39967] group-hover/btn:text-[#080b11] transition-colors" />
-                    </Link>
-                  </div>
+                {/* Refined Institutional Action Footer */}
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                  <Link
+                    href={p.href}
+                    className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#090d16] hover:text-[#c39967] transition-colors py-1 group/btn"
+                  >
+                    <span>{p.buttonText}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#c39967] transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                  </Link>
+
+                  <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">
+                    UAE Mandate
+                  </span>
                 </div>
 
               </div>

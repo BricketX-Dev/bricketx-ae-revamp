@@ -31,16 +31,16 @@ export default function ContactCtaSection() {
   return (
     <section
       id="contact"
-      className="py-14 lg:py-20 bg-[#070a0f] text-white border-t border-white/10"
+      className="py-12 sm:py-14 lg:py-20 bg-[#070a0f] text-white border-t border-white/10"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Consultation Suite Container */}
-        <div className="bg-[#0f141f] border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10">
+        <div className="bg-[#0f141f] border border-white/10 rounded-2xl p-4 sm:p-8 lg:p-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             
             {/* Left Column: Strategic Value & Contact Info */}
             <div className="lg:col-span-6 space-y-5">
-              <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] uppercase text-[#c39967] block">
+              <span className="text-[10px] sm:text-[10.5px] font-mono font-bold tracking-[0.2em] uppercase text-[#c39967] block">
                 Executive Consultation
               </span>
 
@@ -54,46 +54,46 @@ export default function ContactCtaSection() {
               </p>
 
               {/* Contact Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-1">
                 <a
                   href="tel:+971541662352"
-                  className="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors group"
+                  className="flex items-center gap-3 p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors group"
                 >
                   <div className="w-9 h-9 rounded-lg bg-[#c39967]/15 flex items-center justify-center text-[#c39967] flex-shrink-0">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[9.5px] font-mono uppercase tracking-wider text-slate-400">Call Us</div>
-                    <div className="text-xs sm:text-sm font-semibold text-white whitespace-nowrap">+971 54 166 2352</div>
+                    <div className="text-[9px] sm:text-[9.5px] font-mono uppercase tracking-wider text-slate-400">Call Us</div>
+                    <div className="text-[13px] sm:text-sm font-semibold text-white whitespace-nowrap">+971 54 166 2352</div>
                   </div>
                 </a>
 
                 <a
                   href="mailto:info@bricketx.ae"
-                  className="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors group"
+                  className="flex items-center gap-3 p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors group"
                 >
                   <div className="w-9 h-9 rounded-lg bg-[#c39967]/15 flex items-center justify-center text-[#c39967] flex-shrink-0">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[9.5px] font-mono uppercase tracking-wider text-slate-400">Email Us</div>
-                    <div className="text-xs sm:text-sm font-semibold text-white whitespace-nowrap">info@bricketx.ae</div>
+                    <div className="text-[9px] sm:text-[9.5px] font-mono uppercase tracking-wider text-slate-400">Email Us</div>
+                    <div className="text-[13px] sm:text-sm font-semibold text-white whitespace-nowrap">info@bricketx.ae</div>
                   </div>
                 </a>
 
-                <div className="sm:col-span-2 flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10">
+                <div className="sm:col-span-2 flex items-center gap-3 p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/10">
                   <div className="w-9 h-9 rounded-lg bg-[#c39967]/15 flex items-center justify-center text-[#c39967] flex-shrink-0">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[9.5px] font-mono uppercase tracking-wider text-slate-400">Corporate Headquarters</div>
-                    <div className="text-xs sm:text-sm font-semibold text-white">Business Bay, Dubai, United Arab Emirates</div>
+                    <div className="text-[9px] sm:text-[9.5px] font-mono uppercase tracking-wider text-slate-400">Corporate Headquarters</div>
+                    <div className="text-xs sm:text-sm font-semibold text-white truncate sm:whitespace-normal">Business Bay, Dubai, United Arab Emirates</div>
                   </div>
                 </div>
               </div>
 
               {/* Trust Metrics Strip */}
-              <div className="pt-3 border-t border-white/10 flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-slate-400">
+              <div className="pt-3 border-t border-white/10 flex flex-col xs:flex-row flex-wrap items-start xs:items-center gap-2 sm:gap-6 text-xs text-slate-400">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-[#c39967] flex-shrink-0" />
                   <span>Confidential NDA Guaranteed</span>
@@ -107,7 +107,7 @@ export default function ContactCtaSection() {
             </div>
 
             {/* Right Column: Clean Form */}
-            <div className="lg:col-span-6 bg-white/[0.02] border border-white/10 p-5 sm:p-7 rounded-xl">
+            <div className="lg:col-span-6 bg-white/[0.02] border border-white/10 p-4 sm:p-7 rounded-xl">
               {submitted ? (
                 <div className="py-10 text-center space-y-3">
                   <div className="w-12 h-12 rounded-full bg-[#c39967]/15 flex items-center justify-center text-[#c39967] mx-auto">
@@ -126,7 +126,7 @@ export default function ContactCtaSection() {
                 </div>
               ) : (
                 <>
-                  <div className="mb-5">
+                  <div className="mb-4 sm:mb-5">
                     <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#c39967] block mb-1">
                       Start Your Engagement
                     </span>
@@ -147,7 +147,7 @@ export default function ContactCtaSection() {
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           placeholder="e.g. Tariq Mansoor"
-                          className="w-full text-xs min-h-[40px] px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#c39967] text-white placeholder-slate-500 focus:outline-none transition-colors"
+                          className="w-full text-xs min-h-[44px] sm:min-h-[40px] px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#c39967] text-white placeholder-slate-500 focus:outline-none transition-colors"
                         />
                       </div>
                       <div>
@@ -159,7 +159,7 @@ export default function ContactCtaSection() {
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="+971 50 000 0000"
-                          className="w-full text-xs min-h-[40px] px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#c39967] text-white placeholder-slate-500 focus:outline-none transition-colors"
+                          className="w-full text-xs min-h-[44px] sm:min-h-[40px] px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#c39967] text-white placeholder-slate-500 focus:outline-none transition-colors"
                         />
                       </div>
                     </div>
@@ -174,7 +174,7 @@ export default function ContactCtaSection() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="name@company.ae"
-                        className="w-full text-xs min-h-[40px] px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#c39967] text-white placeholder-slate-500 focus:outline-none transition-colors"
+                        className="w-full text-xs min-h-[44px] sm:min-h-[40px] px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#c39967] text-white placeholder-slate-500 focus:outline-none transition-colors"
                       />
                     </div>
 
@@ -186,7 +186,7 @@ export default function ContactCtaSection() {
                         <select
                           value={formData.service}
                           onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                          className="w-full text-xs min-h-[40px] px-3 py-2 pr-9 rounded-lg bg-[#141a27] border border-white/10 focus:border-[#c39967] text-white focus:outline-none appearance-none transition-colors cursor-pointer"
+                          className="w-full text-xs min-h-[44px] sm:min-h-[40px] px-3 py-2 pr-9 rounded-lg bg-[#141a27] border border-white/10 focus:border-[#c39967] text-white focus:outline-none appearance-none transition-colors cursor-pointer"
                         >
                           <option value="Digital Project Management">Digital Project Management</option>
                           <option value="Advertising & Media">Advertising &amp; Media</option>
@@ -199,7 +199,7 @@ export default function ContactCtaSection() {
 
                     <button
                       type="submit"
-                      className="w-full mt-2 min-h-[42px] py-2.5 px-4 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-colors flex items-center justify-center gap-2 cursor-pointer font-sans"
+                      className="w-full mt-2 min-h-[46px] sm:min-h-[42px] py-2.5 px-4 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-all flex items-center justify-center gap-2 cursor-pointer font-sans active:scale-[0.98]"
                     >
                       <span>Submit Consultation Request</span>
                       <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />

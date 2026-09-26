@@ -65,13 +65,13 @@ export default function ProcessSection() {
     <section
       ref={sectionRef}
       id="process"
-      className="py-14 lg:py-20 bg-[#07090e] text-white border-t border-white/10"
+      className="py-12 sm:py-14 lg:py-20 bg-[#07090e] text-white border-t border-white/10 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div
-          className={`max-w-2xl mb-10 lg:mb-12 transition-all duration-700 ease-out transform ${
+          className={`max-w-2xl mb-8 sm:mb-10 lg:mb-12 transition-all duration-700 ease-out transform ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
@@ -89,8 +89,17 @@ export default function ProcessSection() {
           </p>
         </div>
 
-        {/* 4-Step Clean Editorial Pipeline */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        {/* 
+          Process Pipeline:
+          - data-lenis-prevent: stops Lenis smooth scroll from blocking X-axis touch swiping
+          - touch-pan-x: tells mobile browsers to register horizontal drags immediately
+          - overscroll-x-contain: isolates horizontal scroll within this component
+        */}
+        <div
+          data-lenis-prevent="true"
+          className="w-full flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 overflow-x-auto md:overflow-visible pb-4 md:pb-0 -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 snap-x snap-mandatory scrollbar-none touch-pan-x overscroll-x-contain"
+          style={{ WebkitOverflowScrolling: "touch" }}
+        >
           {steps.map((step, idx) => {
             const Icon = step.icon;
             const delay = idx * 90;
@@ -99,7 +108,7 @@ export default function ProcessSection() {
               <div
                 key={idx}
                 style={{ transitionDelay: `${delay}ms` }}
-                className={`group flex flex-col justify-between p-5 sm:p-6 rounded-xl bg-[#0f131c] border border-white/10 hover:border-white/20 transition-all duration-300 transform ${
+                className={`group flex-shrink-0 w-[82vw] xs:w-[75vw] sm:w-[320px] md:w-auto snap-center flex flex-col justify-between p-5 sm:p-6 rounded-xl bg-[#0f131c] border border-white/10 hover:border-white/20 transition-all duration-300 transform ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 }`}
               >
@@ -140,6 +149,16 @@ export default function ProcessSection() {
               </div>
             );
           })}
+
+          {/* Right margin buffer so the last card snaps cleanly */}
+          <div className="w-2 flex-shrink-0 md:hidden pointer-events-none" />
+        </div>
+
+        {/* Mobile Swipe Cue */}
+        <div className="flex items-center justify-center gap-1.5 mt-3 md:hidden">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500">
+            Swipe cards horizontally →
+          </span>
         </div>
 
       </div>

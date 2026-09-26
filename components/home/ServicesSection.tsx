@@ -41,8 +41,8 @@ export default function ServicesSection() {
       statLine: "From discovery to post-launch support, one accountable team.",
       metricVal: "100%",
       metricLabel: "Milestone Delivery SLA",
-      image: "/images/services/project-management.webp", // Update path manually in /public
-      icon: "/images/icons/services/project-management.png", // Update path manually in /public
+      image: "/images/services/project-management.webp",
+      icon: "/images/icons/services/project-management.png",
     },
     {
       id: "service-02",
@@ -66,8 +66,8 @@ export default function ServicesSection() {
       statLine: "Outdoor, digital and creative, managed by one team.",
       metricVal: "3.2M+",
       metricLabel: "Targeted UAE Impressions",
-      image: "/images/services/advertising.webp", // Update path manually in /public
-      icon: "/images/icons/services/advertising.png", // Update path manually in /public
+      image: "/images/services/advertising.webp",
+      icon: "/images/icons/services/advertising.png",
     },
     {
       id: "service-03",
@@ -90,23 +90,22 @@ export default function ServicesSection() {
       statLine: "Clear strategy. Leaner operations. Measurable growth.",
       metricVal: "35%+",
       metricLabel: "Operational Efficiency Gain",
-      image: "/images/services/consulting.webp", // Update path manually in /public
-      icon: "/images/icons/services/consulting.png", // Update path manually in /public
+      image: "/images/services/consulting.webp",
+      icon: "/images/icons/services/consulting.png",
     },
   ];
 
-  // 1. Instant Button Click Handler
+  // 1. Tab Click Handler (mobile & desktop responsive offsets)
   const handleTabClick = (e: React.MouseEvent<HTMLButtonElement>, index: number, targetId: string) => {
     e.preventDefault();
     setActivePractice(targetId);
 
     if (!stackContainerRef.current) return;
-    
-    // Determine the baseline top of the entire section
+
     const containerTop = stackContainerRef.current.getBoundingClientRect().top + window.scrollY;
-    const gap = window.innerWidth >= 640 ? 48 : 40; // matches sm:space-y-12 vs space-y-10
-    
-    // Sum up the untransformed heights of preceding cards to find exact target
+    const isMobile = window.innerWidth < 640;
+    const gap = isMobile ? 32 : 48;
+
     let targetScroll = containerTop;
     for (let i = 0; i < index; i++) {
       const el = cardRefs[i].current;
@@ -115,16 +114,15 @@ export default function ServicesSection() {
       }
     }
 
-    // The sticky offset where the card docks on the screen (160px = top-[10rem])
-    const stickyOffset = 160; 
+    const stickyOffset = isMobile ? 88 : 160;
 
     window.scrollTo({
-      top: targetScroll - stickyOffset + 2, // +2px buffer ensures scroll spy trips active state
-      behavior: "auto", // Instant sudden snap
+      top: targetScroll - stickyOffset + 2,
+      behavior: "auto",
     });
   };
 
-  // 2. Mathematical Scroll Physics Engine (Immune to CSS transform distortions)
+  // 2. Mathematical Scroll Physics Engine
   useEffect(() => {
     let animationFrameId: number;
 
@@ -135,9 +133,10 @@ export default function ServicesSection() {
       }
 
       const windowHeight = window.innerHeight;
+      const isMobile = window.innerWidth < 640;
       const containerTop = stackContainerRef.current.getBoundingClientRect().top;
-      const gap = window.innerWidth >= 640 ? 48 : 40;
-      const stickyOffset = 160; // top-[10rem]
+      const gap = isMobile ? 32 : 48;
+      const stickyOffset = isMobile ? 88 : 160;
 
       let currentNativeTop = containerTop;
 
@@ -147,25 +146,23 @@ export default function ServicesSection() {
 
         const cardHeight = el.offsetHeight;
         const nativeTop = currentNativeTop;
-        const nativeBottom = nativeTop + cardHeight + gap; 
+        const nativeBottom = nativeTop + cardHeight + gap;
 
-        // Update Active Practice Indicator Tab
         if (nativeTop <= stickyOffset + 50 && nativeBottom > stickyOffset + 50) {
           setActivePractice(pillars[index].id);
         }
 
-        // Compute Visual Overlap Shrink/Darken Physics
         if (index < pillars.length - 1) {
           const nextNativeTop = currentNativeTop + cardHeight + gap;
           const overlapDistance = windowHeight - nextNativeTop;
           const maxOverlap = windowHeight - stickyOffset;
-          
+
           const progress = Math.max(0, Math.min(1, overlapDistance / maxOverlap));
 
           if (progress > 0) {
-            const scale = 1 - progress * 0.04;
-            const translateY = -progress * 16;
-            const brightness = 1 - progress * 0.18;
+            const scale = 1 - progress * (isMobile ? 0.025 : 0.04);
+            const translateY = -progress * (isMobile ? 10 : 16);
+            const brightness = 1 - progress * (isMobile ? 0.12 : 0.18);
 
             el.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale})`;
             el.style.filter = `brightness(${brightness})`;
@@ -186,19 +183,19 @@ export default function ServicesSection() {
   }, []);
 
   return (
-    <section className="relative bg-[#ffffff] text-[#111827] pb-16 lg:pb-20">
-      
+    <section className="relative bg-[#ffffff] text-[#111827] pb-12 sm:pb-16 lg:pb-20">
+
       {/* 1. Header Overview & Precision Tabs */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6 lg:pt-16 lg:pb-8">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-4 sm:pt-12 sm:pb-6 lg:pt-16 lg:pb-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
-              <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-[#c39967]">
+              <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest uppercase text-[#c39967]">
                 What We Offer
               </span>
             </div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#111827] leading-[1.12]">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#111827] leading-[1.15]">
               Three Core Services. <br />
               <span className="text-[#c39967]">Uncompromising Execution.</span>
             </h2>
@@ -210,11 +207,11 @@ export default function ServicesSection() {
       </div>
 
       {/* ========================================================
-          STICKY TAB CONTROLS (Always visible, clean white glass)
+          STICKY TAB CONTROLS
          ======================================================== */}
-      <div className="sticky top-16 md:top-20 z-30 bg-white/95 backdrop-blur-md py-3 border-y border-slate-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.04)] mb-8 sm:mb-12">
+      <div className="sticky top-14 sm:top-16 md:top-20 z-30 bg-white/95 backdrop-blur-md py-2.5 sm:py-3 border-y border-slate-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.04)] mb-6 sm:mb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex sm:grid sm:grid-cols-3 gap-2.5 sm:gap-3.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+          <div className="flex sm:grid sm:grid-cols-3 gap-2 sm:gap-3.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
             {pillars.map((p, idx) => {
               const isActive = activePractice === p.id;
 
@@ -223,15 +220,15 @@ export default function ServicesSection() {
                   type="button"
                   key={p.id}
                   onClick={(e) => handleTabClick(e, idx, p.id)}
-                  className={`group flex items-center justify-between p-2.5 sm:p-3 rounded-xl border transition-all text-left flex-shrink-0 min-w-[240px] sm:min-w-0 ${
+                  className={`group flex items-center justify-between p-2 sm:p-3 rounded-xl border transition-all text-left flex-shrink-0 min-w-[200px] sm:min-w-0 ${
                     isActive
                       ? "border-[#c39967] bg-[#faf8f5] shadow-xs"
                       : "border-slate-200/90 hover:border-slate-300 bg-white"
                   }`}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2.5 sm:gap-3">
                     <div
-                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-all flex-shrink-0 ${
+                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center transition-all flex-shrink-0 ${
                         isActive
                           ? "bg-[#07090e] border border-[#07090e] shadow-sm"
                           : "bg-slate-100/80 border border-slate-200/80 group-hover:bg-[#c39967]/10 group-hover:border-[#c39967]/30"
@@ -242,15 +239,15 @@ export default function ServicesSection() {
                         alt={p.title}
                         width={24}
                         height={24}
-                        className="w-5 h-5 object-contain transition-transform duration-200 group-hover:scale-105"
+                        className="w-4 h-4 sm:w-5 sm:h-5 object-contain transition-transform duration-200 group-hover:scale-105"
                       />
                     </div>
                     <div>
-                      <span className="text-[9px] sm:text-[9.5px] font-mono text-slate-400 block uppercase font-medium">
+                      <span className="text-[8.5px] sm:text-[9.5px] font-mono text-slate-400 block uppercase font-medium">
                         Practice {p.number}
                       </span>
                       <span
-                        className={`text-xs sm:text-[13px] font-bold block truncate transition-colors ${
+                        className={`text-[11.5px] sm:text-[13px] font-bold block truncate transition-colors ${
                           isActive ? "text-[#111827]" : "text-[#334155] group-hover:text-[#111827]"
                         }`}
                       >
@@ -277,7 +274,7 @@ export default function ServicesSection() {
          ======================================================== */}
       <div 
         ref={stackContainerRef}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12 pb-[20vh]"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12 pb-[15vh] sm:pb-[20vh]"
       >
         {pillars.map((pillar, index) => {
           const isAlt = index % 2 === 1;
@@ -287,23 +284,23 @@ export default function ServicesSection() {
               key={pillar.id}
               ref={cardRefs[index]}
               style={{
-                top: "10rem", // 160px: Locks cleanly underneath the sticky tabs above
+                top: "calc(var(--sticky-top, 5.5rem))",
                 zIndex: 10 + index,
                 willChange: "transform, filter",
                 transformOrigin: "center top",
               }}
-              className="sticky rounded-2xl border border-slate-200 bg-[#ffffff] p-6 sm:p-8 lg:p-10 shadow-lg"
+              className="sticky top-[5.5rem] sm:top-[10rem] rounded-xl sm:rounded-2xl border border-slate-200 bg-[#ffffff] p-4 sm:p-8 lg:p-10 shadow-md sm:shadow-lg"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
-                
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-10 items-center">
+
                 {/* Visual Imagery Canvas */}
                 <div
                   className={`lg:col-span-5 relative ${
                     isAlt ? "lg:order-2" : "lg:order-1"
                   }`}
                 >
-                  <div className="rounded-xl overflow-hidden border border-slate-200 bg-slate-900 flex flex-col">
-                    <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">
+                  <div className="rounded-lg sm:rounded-xl overflow-hidden border border-slate-200 bg-slate-900 flex flex-col">
+                    <div className="relative aspect-[16/9] sm:aspect-[16/10] overflow-hidden bg-slate-950">
                       <Image
                         src={pillar.image}
                         alt={pillar.title}
@@ -311,15 +308,15 @@ export default function ServicesSection() {
                         sizes="(max-width: 1024px) 100vw, 40vw"
                         className="object-cover object-center transition-transform duration-700 ease-out hover:scale-105"
                       />
-                      
-                      <div className="absolute top-3 left-3 z-10">
-                        <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#07090e]/85 text-white text-[10.5px] font-mono uppercase tracking-wider backdrop-blur-xs border border-white/10">
+
+                      <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-10">
+                        <span className="inline-flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-[#07090e]/85 text-white text-[9.5px] sm:text-[10.5px] font-mono uppercase tracking-wider backdrop-blur-xs border border-white/10">
                           <Image
                             src={pillar.icon}
                             alt={pillar.title}
                             width={16}
                             height={16}
-                            className="w-4 h-4 object-contain"
+                            className="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain"
                           />
                           <span>Pillar {pillar.number}</span>
                         </span>
@@ -327,17 +324,17 @@ export default function ServicesSection() {
                     </div>
 
                     {/* Grounded Metric Footer */}
-                    <div className="p-3.5 bg-[#0b0f17] text-white flex items-center justify-between border-t border-white/10">
+                    <div className="p-3 sm:p-3.5 bg-[#0b0f17] text-white flex items-center justify-between border-t border-white/10">
                       <div>
-                        <div className="text-xl font-bold font-mono text-[#c39967]">
+                        <div className="text-lg sm:text-xl font-bold font-mono text-[#c39967]">
                           {pillar.metricVal}
                         </div>
-                        <div className="text-[11px] text-slate-300">
+                        <div className="text-[10px] sm:text-[11px] text-slate-300">
                           {pillar.metricLabel}
                         </div>
                       </div>
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-[#c39967]">
-                        <ShieldCheck className="w-4 h-4" />
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/10 flex items-center justify-center text-[#c39967]">
+                        <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       </div>
                     </div>
                   </div>
@@ -345,18 +342,20 @@ export default function ServicesSection() {
 
                 {/* Narrative & Specification Deck */}
                 <div
-                  className={`lg:col-span-7 space-y-4 ${
+                  className={`lg:col-span-7 space-y-3 sm:space-y-4 ${
                     isAlt ? "lg:order-1" : "lg:order-2"
                   }`}
                 >
                   <div>
-                    <span className="text-[11px] font-mono font-bold tracking-widest text-[#c39967] uppercase block mb-1">
+                    <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-[#c39967] uppercase block mb-1">
                       {pillar.eyebrow}
                     </span>
 
-                    <h3 className="text-xl sm:text-2xl lg:text-[26px] font-extrabold text-[#111827] tracking-tight leading-[1.25]">
-                      {pillar.h2}
-                    </h3>
+                    <Link href={pillar.link} className="group/heading block">
+                      <h3 className="text-lg sm:text-2xl lg:text-[26px] font-extrabold text-[#111827] group-hover/heading:text-[#c39967] transition-colors tracking-tight leading-[1.25]">
+                        {pillar.h2}
+                      </h3>
+                    </Link>
                   </div>
 
                   <p className="text-xs sm:text-sm text-[#4b5563] leading-relaxed font-normal">
@@ -365,36 +364,45 @@ export default function ServicesSection() {
 
                   {/* Specializations Badges */}
                   <div>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-2">
+                    <span className="text-[9.5px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1.5 sm:mb-2">
                       Core Specializations &amp; Deliverables:
                     </span>
                     <div className="flex flex-wrap gap-1.5">
                       {pillar.tags.map((tag, idx) => (
                         <div
                           key={idx}
-                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#f8f9fb] border border-slate-200 text-[11px] font-medium text-[#1e293b]"
+                          className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md bg-[#f8f9fb] border border-slate-200 text-[10px] sm:text-[11px] font-medium text-[#1e293b]"
                         >
-                          <CheckCircle2 className="w-3 h-3 text-[#c39967] flex-shrink-0" />
+                          <CheckCircle2 className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#c39967] flex-shrink-0" />
                           <span>{tag}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Bottom Action Footer */}
-                  <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  {/* Bottom Action Section: Button hidden on mobile, visible on sm+ */}
+                  <div className="pt-2.5 sm:pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
                     <Link
                       href={pillar.link}
-                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-white bg-[#c39967] hover:bg-[#b28755] transition-colors whitespace-nowrap self-start sm:self-auto font-sans"
+                      className="hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-white bg-[#c39967] hover:bg-[#b28755] transition-colors whitespace-nowrap font-sans active:scale-[0.98]"
                     >
                       <span>{pillar.linkText}</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </Link>
 
-                    <div className="flex items-center gap-2 text-xs text-[#64748b] font-medium leading-tight">
+                    <div className="flex items-center gap-2 text-[11px] sm:text-xs text-[#64748b] font-medium leading-tight">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#c39967] flex-shrink-0" />
                       <span>{pillar.statLine}</span>
                     </div>
+
+                    {/* Compact Mobile-Only Text Chevron Link */}
+                    <Link
+                      href={pillar.link}
+                      className="sm:hidden inline-flex items-center gap-1 text-[11px] font-semibold text-[#c39967] hover:underline uppercase tracking-wider font-sans ml-auto"
+                    >
+                      <span>Details</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </Link>
                   </div>
                 </div>
 

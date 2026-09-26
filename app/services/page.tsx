@@ -8,7 +8,6 @@ import {
   ShieldCheck,
   CheckCircle2,
   Layers,
-  Building2,
   Workflow,
 } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -32,8 +31,8 @@ export default function ServicesPage() {
       body: "We manage digital projects, web platforms and products from start to finish, with clear scope, realistic timelines and one accountable team keeping everything on track.",
       href: "/services/project-management",
       primaryCta: "EXPLORE PROJECT MANAGEMENT",
-      img: "/images/services/project-management.webp", // Update path manually in /public
-      icon: "/images/icons/services/project-management.png", // Update path manually in /public
+      img: "/images/services/project-management.webp",
+      icon: "/images/icons/services/project-management.png",
       capabilities: [
         "Digital Project Management",
         "Project Execution & Delivery",
@@ -54,8 +53,8 @@ export default function ServicesPage() {
       body: "From billboards on Sheikh Zayed Road to Google Ads, SEO and social media, we put your brand in front of the right audience across the UAE and turn visibility into leads.",
       href: "/services/advertising",
       primaryCta: "EXPLORE ADVERTISING SERVICES",
-      img: "/images/services/advertising.webp", // Update path manually in /public
-      icon: "/images/icons/services/advertising.png", // Update path manually in /public
+      img: "/images/services/advertising.webp",
+      icon: "/images/icons/services/advertising.png",
       capabilities: [
         "Billboard Advertising",
         "Google Ads",
@@ -78,8 +77,8 @@ export default function ServicesPage() {
       body: "Our business consultants in Dubai help you find what's slowing growth, streamline operations and build a clear, practical roadmap for mainland and free zone businesses across the UAE.",
       href: "/services/business-consultancy",
       primaryCta: "EXPLORE BUSINESS CONSULTANCY",
-      img: "/images/services/consulting.webp", // Update path manually in /public
-      icon: "/images/icons/services/consulting.png", // Update path manually in /public
+      img: "/images/services/consulting.webp",
+      icon: "/images/icons/services/consulting.png",
       capabilities: [
         "Business Strategy Consulting",
         "Digital Transformation Consulting",
@@ -96,12 +95,28 @@ export default function ServicesPage() {
     <main className="min-h-screen bg-[#ffffff] text-[#111827]">
       
       {/* ========================================================
-          1. REDESIGNED HERO: Executive Architectural Terminal
+          1. HERO WITH BACKGROUND IMAGE & SCRIM OVERLAY
          ======================================================== */}
       <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 bg-[#07090e] text-white border-b border-white/10 overflow-hidden">
-        {/* Subtle background ambient glow */}
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[350px] bg-[#c39967]/[0.05] blur-[150px] pointer-events-none rounded-full" />
-        <div className="absolute -bottom-10 right-1/4 w-[450px] h-[300px] bg-[#c39967]/[0.03] blur-[130px] pointer-events-none rounded-full" />
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-30 sm:opacity-35 hero-zoom-bg">
+          <Image
+            src="/images/services/hero.webp" // Update path to your chosen hero background image (e.g., /images/services/hero-bg.webp)
+            alt="Dubai Business District Skyline"
+            fill
+            priority
+            quality={90}
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+
+        {/* Soft Multi-Stop Gradient Scrim */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#07090e]/90 via-[#07090e]/65 to-[#07090e] pointer-events-none" />
+
+        {/* Subtle background ambient glows */}
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[350px] bg-[#c39967]/[0.08] blur-[150px] pointer-events-none rounded-full" />
+        <div className="absolute -bottom-10 right-1/4 w-[450px] h-[300px] bg-[#c39967]/[0.05] blur-[130px] pointer-events-none rounded-full" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
@@ -118,7 +133,7 @@ export default function ServicesPage() {
                   </span>
                 </div>
 
-                {/* H1 - No trailing dots, structured institutional rhythm */}
+                {/* H1 */}
                 <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight text-white leading-[1.12]">
                   Business Services in Dubai <br />
                   <span className="text-[#c39967]">One Accountable Team</span>
@@ -144,7 +159,7 @@ export default function ServicesPage() {
 
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-300 border border-white/15 hover:border-white/30 hover:text-white transition-colors font-sans bg-white/[0.02]"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-300 border border-white/15 hover:border-white/30 hover:text-white transition-colors font-sans bg-white/[0.02] backdrop-blur-xs"
                   >
                     <span>Request Proposal</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -157,7 +172,7 @@ export default function ServicesPage() {
             {/* Right Column: Institutional Terminal Dashboard */}
             <div className="lg:col-span-5">
               <ScrollReveal direction="left" distance={24} delay={100}>
-                <div className="rounded-2xl border border-white/15 bg-[#0b0f17] p-6 sm:p-7 shadow-2xl relative overflow-hidden">
+                <div className="rounded-2xl border border-white/15 bg-[#0b0f17]/90 backdrop-blur-md p-6 sm:p-7 shadow-2xl relative overflow-hidden">
                   
                   {/* Top Terminal Bar */}
                   <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/10">
@@ -247,7 +262,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ========================================================
-          2. DETAILED SERVICE CARDS (Clean Light Institutional Deck)
+          2. DETAILED SERVICE CARDS
          ======================================================== */}
       <section className="py-16 sm:py-24 bg-[#f8f9fb] border-b border-slate-200/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-14">
@@ -327,7 +342,7 @@ export default function ServicesPage() {
                         {p.eyebrow}
                       </span>
 
-                      {/* Headings without trailing dots */}
+                      {/* Headings */}
                       {p.isH2 ? (
                         <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111827] tracking-tight leading-snug">
                           {p.heading}
@@ -392,7 +407,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ========================================================
-          3. THE BRICKETX ADVANTAGE (Grounded Dark Action Terminal)
+          3. THE BRICKETX ADVANTAGE
          ======================================================== */}
       <section className="py-16 sm:py-24 bg-[#ffffff]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

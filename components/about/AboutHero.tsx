@@ -112,7 +112,7 @@ export default function AboutHero() {
                 {/* Visual Chamber */}
                 <div className="relative aspect-[16/9] w-full bg-slate-950 overflow-hidden">
                   <Image
-                    src="/images/about/about-main.webp" // Update path manually in /public
+                    src="/images/about/about-hero.webp" // Update path manually in /public
                     alt="BricketX UAE office location in Business Bay, Dubai"
                     fill
                     priority
