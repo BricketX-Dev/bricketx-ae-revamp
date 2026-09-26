@@ -5,6 +5,7 @@ import "./globals.css";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/ui/ScrollToTop"; // Imported new component
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,6 +28,9 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className="antialiased bg-[#07090e] text-white">
         <SmoothScrollProvider>
+          {/* Forces window to top on every route change */}
+          <ScrollToTop />
+          
           <Navbar />
           {children}
           <Footer />
