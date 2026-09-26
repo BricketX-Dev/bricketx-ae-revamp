@@ -10,20 +10,15 @@ export default function Footer() {
     { label: "Digital Project Management", href: "/services/project-management" },
     { label: "Advertising & Media", href: "/services/advertising" },
     { label: "Business Consultancy", href: "/services/business-consultancy" },
+    { label: "All Practices Hub", href: "/services" },
   ];
 
-  const portfolio = [
-    { label: "Digital Projects", href: "/portfolio/digital-projects" },
-    { label: "Advertising Campaigns", href: "/portfolio/advertising-campaigns" },
-    { label: "Consulting Projects", href: "/portfolio/consulting-projects" },
-  ];
-
-  const navigation = [
-    { label: "About Us", href: "#about" },
-    { label: "Execution Process", href: "#process" },
-    { label: "Sectors & Industries", href: "#industries" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Request Consultation", href: "#contact" },
+  const company = [
+    { label: "About BricketX", href: "/about" },
+    { label: "How We Work", href: "/how-we-work" },
+    { label: "Why Us", href: "/why-us" },
+    { label: "Company Profile (PDF)", href: "/company-profile.pdf", target: "_blank" },
+    { label: "Contact & Consultations", href: "/contact" },
   ];
 
   return (
@@ -43,25 +38,25 @@ export default function Footer() {
             <Logo variant="light" />
 
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-md font-normal">
-              BricketX Project Management L.L.C is a premier Dubai-based holding firm integrating digital project management, strategic advertising concessions, and corporate growth consultancy across the UAE.
+              BricketX Project Management L.L.C is a Dubai-based holding firm integrating digital project management, strategic advertising concessions, and corporate growth consultancy across the UAE under single-vendor accountability.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-xs text-slate-300">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#c39967] flex-shrink-0" />
-                <span>UAE Licensed Commercial Entity</span>
+                <span>Dubai Mainland (DET Licensed)</span>
               </div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-xs text-slate-300">
                 <MapPin className="w-3.5 h-3.5 text-[#c39967] flex-shrink-0" />
-                <span>Business Bay, Dubai</span>
+                <span>Business Bay, Dubai, UAE</span>
               </div>
             </div>
           </div>
 
-          {/* Column 2: Core Practices (2 Cols) */}
-          <div className="lg:col-span-2 space-y-3.5">
+          {/* Column 2: Core Practices (3 Cols) */}
+          <div className="lg:col-span-3 space-y-3.5">
             <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] text-[#c39967] uppercase block">
-              Practices
+              Core Practices
             </span>
             <ul className="space-y-2.5 text-xs">
               {services.map((item) => (
@@ -77,16 +72,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Portfolio Sectors (2 Cols) */}
+          {/* Column 3: Corporate Links (2 Cols) */}
           <div className="lg:col-span-2 space-y-3.5">
             <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] text-[#c39967] uppercase block">
-              Portfolio
+              Company
             </span>
             <ul className="space-y-2.5 text-xs">
-              {portfolio.map((item) => (
+              {company.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
+                    target={item.target}
                     className="text-slate-400 hover:text-white transition-colors"
                   >
                     {item.label}
@@ -96,37 +92,37 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Institutional Direct Desk (3 Cols) */}
-          <div className="lg:col-span-3 space-y-3.5">
+          {/* Column 4: Direct Inquiries (2 Cols) */}
+          <div className="lg:col-span-2 space-y-3.5">
             <span className="text-[10.5px] font-mono font-bold tracking-[0.2em] text-[#c39967] uppercase block">
-              Direct Inquiries
+              Direct Desk
             </span>
             <div className="space-y-3 text-xs">
               <a
                 href="tel:+971541662352"
-                className="flex items-center gap-2.5 text-slate-300 hover:text-white group transition-colors"
+                className="flex items-center gap-2 text-slate-300 hover:text-[#c39967] group transition-colors"
               >
-                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#c39967] group-hover:bg-[#c39967] group-hover:text-[#0b0f17] transition-colors flex-shrink-0">
+                <div className="w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#c39967] group-hover:bg-[#c39967] group-hover:text-[#0b0f17] transition-colors flex-shrink-0">
                   <Phone className="w-3.5 h-3.5" />
                 </div>
-                <span className="font-mono">+971 54 166 2352</span>
+                <span className="font-mono text-[11px]">+971 54 166 2352</span>
               </a>
 
               <a
                 href="mailto:info@bricketx.ae"
-                className="flex items-center gap-2.5 text-slate-300 hover:text-white group transition-colors"
+                className="flex items-center gap-2 text-slate-300 hover:text-[#c39967] group transition-colors"
               >
-                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#c39967] group-hover:bg-[#c39967] group-hover:text-[#0b0f17] transition-colors flex-shrink-0">
+                <div className="w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#c39967] group-hover:bg-[#c39967] group-hover:text-[#0b0f17] transition-colors flex-shrink-0">
                   <Mail className="w-3.5 h-3.5" />
                 </div>
-                <span>info@bricketx.ae</span>
+                <span className="text-[11px]">info@bricketx.ae</span>
               </a>
 
               <Link
-                href="#contact"
-                className="mt-2 inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider text-[#0b0f17] bg-[#c39967] hover:bg-[#d6b48a] transition-all font-sans"
+                href="/contact"
+                className="mt-2 inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg text-[11px] font-semibold uppercase tracking-wider text-[#0b0f17] bg-[#c39967] hover:bg-[#d6b48a] transition-all font-sans"
               >
-                <span>Book Executive Briefing</span>
+                <span>Consultation</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -140,15 +136,15 @@ export default function Footer() {
             © {currentYear} BricketX Project Management L.L.C. All rights reserved. Registered in Dubai, UAE.
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 text-[11px]">
             <Link href="/privacy-policy" className="hover:text-slate-400 transition-colors">
               Privacy Policy
             </Link>
             <Link href="/terms-of-service" className="hover:text-slate-400 transition-colors">
               Terms of Engagement
             </Link>
-            <Link href="/compliance" className="hover:text-slate-400 transition-colors">
-              UAE Regulatory Compliance
+            <Link href="/contact" className="hover:text-slate-400 transition-colors">
+              Dubai Mainland Office
             </Link>
           </div>
         </div>
