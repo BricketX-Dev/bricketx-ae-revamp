@@ -11,10 +11,21 @@ import {
   ShieldCheck,
   Clock,
   ChevronDown,
+  Loader2,
+  AlertCircle,
 } from "lucide-react";
+import { submitContactLead } from "@/app/actions/contact";
 
 export default function ContactCtaSection() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<{
+    name?: string;
+    email?: string;
+    phone?: string;
+  }>({});
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,9 +34,77 @@ export default function ContactCtaSection() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const validateClientInputs = () => {
+    const errors: { name?: string; email?: string; phone?: string } = {};
+
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      errors.name = "Please enter your full name (minimum 2 characters).";
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!formData.email.trim() || !emailRegex.test(formData.email.trim())) {
+      errors.email = "Please enter a valid business email address.";
+    }
+
+    const cleanDigits = formData.phone.replace(/\D/g, "");
+    if (!formData.phone.trim() || cleanDigits.length < 7) {
+      errors.phone = "Please enter a valid phone number (at least 7 digits).";
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setErrorMessage(null);
+
+    const validationErrors = validateClientInputs();
+    if (Object.keys(validationErrors).length > 0) {
+      setFieldErrors(validationErrors);
+      return;
+    }
+
+    setFieldErrors({});
+    setLoading(true);
+
+    const payload = new FormData();
+    payload.append("fullName", formData.name);
+    payload.append("email", formData.email);
+    payload.append("phone", formData.phone);
+    payload.append("service", formData.service);
+    payload.append("timeline", "Consultation Request (Homepage)");
+    payload.append("message", formData.message || "Consultation requested from Homepage CTA block.");
+
+    const res = await submitContactLead(payload);
+
+    setLoading(false);
+
+    if (res.success) {
+      setSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "Digital Project Management",
+        message: "",
+      });
+    } else {
+      setErrorMessage(res.error || "Unable to send your request. Please try again.");
+      if (res.invalidField) {
+        const fieldMap: Record<string, "name" | "email" | "phone"> = {
+          fullName: "name",
+          email: "email",
+          phone: "phone",
+        };
+        const mappedKey = fieldMap[res.invalidField];
+        if (mappedKey) {
+          setFieldErrors((prev) => ({
+            ...prev,
+            [mappedKey]: res.error,
+          }));
+        }
+      }
+    }
   };
 
   return (
@@ -87,7 +166,7 @@ export default function ContactCtaSection() {
                   </div>
                   <div className="min-w-0">
                     <div className="text-[9px] sm:text-[9.5px] font-mono uppercase tracking-wider text-slate-400">Corporate Headquarters</div>
-                    <div className="text-xs sm:text-sm font-semibold text-white truncate sm:whitespace-normal">Business Bay, Dubai, United Arab Emirates</div>
+                    <div className="text-xs sm:text-sm font-semibold text-white truncate sm:whitespace-normal">Port Saeed, Dubai, United Arab Emirates</div>
                   </div>
                 </div>
               </div>
@@ -118,6 +197,7 @@ export default function ContactCtaSection() {
                     Thank you, {formData.name || "partner"}. One of our directors will contact you within 24 business hours.
                   </p>
                   <button
+                    type="button"
                     onClick={() => setSubmitted(false)}
                     className="mt-3 inline-block text-xs font-semibold text-[#c39967] hover:underline cursor-pointer"
                   >
@@ -135,7 +215,14 @@ export default function ContactCtaSection() {
                     </h3>
                   </div>
 
-                  <form className="space-y-3.5" onSubmit={handleSubmit}>
+                  {errorMessage && (
+                    <div className="mb-4 p-3 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                      <span>{errorMessage}</span>
+                    </div>
+                  )}
+
+                  <form className="space-y-3.5" onSubmit={handleSubmit} noValidate>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                       <div>
                         <label className="block text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1">
@@ -144,23 +231,43 @@ export default function ContactCtaSection() {
                         <input
                           type="text"
                           required
+                          disabled={loading}
                           value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          onChange={(e) => {
+                            setFormData({ ...formData, name: e.target.value });
+                            if (fieldErrors.name) setFieldErrors({ ...fieldErrors, name: undefined });
+                          }}
                           placeholder="e.g. Tariq Mansoor"
-                          className="w-full text-xs min-h-[44px] sm:min-h-[40px] px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#c39967] text-white placeholder-slate-500 focus:outline-none transition-colors"
+                          className={`w-full text-xs min-h-[44px] sm:min-h-[40px] px-3 py-2 rounded-lg bg-white/5 border ${
+                            fieldErrors.name ? "border-rose-500 focus:border-rose-500 ring-1 ring-rose-500/30" : "border-white/10 focus:border-[#c39967]"
+                          } text-white placeholder-slate-500 focus:outline-none transition-colors disabled:opacity-50`}
                         />
+                        {fieldErrors.name && (
+                          <p className="mt-1 text-[11px] text-rose-400 font-medium">{fieldErrors.name}</p>
+                        )}
                       </div>
+
                       <div>
                         <label className="block text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1">
-                          Phone Number
+                          Phone Number *
                         </label>
                         <input
                           type="tel"
+                          required
+                          disabled={loading}
                           value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          onChange={(e) => {
+                            setFormData({ ...formData, phone: e.target.value });
+                            if (fieldErrors.phone) setFieldErrors({ ...fieldErrors, phone: undefined });
+                          }}
                           placeholder="+971 50 000 0000"
-                          className="w-full text-xs min-h-[44px] sm:min-h-[40px] px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#c39967] text-white placeholder-slate-500 focus:outline-none transition-colors"
+                          className={`w-full text-xs min-h-[44px] sm:min-h-[40px] px-3 py-2 rounded-lg bg-white/5 border ${
+                            fieldErrors.phone ? "border-rose-500 focus:border-rose-500 ring-1 ring-rose-500/30" : "border-white/10 focus:border-[#c39967]"
+                          } text-white placeholder-slate-500 focus:outline-none transition-colors disabled:opacity-50`}
                         />
+                        {fieldErrors.phone && (
+                          <p className="mt-1 text-[11px] text-rose-400 font-medium">{fieldErrors.phone}</p>
+                        )}
                       </div>
                     </div>
 
@@ -171,11 +278,20 @@ export default function ContactCtaSection() {
                       <input
                         type="email"
                         required
+                        disabled={loading}
                         value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        onChange={(e) => {
+                          setFormData({ ...formData, email: e.target.value });
+                          if (fieldErrors.email) setFieldErrors({ ...fieldErrors, email: undefined });
+                        }}
                         placeholder="name@company.ae"
-                        className="w-full text-xs min-h-[44px] sm:min-h-[40px] px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-[#c39967] text-white placeholder-slate-500 focus:outline-none transition-colors"
+                        className={`w-full text-xs min-h-[44px] sm:min-h-[40px] px-3 py-2 rounded-lg bg-white/5 border ${
+                          fieldErrors.email ? "border-rose-500 focus:border-rose-500 ring-1 ring-rose-500/30" : "border-white/10 focus:border-[#c39967]"
+                        } text-white placeholder-slate-500 focus:outline-none transition-colors disabled:opacity-50`}
                       />
+                      {fieldErrors.email && (
+                        <p className="mt-1 text-[11px] text-rose-400 font-medium">{fieldErrors.email}</p>
+                      )}
                     </div>
 
                     <div>
@@ -184,9 +300,10 @@ export default function ContactCtaSection() {
                       </label>
                       <div className="relative">
                         <select
+                          disabled={loading}
                           value={formData.service}
                           onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                          className="w-full text-xs min-h-[44px] sm:min-h-[40px] px-3 py-2 pr-9 rounded-lg bg-[#141a27] border border-white/10 focus:border-[#c39967] text-white focus:outline-none appearance-none transition-colors cursor-pointer"
+                          className="w-full text-xs min-h-[44px] sm:min-h-[40px] px-3 py-2 pr-9 rounded-lg bg-[#141a27] border border-white/10 focus:border-[#c39967] text-white focus:outline-none appearance-none transition-colors cursor-pointer disabled:opacity-50"
                         >
                           <option value="Digital Project Management">Digital Project Management</option>
                           <option value="Advertising & Media">Advertising &amp; Media</option>
@@ -199,10 +316,20 @@ export default function ContactCtaSection() {
 
                     <button
                       type="submit"
-                      className="w-full mt-2 min-h-[46px] sm:min-h-[42px] py-2.5 px-4 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-all flex items-center justify-center gap-2 cursor-pointer font-sans active:scale-[0.98]"
+                      disabled={loading}
+                      className="w-full mt-2 min-h-[46px] sm:min-h-[42px] py-2.5 px-4 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-all flex items-center justify-center gap-2 cursor-pointer font-sans active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      <span>Submit Consultation Request</span>
-                      <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />
+                      {loading ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Processing...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Submit Consultation Request</span>
+                          <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" />
+                        </>
+                      )}
                     </button>
                   </form>
                 </>

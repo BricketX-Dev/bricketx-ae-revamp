@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable} data-scroll-behavior="smooth">
+    <html lang="en" className={inter.variable}>
       <body className="antialiased bg-[#07090e] text-white">
         <SmoothScrollProvider>
           <ScrollToTop />

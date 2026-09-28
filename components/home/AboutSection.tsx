@@ -34,16 +34,16 @@ export default function AboutSection() {
   }, []);
 
   const stats = [
-    { value: "100+", label: "Projects Delivered", detail: "UAE & GCC Region" },
-    { value: "50+", label: "Enterprise Partners", detail: "Public & Private Sector" },
-    { value: "3", label: "Core Practices", detail: "PM, Media & Advisory" },
-    { value: "100%", label: "Milestone SLA", detail: "On-Time & On-Budget" },
+    { value: "100%", label: "Digital Delivery", detail: "Software, Web & Apps" },
+    { value: "01", label: "Unified Team", detail: "PM, Media & Advisory" },
+    { value: "Dubai", label: "Licensed Entity", detail: "Meydan FZ · 2540036.01" },
+    { value: "100%", label: "Milestone Gates", detail: "Pay for Approved Progress" },
   ];
 
   const highlights = [
-    "Disciplined critical-path milestone governance",
-    "UAE municipal decree & commercial law compliance",
-    "Direct executive oversight with zero vendor silos",
+    "Disciplined milestone-based project governance",
+    "Outdoor billboard concessions across Sheikh Zayed Road & digital media",
+    "Business strategy, operations consulting & digital transformation",
   ];
 
   return (
@@ -66,9 +66,8 @@ export default function AboutSection() {
             }`}
           >
             <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200/90 aspect-[4/5] min-h-[440px] bg-slate-900 group">
-              {/* Local manual image path */}
               <Image
-                src="/images/about/about-main.webp" // Update path manually in /public
+                src="/images/about/about-main.webp"
                 alt="BricketX Dubai Corporate Headquarters"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
@@ -82,10 +81,10 @@ export default function AboutSection() {
               <div className="absolute bottom-6 left-6 right-6 z-10">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/10 backdrop-blur-md border border-white/15 text-[10.5px] font-medium text-white mb-2.5">
                   <Building2 className="w-3.5 h-3.5 text-[#c39967]" />
-                  <span>Dubai Corporate Office</span>
+                  <span>Dubai Commercial Entity</span>
                 </div>
                 <h4 className="text-base sm:text-lg font-bold text-white leading-snug">
-                  Transforming Strategic Initiatives into Measurable Impact
+                  One Accountable Partner for Delivery, Media & Operations
                 </h4>
               </div>
             </div>
@@ -102,8 +101,8 @@ export default function AboutSection() {
                 <Award className="w-4 h-4 stroke-[2]" />
               </div>
               <div>
-                <div className="text-xs font-bold text-[#111827]">UAE Registered Entity</div>
-                <div className="text-[10.5px] text-[#64748b]">Full Commercial Licensing</div>
+                <div className="text-xs font-bold text-[#111827]">Licence No. 2540036.01</div>
+                <div className="text-[10.5px] text-[#64748b]">BricketX PM LLC-FZ</div>
               </div>
             </div>
           </div>
@@ -123,7 +122,7 @@ export default function AboutSection() {
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
               <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-[#c39967]">
-                Institutional Overview
+                ABOUT BRICKETX UAE
               </span>
             </div>
 
@@ -135,9 +134,9 @@ export default function AboutSection() {
                   : "opacity-0 translate-y-4"
               }`}
             >
-              Delivering Business Excellence Through{" "}
+              Connecting Strategy, Delivery &amp; Marketing Through{" "}
               <span className="text-[#c39967]">
-                Strategy &amp; Disciplined Execution
+                One Accountable Team
               </span>
             </h2>
 
@@ -149,7 +148,7 @@ export default function AboutSection() {
                   : "opacity-0 translate-y-4"
               }`}
             >
-              At BricketX Project Management L.L.C, we partner with enterprises and government-backed entities across Dubai and the UAE to simplify complex initiatives, expand regional brand presence, and safeguard capital through rigorous project governance.
+              BricketX Project Management LLC-FZ is a Dubai-based company offering digital project management, advertising, and business consultancy services. We help businesses across the UAE deliver technology projects on time, reach prime audiences through billboard and digital campaigns, and optimize strategic operations under one cohesive team.
             </p>
 
             {/* 4. Core Highlights Checklist */}
@@ -200,9 +199,9 @@ export default function AboutSection() {
             >
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white bg-[#c39967] hover:bg-[#b28755] px-5 py-3 rounded-lg shadow-sm transition-colors cursor-pointer font-sans"
+                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] px-5 py-3 rounded-lg shadow-sm transition-all font-sans active:scale-[0.98]"
               >
-                <span>Partner With Us</span>
+                <span>Book an Introductory Call</span>
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
 

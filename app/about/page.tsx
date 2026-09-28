@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import AboutHero from "@/components/about/AboutHero";
 import AboutPillars from "@/components/about/AboutPillars";
 import AboutGovernance from "@/components/about/AboutGovernance";
+import AboutMetricsDivider from "@/components/about/AboutMetricsDivider";
 import AboutLeadershipCTA from "@/components/about/AboutLeadershipCTA";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function AboutPage() {
       <AboutHero />
       <AboutPillars />
       <AboutGovernance />
+      <AboutMetricsDivider />
       <AboutLeadershipCTA />
     </main>
   );

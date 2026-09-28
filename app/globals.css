@@ -17,8 +17,9 @@
   --foreground: #212121;
 }
 
+/* FIX: Prevent CSS native smooth scroll from fighting Lenis engine */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto !important;
 }
 
 body {
@@ -31,6 +32,30 @@ body {
 ::selection {
   background-color: #c39967;
   color: #ffffff;
+}
+
+/* ==========================================================
+   OFFICIAL LENIS STYLES (Zero-Stutter CSS Reset)
+   ========================================================== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 /* ==========================================================
@@ -148,32 +173,13 @@ body {
 .glow-card {
   animation: pulseGlow 4s ease-in-out infinite;
 }
-/* Lenis Recommended Reset for zero scroll stutter */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
 /* Card Stacking & Smooth Scale Physics */
 .service-fold {
   will-change: transform, opacity;
   transform-origin: top center;
 }
+
 /* Executive 3D Origami Shift */
 .perspective-stage {
   perspective: 1400px;
@@ -185,6 +191,7 @@ html.lenis body {
   will-change: transform, opacity, filter;
   backface-visibility: hidden;
 }
+
 @keyframes marquee-left {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }

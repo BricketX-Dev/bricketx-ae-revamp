@@ -19,15 +19,18 @@ export default function ScrollReveal({
   className = "",
   direction = "up",
   delay = 0,
-  duration = 850,
-  distance = 32,
-  threshold = 0.18,
+  duration = 750,
+  distance = 24,
+  threshold = 0.1,
   once = true,
 }: ScrollRevealProps) {
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const el = elementRef.current;
+    if (!el) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -39,33 +42,30 @@ export default function ScrollReveal({
       },
       {
         threshold,
-        rootMargin: "0px 0px -60px 0px", // triggers slightly before full center
+        rootMargin: "0px 0px -20px 0px",
       }
     );
 
-    const el = elementRef.current;
-    if (el) observer.observe(el);
+    observer.observe(el);
 
     return () => {
-      if (el) observer.unobserve(el);
       observer.disconnect();
     };
   }, [threshold, once]);
 
-  // Compute directional translation vectors
   const getTransform = () => {
-    if (isVisible) return "translate3d(0, 0, 0) scale(1)";
+    if (isVisible) return "translate3d(0, 0, 0)";
     switch (direction) {
       case "up":
-        return `translate3d(0, ${distance}px, 0) scale(0.98)`;
+        return `translate3d(0, ${distance}px, 0)`;
       case "down":
-        return `translate3d(0, -${distance}px, 0) scale(0.98)`;
+        return `translate3d(0, -${distance}px, 0)`;
       case "left":
-        return `translate3d(${distance}px, 0, 0) scale(0.98)`;
+        return `translate3d(${distance}px, 0, 0)`;
       case "right":
-        return `translate3d(-${distance}px, 0, 0) scale(0.98)`;
+        return `translate3d(-${distance}px, 0, 0)`;
       case "none":
-        return "translate3d(0, 0, 0) scale(0.97)";
+        return "translate3d(0, 0, 0)";
     }
   };
 
@@ -75,9 +75,8 @@ export default function ScrollReveal({
       style={{
         transform: getTransform(),
         opacity: isVisible ? 1 : 0,
-        filter: isVisible ? "blur(0px)" : "blur(4px)",
-        transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, filter ${duration}ms ease-out ${delay}ms`,
-        willChange: "transform, opacity, filter",
+        transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+        willChange: isVisible ? "auto" : "transform, opacity",
       }}
       className={className}
     >

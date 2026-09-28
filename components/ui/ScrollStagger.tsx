@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 interface ScrollStaggerProps {
   children: React.ReactNode;
   className?: string;
-  staggerDelay?: number; // Delay between children in ms (e.g. 100ms)
+  staggerDelay?: number; // Delay between children in ms
   distance?: number;
   duration?: number;
 }
@@ -14,14 +14,17 @@ interface ScrollStaggerProps {
 export default function ScrollStagger({
   children,
   className = "",
-  staggerDelay = 90,
-  distance = 28,
-  duration = 800,
+  staggerDelay = 80,
+  distance = 20,
+  duration = 700,
 }: ScrollStaggerProps) {
   const [hasScrolledIn, setHasScrolledIn] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -29,10 +32,10 @@ export default function ScrollStagger({
           observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -20px 0px" }
     );
 
-    if (containerRef.current) observer.observe(containerRef.current);
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
@@ -46,14 +49,14 @@ export default function ScrollStagger({
 
         return (
           <div
+            className="h-full w-full"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible
-                ? "translate3d(0, 0, 0) scale(1)"
-                : `translate3d(0, ${distance}px, 0) scale(0.97)`,
-              filter: isVisible ? "blur(0px)" : "blur(4px)",
-              transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, filter ${duration}ms ease-out ${delay}ms`,
-              willChange: "transform, opacity, filter",
+                ? "translate3d(0, 0, 0)"
+                : `translate3d(0, ${distance}px, 0)`,
+              transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+              willChange: isVisible ? "auto" : "transform, opacity",
             }}
           >
             {child}

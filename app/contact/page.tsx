@@ -2,6 +2,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import {
   Phone,
   Mail,
@@ -13,6 +14,7 @@ import {
   ChevronDown,
   Loader2,
   AlertCircle,
+  ShieldCheck,
 } from "lucide-react";
 import { submitContactLead } from "@/app/actions/contact";
 
@@ -436,8 +438,48 @@ export default function ContactPage() {
             )}
           </div>
 
-          {/* Office Details: order-2 on mobile (under the form), order-1 on desktop */}
+          {/* Left Column (order-2 on mobile, order-1 on desktop) with Consultation Imagery Card */}
           <div className="order-2 lg:order-1 lg:col-span-5 space-y-6">
+            
+            {/* 1. Integrated Consultation Visual Card */}
+            <div className="rounded-2xl overflow-hidden border border-white/10 bg-[#0f141f] shadow-lg">
+              <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
+          <Image
+            src="/images/contact/contact-image.webp"
+            alt="BricketX Client Strategic Consultation in Dubai"
+            fill
+            priority
+            loading="eager"
+            sizes="(max-width: 1024px) 100vw, 40vw"
+            className="object-cover object-center hover:scale-105 transition-transform duration-700 ease-out"
+          />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0f141f] via-black/30 to-transparent pointer-events-none" />
+
+                {/* Pill Badge */}
+                <div className="absolute top-3 left-3 z-10">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#07090e]/85 text-white text-[10px] font-mono uppercase tracking-wider backdrop-blur-md border border-white/15">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
+                    <span>Direct Engagement</span>
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-4 sm:p-5 border-t border-white/10 bg-[#0f141f] flex items-center justify-between">
+                <div>
+                  <h4 className="text-xs font-bold text-white tracking-wide">
+                    Executive Strategic Consultation
+                  </h4>
+                  <p className="text-[11px] text-slate-400 mt-0.5">
+                    1-on-1 review with our Dubai practice directors.
+                  </p>
+                </div>
+                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#c39967] flex-shrink-0">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Office Information Card */}
             <div className="p-5 sm:p-7 rounded-2xl bg-[#0f141f] border border-white/10 space-y-5 sm:space-y-6">
               <div className="flex items-center gap-3 border-b border-white/10 pb-4">
                 <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#c39967] flex-shrink-0">
@@ -524,6 +566,7 @@ export default function ContactPage() {
               </div>
             </div>
 
+            {/* 3. Quick Response SLA */}
             <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.02] border border-white/10">
               <h4 className="text-xs font-bold text-white mb-1">
                 Quick Response

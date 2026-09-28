@@ -1,56 +1,37 @@
 // src/components/ui/ScrollToTop.tsx
 "use client";
 
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 export default function ScrollToTop() {
   const pathname = usePathname();
+  const prevPathRef = useRef(pathname);
 
-  // 1. Permanently stop the browser from trying to restore previous scroll positions
+  // 1. Ensure manual browser restoration once on mount
   useEffect(() => {
     if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
   }, []);
 
-  // 2. Reset scroll coordinate synchronously on route changes
-  const useIsomorphicLayoutEffect =
-    typeof window !== "undefined" ? useLayoutEffect : useEffect;
+  // 2. Clean, single-authority scroll reset ONLY when the pathname actually changes
+  useEffect(() => {
+    // Ignore initial mount or in-page hash jumps (#contact, etc.)
+    if (prevPathRef.current === pathname) return;
+    prevPathRef.current = pathname;
 
-  useIsomorphicLayoutEffect(() => {
-    // If the URL has an anchor hash (e.g. #service-02), let in-page anchor handling take over
-    if (typeof window !== "undefined" && window.location.hash) {
-      return;
-    }
+    if (typeof window !== "undefined" && window.location.hash) return;
 
-    const forceScrollTop = () => {
+    // Use Lenis as the primary authority if available; fallback to native without fighting
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const win = window as any;
+    if (win.lenis && typeof win.lenis.scrollTo === "function") {
+      win.lenis.scrollTo(0, { immediate: true });
+      win.lenis.resize(); // Re-measures document bounds so scroll range never clamps
+    } else {
       window.scrollTo(0, 0);
-
-      if (document.documentElement) {
-        document.documentElement.scrollTop = 0;
-      }
-      if (document.body) {
-        document.body.scrollTop = 0;
-      }
-
-      // If Lenis smooth scroll instance is mounted on window
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const win = window as any;
-      if (win.lenis && typeof win.lenis.scrollTo === "function") {
-        win.lenis.scrollTo(0, { immediate: true });
-      }
-    };
-
-    // Immediate execution
-    forceScrollTop();
-
-    // Next animation frame execution after Next.js completes DOM reconciliation
-    const rafId = requestAnimationFrame(forceScrollTop);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-    };
+    }
   }, [pathname]);
 
   return null;
