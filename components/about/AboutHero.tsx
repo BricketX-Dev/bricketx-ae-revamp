@@ -145,7 +145,7 @@ export default function AboutHero() {
                       </span>
                     </div>
                     <span className="text-[10px] font-mono text-slate-400 tracking-wider">
-                      Licence No. Active
+                      Licence No. 2540036.01
                     </span>
                   </div>
 

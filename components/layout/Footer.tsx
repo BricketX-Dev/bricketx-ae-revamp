@@ -1,6 +1,6 @@
 // src/components/layout/Footer.tsx
 import Link from "next/link";
-import { ArrowUpRight, Phone, Mail, MapPin, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Phone, Mail, MapPin, ShieldCheck, CheckCircle2 } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 
 export default function Footer() {
@@ -85,18 +85,41 @@ export default function Footer() {
             <Logo variant="light" />
 
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-md font-normal">
-              BricketX UAE PM LLC-FZ is a Dubai-based holding firm integrating digital project management, strategic advertising concessions, and corporate growth consultancy across the UAE under single-vendor accountability.
+              BricketX Project Management L.L.C-FZ is a Dubai-based company integrating digital project management, strategic advertising concessions, and corporate growth consultancy across the UAE under single-vendor accountability.
             </p>
 
-            {/* Badges: Horizontal pills */}
-            <div className="flex flex-wrap gap-2 pt-1">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-[11px] text-slate-300">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#c39967] flex-shrink-0" />
-                <span>Licensed LLC-FZ</span>
+            {/* Verification & Location Badges */}
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              
+              {/* Stable, Zero-Shift License Verification Chip */}
+              <div className="relative group">
+                <a
+                  href="https://app.invest.dubai.ae/dul/dul-ET3713?bk=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:border-[#c39967]/60 hover:bg-white/[0.07] text-[11px] font-mono text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer shadow-xs active:scale-[0.98]"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#c39967] flex-shrink-0" />
+                  <span>Licence No. 2540036.01</span>
+
+                  {/* Micro Action Pill (Always visible, zero layout jumping) */}
+                  <span className="inline-flex items-center gap-0.5 text-[9.5px] uppercase tracking-wider text-[#c39967] bg-[#c39967]/15 border border-[#c39967]/30 px-1.5 py-0.5 rounded font-semibold group-hover:bg-[#c39967] group-hover:text-[#0b0f17] transition-colors">
+                    Verify
+                    <ArrowUpRight className="w-2.5 h-2.5" />
+                  </span>
+                </a>
+
+                {/* Floating Official Registry Tooltip (No DOM displacement) */}
+                <div className="absolute bottom-full left-0 mb-2 hidden group-hover:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0c1017] border border-white/15 text-[10.5px] text-slate-300 shadow-xl pointer-events-none whitespace-nowrap animate-in fade-in duration-150 z-30">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                  <span>Official Record on Invest in Dubai (Gov.ae)</span>
+                </div>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-[11px] text-slate-300">
+
+              {/* Location Tag */}
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[11px] font-mono text-slate-300">
                 <MapPin className="w-3.5 h-3.5 text-[#c39967] flex-shrink-0" />
-                <span>Port Saeed, Dubai</span>
+                <span>Dubai, UAE</span>
               </div>
             </div>
 
@@ -120,7 +143,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Combined Navigation on Mobile (2 columns side-by-side to save massive vertical space) */}
+          {/* Combined Navigation (2 columns side-by-side on mobile) */}
           <div className="grid grid-cols-2 gap-4 lg:contents">
             {/* Practices */}
             <div className="lg:col-span-3 space-y-3 sm:space-y-3.5">
@@ -189,7 +212,7 @@ export default function Footer() {
 
               <Link
                 href="/contact"
-                className="mt-1 sm:mt-0 lg:mt-2 inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg text-[11px] font-semibold uppercase tracking-wider text-[#0b0f17] bg-[#c39967] hover:bg-[#d6b48a] transition-all font-sans active:scale-[0.98]"
+                className="mt-1 sm:mt-0 lg:mt-2 inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg text-[11px] font-semibold uppercase tracking-wider text-[#0b0f17] bg-[#c39967] hover:bg-[#d6b48a] transition-all font-sans active:scale-[0.98] shadow-md shadow-[#c39967]/10"
               >
                 <span>Consultation</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -202,10 +225,19 @@ export default function Footer() {
         {/* Bottom Sub-Bar */}
         <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-500">
           <div className="text-[11px] sm:text-xs">
-            © {currentYear} BricketX UAE PM LLC-FZ. Registered in Dubai, UAE.
+            © {currentYear} BricketX Project Management L.L.C-FZ. All rights reserved.
           </div>
 
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px]">
+            <a
+              href="https://app.invest.dubai.ae/dul/dul-ET3713?bk=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#c39967] hover:underline transition-colors flex items-center gap-1 font-mono"
+            >
+              Verify License (Invest in Dubai)
+              <ArrowUpRight className="w-3 h-3" />
+            </a>
             <Link href="/privacy-policy" className="hover:text-slate-400 transition-colors">
               Privacy Policy
             </Link>

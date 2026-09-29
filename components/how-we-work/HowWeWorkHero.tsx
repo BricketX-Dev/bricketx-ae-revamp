@@ -3,10 +3,28 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Workflow, FileCheck2, Clock, Building2 } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function HowWeWorkHero() {
+  const protocolChecklist = [
+    {
+      title: "Milestone Gate Approval",
+      detail: "Budget is allocated strictly to deliverables you inspect and sign off.",
+      icon: "/images/icons/how-we-work/protocol/milestones.png", // Update path manually in /public
+    },
+    {
+      title: "Fixed Reporting Schedule",
+      detail: "Structured weekly burndowns eliminate communication gaps.",
+      icon: "/images/icons/how-we-work/protocol/schedule.png", // Update path manually in /public
+    },
+    {
+      title: "Dubai Mainland Licensing",
+      detail: "Full municipal adherence for physical billboards and commercial agreements.",
+      icon: "/images/icons/how-we-work/protocol/licensing.png", // Update path manually in /public
+    },
+  ];
+
   return (
     <section className="relative pt-28 pb-14 sm:pt-40 sm:pb-24 bg-[#07090e] text-white border-b border-white/10 overflow-hidden">
       {/* Background Skyline Image */}
@@ -75,49 +93,63 @@ export default function HowWeWorkHero() {
           {/* Right Execution Protocol Card */}
           <div className="lg:col-span-5">
             <ScrollReveal direction="left" distance={24} delay={120}>
-              <div className="rounded-2xl border border-white/15 bg-[#0b0f17]/90 backdrop-blur-md p-5 sm:p-7 shadow-2xl relative overflow-hidden">
+              <div className="rounded-2xl border border-white/15 bg-[#0b0f17]/90 backdrop-blur-md p-6 sm:p-7 shadow-2xl relative overflow-hidden">
                 
-                <div className="flex items-center justify-between pb-3 sm:pb-4 mb-4 sm:mb-5 border-b border-white/10">
-                  <div className="flex items-center gap-2">
-                    <Workflow className="w-4 h-4 text-[#c39967]" />
+                {/* Header with Header Icon */}
+                <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/10">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-[#c39967]/15 border border-[#c39967]/30 flex items-center justify-center flex-shrink-0">
+                      <Image
+                        src="/images/icons/how-we-work/protocol/badge.png" // Update path manually in /public
+                        alt="Execution Protocol Badge"
+                        width={18}
+                        height={18}
+                        className="w-4 h-4 object-contain"
+                      />
+                    </div>
                     <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-white font-bold">
                       EXECUTION PROTOCOL
                     </span>
                   </div>
-                  <span className="text-[9.5px] sm:text-[10px] font-mono text-[#c39967] bg-[#c39967]/10 px-2.5 py-0.5 rounded border border-[#c39967]/30">
+                  <span className="text-[9.5px] sm:text-[10px] font-mono text-[#c39967] bg-[#c39967]/10 px-2.5 py-1 rounded border border-[#c39967]/30 font-semibold">
                     Standard SLA
                   </span>
                 </div>
 
-                <div className="space-y-3 sm:space-y-3.5">
-                  <div className="flex items-start gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                    <FileCheck2 className="w-4 h-4 text-[#c39967] flex-shrink-0 mt-0.5" />
-                    <div>
-                      <div className="text-xs font-bold text-white">Milestone Gate Approval</div>
-                      <div className="text-[11px] text-slate-400 mt-0.5">Budget is allocated strictly to deliverables you inspect and sign off.</div>
+                {/* Checklist with Generous Icon Vessels */}
+                <div className="space-y-3.5">
+                  {protocolChecklist.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="group flex items-center gap-4 p-3.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-[#c39967]/40 hover:bg-white/[0.05] transition-all duration-200"
+                    >
+                      {/* Scaled Icon Vessel */}
+                      <div className="w-10 h-10 rounded-xl bg-[#faf6f0]/10 border border-[#c39967]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#c39967]/20 group-hover:scale-105 transition-all">
+                        <Image
+                          src={item.icon}
+                          alt={item.title}
+                          width={22}
+                          height={22}
+                          className="w-5 h-5 object-contain"
+                        />
+                      </div>
+                      
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-white group-hover:text-[#c39967] transition-colors">
+                          {item.title}
+                        </div>
+                        <div className="text-[11px] text-slate-400 mt-0.5 leading-relaxed">
+                          {item.detail}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                    <Clock className="w-4 h-4 text-[#c39967] flex-shrink-0 mt-0.5" />
-                    <div>
-                      <div className="text-xs font-bold text-white">Fixed Reporting Schedule</div>
-                      <div className="text-[11px] text-slate-400 mt-0.5">Structured weekly burndowns eliminate communication gaps.</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                    <Building2 className="w-4 h-4 text-[#c39967] flex-shrink-0 mt-0.5" />
-                    <div>
-                      <div className="text-xs font-bold text-white">Dubai Mainland Licensing</div>
-                      <div className="text-[11px] text-slate-400 mt-0.5">Full municipal adherence for physical billboards and commercial agreements.</div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
 
-                <div className="mt-4 sm:mt-5 pt-3 sm:pt-3.5 border-t border-white/10 flex items-center justify-between text-[10px] sm:text-[11px] text-slate-400 font-mono">
+                {/* Footer Bar */}
+                <div className="mt-5 pt-3.5 border-t border-white/10 flex items-center justify-between text-[10px] sm:text-[11px] text-slate-400 font-mono">
                   <span className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     100% Critical Path Adherence
                   </span>
                   <span className="text-[#c39967] font-semibold">Port Saeed, Dubai</span>

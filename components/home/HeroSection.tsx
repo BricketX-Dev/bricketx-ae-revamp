@@ -1,7 +1,7 @@
 // src/components/home/HeroSection.tsx
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Play, ShieldCheck, MapPin } from "lucide-react";
+import { ArrowUpRight, Play, ShieldCheck, MapPin, CheckCircle2 } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -31,7 +31,7 @@ export default function HeroSection() {
       {/* 4. Main Centered Content Container */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
         
-        {/* Drop Item 1: Eyebrow Capsule (Fit to mobile width, exactly single line on desktop) */}
+        {/* Drop Item 1: Eyebrow Capsule */}
         <div
           className="hero-drop inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 rounded-2xl sm:rounded-full border border-[#c39967]/30 bg-[#c39967]/10 backdrop-blur-md mb-6 sm:mb-8 mx-auto shadow-sm max-w-[90vw] sm:max-w-none"
           style={{ animationDelay: "100ms" }}
@@ -79,18 +79,42 @@ export default function HeroSection() {
           </p>
         </div>
 
-        {/* Drop Item 4: Trust Chips (Inline pills on both mobile and desktop) */}
+        {/* Drop Item 4: Trust Chips with Direct Verification */}
         <div
-          className="hero-drop mt-6 sm:mt-8 flex flex-row items-center justify-center gap-2 sm:gap-6 text-xs text-[#a5adb6]"
+          className="hero-drop mt-6 sm:mt-8 flex flex-row items-center justify-center gap-2 sm:gap-4 text-xs text-[#a5adb6]"
           style={{ animationDelay: "480ms" }}
         >
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-sm whitespace-nowrap">
-            <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#c39967] flex-shrink-0" />
-            <span className="text-white/90 font-medium text-[10px] sm:text-xs">UAE Licensed Company</span>
+          {/* Interactive Licensed Pill */}
+          <div className="relative group inline-flex">
+            <a
+              href="https://app.invest.dubai.ae/dul/dul-ET3713?bk=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Verify Official License on Invest in Dubai"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 hover:border-[#c39967]/60 hover:bg-white/[0.08] backdrop-blur-sm whitespace-nowrap transition-all duration-200 cursor-pointer shadow-xs active:scale-[0.98]"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#c39967] flex-shrink-0" />
+              <span className="text-white/90 font-medium text-[10px] sm:text-xs">
+                Licence No. 2540036.01
+              </span>
+              
+              {/* Micro Verify Badge */}
+              <span className="inline-flex items-center gap-0.5 text-[9px] font-mono uppercase tracking-wider text-[#c39967] bg-[#c39967]/15 border border-[#c39967]/30 px-1.5 py-0.5 rounded-full font-semibold group-hover:bg-[#c39967] group-hover:text-[#0b0f17] transition-colors">
+                Verify
+                <ArrowUpRight className="w-2.5 h-2.5" />
+              </span>
+            </a>
+
+            {/* Hover Tooltip (Zero Layout Shift) */}
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0b0f17] border border-white/15 text-[10px] text-slate-200 shadow-xl pointer-events-none whitespace-nowrap z-30 font-mono animate-in fade-in duration-150">
+              <CheckCircle2 className="w-3 h-3 text-emerald-400 flex-shrink-0" />
+              <span>Invest in Dubai (Gov.ae) Verified</span>
+            </div>
           </div>
 
           <span className="text-white/20 select-none">•</span>
 
+          {/* Location Chip */}
           <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-sm whitespace-nowrap">
             <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#c39967] flex-shrink-0" />
             <span className="text-white/90 font-medium text-[10px] sm:text-xs">Port Saeed, Dubai</span>
