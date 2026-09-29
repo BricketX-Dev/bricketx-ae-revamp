@@ -2,7 +2,7 @@
 "use client";
 
 import Image from "next/image";
-import { CheckCircle2, ShieldCheck, ArrowRight, Award } from "lucide-react";
+import { ShieldCheck, Award } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function HowWeWorkApproach() {
@@ -10,14 +10,17 @@ export default function HowWeWorkApproach() {
     {
       title: "Deliverables-Gated Financing",
       desc: "Capital is only released for milestones you inspect, test, and formally approve.",
+      icon: "/images/icons/how-we-work/approach/financing.png", // Update path manually in /public
     },
     {
       title: "Single Master Contract",
       desc: "Technology engineering, outdoor media, and strategy unified under one accountable agreement.",
+      icon: "/images/icons/how-we-work/approach/contract.png", // Update path manually in /public
     },
     {
       title: "Direct Partner Stewardship",
       desc: "Senior directors actively guide critical paths and sprint governance with zero hand-offs.",
+      icon: "/images/icons/how-we-work/approach/stewardship.png", // Update path manually in /public
     },
   ];
 
@@ -45,18 +48,24 @@ export default function HowWeWorkApproach() {
                 No guesswork and no open-ended timelines. Every engagement follows a clear four-step process, and each payment is linked to a milestone you can see and approve, so budget and progress always move together.
               </p>
 
-              {/* Structured Commitments Checklist */}
+              {/* Structured Commitments Checklist with Custom Icon Vessels */}
               <div className="pt-2 space-y-3">
                 {commitments.map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex items-start gap-3 p-3 rounded-xl bg-[#f8f9fb] border border-slate-200/80 hover:border-[#c39967]/50 transition-colors"
+                    className="group flex items-start gap-3.5 p-3.5 rounded-xl bg-[#f8f9fb] border border-slate-200/80 hover:border-[#c39967]/60 hover:bg-[#faf8f5] transition-all duration-200"
                   >
-                    <div className="w-5 h-5 rounded-full bg-[#c39967]/15 flex items-center justify-center text-[#c39967] flex-shrink-0 mt-0.5">
-                      <CheckCircle2 className="w-3.5 h-3.5" />
+                    <div className="w-10 h-10 rounded-xl bg-[#faf6f0] border border-[#c39967]/30 flex items-center justify-center p-2 flex-shrink-0 group-hover:bg-[#c39967]/15 group-hover:scale-105 transition-all duration-300">
+                      <Image
+                        src={item.icon}
+                        alt={item.title}
+                        width={22}
+                        height={22}
+                        className="w-5 h-5 object-contain"
+                      />
                     </div>
                     <div>
-                      <h4 className="text-xs sm:text-[13px] font-bold text-[#111827]">
+                      <h4 className="text-xs sm:text-[13px] font-bold text-[#111827] group-hover:text-[#c39967] transition-colors">
                         {item.title}
                       </h4>
                       <p className="text-[11px] text-[#64748b] leading-relaxed mt-0.5 font-normal">
