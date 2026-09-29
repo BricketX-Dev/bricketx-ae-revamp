@@ -9,6 +9,7 @@ import {
   ArrowUpRight,
   Building2,
   Award,
+  FileText,
 } from "lucide-react";
 
 export default function AboutSection() {
@@ -56,7 +57,7 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           
           {/* ========================================================
-              LEFT COLUMN: Visual Frame with Local Next.js Image
+              LEFT COLUMN: Visual Frame with Verification Badge
              ======================================================== */}
           <div
             className={`lg:col-span-5 relative transition-all duration-700 ease-out transform ${
@@ -84,27 +85,37 @@ export default function AboutSection() {
                   <span>Dubai Commercial Entity</span>
                 </div>
                 <h4 className="text-base sm:text-lg font-bold text-white leading-snug">
-                  One Accountable Partner for Delivery, Media & Operations
+                  One Accountable Partner for Delivery, Media &amp; Operations
                 </h4>
               </div>
             </div>
 
-            {/* Clean Institutional Floating Badge */}
-            <div
-              className={`absolute -bottom-4 right-4 bg-white rounded-xl shadow-lg border border-slate-200/90 p-3 hidden sm:flex items-center gap-3 transition-all duration-700 delay-300 transform ${
+            {/* Interactive Institutional License Badge */}
+            <a
+              href="https://app.invest.dubai.ae/dul/dul-ET3713?bk=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Verify Official License on Invest in Dubai (Gov.ae)"
+              className={`group absolute -bottom-4 right-4 bg-white rounded-xl shadow-lg border border-slate-200/90 hover:border-[#c39967]/70 p-3 hidden sm:flex items-center gap-3 transition-all duration-700 delay-300 transform active:scale-[0.98] ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
             >
-              <div className="w-9 h-9 rounded-lg bg-[#c39967]/15 flex items-center justify-center text-[#c39967] flex-shrink-0">
+              <div className="w-9 h-9 rounded-lg bg-[#c39967]/15 flex items-center justify-center text-[#c39967] flex-shrink-0 group-hover:bg-[#c39967] group-hover:text-[#0b0f17] transition-colors">
                 <Award className="w-4 h-4 stroke-[2]" />
               </div>
               <div>
-                <div className="text-xs font-bold text-[#111827]">Licence No. 2540036.01</div>
-                <div className="text-[10.5px] text-[#64748b]">BricketX PM LLC-FZ</div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs font-bold text-[#111827]">Licence No. 2540036.01</span>
+                  <span className="inline-flex items-center gap-0.5 text-[9px] font-mono uppercase tracking-wider text-[#c39967] bg-[#c39967]/15 px-1.5 py-0.5 rounded font-semibold">
+                    Verify
+                    <ArrowUpRight className="w-2.5 h-2.5" />
+                  </span>
+                </div>
+                <div className="text-[10.5px] text-[#64748b]">BricketX PM LLC-FZ · Dubai</div>
               </div>
-            </div>
+            </a>
           </div>
 
           {/* ========================================================
@@ -142,7 +153,7 @@ export default function AboutSection() {
 
             {/* 3. Narrative Copy */}
             <p
-              className={`text-xs sm:text-sm text-[#4b5563] leading-relaxed transition-all duration-700 delay-300 transform ${
+              className={`text-xs sm:text-sm text-[#4b5563] leading-relaxed font-normal transition-all duration-700 delay-300 transform ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
@@ -205,13 +216,18 @@ export default function AboutSection() {
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
 
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#111827] hover:text-[#c39967] px-2 py-3 transition-colors font-sans"
+              {/* Local PDF Document Asset */}
+              <a
+                href="/documents/bricketx_uae_profile.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                download="BricketX_UAE_Company_Profile.pdf"
+                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#111827] hover:text-[#c39967] px-2 py-3 transition-colors font-sans group cursor-pointer"
               >
-                <span>Read Full Company Profile</span>
-                <span>→</span>
-              </Link>
+                <FileText className="w-3.5 h-3.5 text-[#c39967] transition-transform group-hover:scale-110" />
+                <span>Company Profile (PDF)</span>
+                <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
             </div>
 
           </div>
