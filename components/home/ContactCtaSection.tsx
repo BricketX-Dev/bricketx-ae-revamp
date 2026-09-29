@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   Phone,
   Mail,
@@ -110,11 +111,33 @@ export default function ContactCtaSection() {
   return (
     <section
       id="contact"
-      className="py-12 sm:py-14 lg:py-20 bg-[#070a0f] text-white border-t border-white/10"
+      className="relative py-16 sm:py-20 lg:py-24 bg-[#070a0f] text-white border-t border-white/10 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Consultation Suite Container */}
-        <div className="bg-[#0f141f] border border-white/10 rounded-2xl p-4 sm:p-8 lg:p-10">
+      {/* 1. Full-Bleed Outer Background Image */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-25 sm:opacity-30 hero-zoom-bg">
+        <Image
+          src="/images/home/hero.webp" // Update path manually in /public
+          alt="Dubai Executive Commercial Architecture"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      </div>
+
+      {/* 2. Outer Multi-Stop Obsidian Depth Scrim */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#070a0f]/95 via-[#070a0f]/80 to-[#070a0f] pointer-events-none" />
+
+      {/* 3. Ambient Gold Glow & Micro-Dot Grid */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[850px] h-[350px] bg-[#c39967]/10 blur-[160px] pointer-events-none rounded-full" />
+      <div className="absolute inset-0 bg-[radial-gradient(#ffffff05_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Floating Executive Glass Terminal */}
+        <div className="bg-[#0b0f17]/90 backdrop-blur-xl border border-white/15 rounded-2xl p-6 sm:p-8 lg:p-12 shadow-2xl relative overflow-hidden">
+          
+          {/* Top Gold Hairline Highlight */}
+          <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#c39967]/70 to-transparent" />
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             
             {/* Left Column: Strategic Value & Contact Info */}
@@ -128,17 +151,17 @@ export default function ContactCtaSection() {
                 <span className="text-[#c39967]">Business Forward?</span>
               </h2>
 
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-xl font-normal">
-                Partner with BricketX Project Management L.L.C and discover how experienced project management, strategic advertising, and professional consulting can help your organization achieve its goals.
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl font-normal">
+                Partner with BricketX Project Management L.L.C-FZ and discover how experienced project management, strategic advertising, and professional consulting can help your organization achieve its goals.
               </p>
 
               {/* Contact Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-1">
                 <a
                   href="tel:+971541662352"
-                  className="flex items-center gap-3 p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors group"
+                  className="flex items-center gap-3 p-3 sm:p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#c39967]/50 hover:bg-white/[0.06] transition-all duration-200 group"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-[#c39967]/15 flex items-center justify-center text-[#c39967] flex-shrink-0">
+                  <div className="w-9 h-9 rounded-lg bg-[#c39967]/15 flex items-center justify-center text-[#c39967] flex-shrink-0 group-hover:scale-105 transition-transform">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
@@ -149,9 +172,9 @@ export default function ContactCtaSection() {
 
                 <a
                   href="mailto:info@bricketx.ae"
-                  className="flex items-center gap-3 p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors group"
+                  className="flex items-center gap-3 p-3 sm:p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#c39967]/50 hover:bg-white/[0.06] transition-all duration-200 group"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-[#c39967]/15 flex items-center justify-center text-[#c39967] flex-shrink-0">
+                  <div className="w-9 h-9 rounded-lg bg-[#c39967]/15 flex items-center justify-center text-[#c39967] flex-shrink-0 group-hover:scale-105 transition-transform">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
@@ -160,25 +183,27 @@ export default function ContactCtaSection() {
                   </div>
                 </a>
 
-                <div className="sm:col-span-2 flex items-center gap-3 p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/10">
+                <div className="sm:col-span-2 flex items-center gap-3 p-3 sm:p-3.5 rounded-xl bg-white/[0.03] border border-white/10">
                   <div className="w-9 h-9 rounded-lg bg-[#c39967]/15 flex items-center justify-center text-[#c39967] flex-shrink-0">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[9px] sm:text-[9.5px] font-mono uppercase tracking-wider text-slate-400">Corporate Headquarters</div>
-                    <div className="text-xs sm:text-sm font-semibold text-white truncate sm:whitespace-normal">Port Saeed, Dubai, United Arab Emirates</div>
+                    <div className="text-[9px] sm:text-[9.5px] font-mono uppercase tracking-wider text-slate-400">Corporate Presence</div>
+                    <div className="text-xs sm:text-sm font-semibold text-white truncate sm:whitespace-normal">Port Saeed &amp; Business Bay, Dubai, UAE</div>
                   </div>
                 </div>
               </div>
 
-              {/* Trust Metrics Strip */}
-              <div className="pt-3 border-t border-white/10 flex flex-col xs:flex-row flex-wrap items-start xs:items-center gap-2 sm:gap-6 text-xs text-slate-400">
-                <div className="flex items-center gap-2">
+              {/* Fixed Single-Row Trust Metrics Strip */}
+              <div className="pt-3 border-t border-white/10 flex items-center gap-3 sm:gap-4 flex-wrap text-xs text-slate-300">
+                <div className="inline-flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-[#c39967] flex-shrink-0" />
                   <span>Confidential NDA Guaranteed</span>
                 </div>
-                <div className="w-1 h-1 rounded-full bg-white/20 hidden sm:block" />
-                <div className="flex items-center gap-2">
+                
+                <span className="text-[#c39967]/50 select-none">•</span>
+
+                <div className="inline-flex items-center gap-2">
                   <Clock className="w-4 h-4 text-[#c39967] flex-shrink-0" />
                   <span>24-Hour Executive Response</span>
                 </div>
@@ -186,14 +211,14 @@ export default function ContactCtaSection() {
             </div>
 
             {/* Right Column: Clean Form */}
-            <div className="lg:col-span-6 bg-white/[0.02] border border-white/10 p-4 sm:p-7 rounded-xl">
+            <div className="lg:col-span-6 bg-white/[0.02] border border-white/10 p-5 sm:p-7 rounded-xl">
               {submitted ? (
                 <div className="py-10 text-center space-y-3">
                   <div className="w-12 h-12 rounded-full bg-[#c39967]/15 flex items-center justify-center text-[#c39967] mx-auto">
                     <CheckCircle2 className="w-6 h-6 stroke-[1.8]" />
                   </div>
                   <h3 className="text-lg font-bold text-white">Consultation Request Received</h3>
-                  <p className="text-xs text-slate-400 max-w-sm mx-auto leading-relaxed">
+                  <p className="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">
                     Thank you, {formData.name || "partner"}. One of our directors will contact you within 24 business hours.
                   </p>
                   <button
@@ -317,7 +342,7 @@ export default function ContactCtaSection() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full mt-2 min-h-[46px] sm:min-h-[42px] py-2.5 px-4 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-all flex items-center justify-center gap-2 cursor-pointer font-sans active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full mt-2 min-h-[46px] sm:min-h-[42px] py-2.5 px-4 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-all flex items-center justify-center gap-2 cursor-pointer font-sans active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed shadow-md shadow-[#c39967]/10"
                     >
                       {loading ? (
                         <>
