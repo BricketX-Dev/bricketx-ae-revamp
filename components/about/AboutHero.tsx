@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Building2, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, Building2, ShieldCheck } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function AboutHero() {
@@ -16,7 +16,22 @@ export default function AboutHero() {
 
   return (
     <section className="relative min-h-[92vh] lg:min-h-screen flex items-center bg-[#07090e] text-white border-b border-white/10 pt-28 pb-14 sm:pt-36 sm:pb-20 lg:py-0 overflow-hidden">
-      {/* Background Ambient Depth Flares */}
+      {/* 1. Full-Bleed Outer Background Image */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-25 sm:opacity-30 hero-zoom-bg">
+        <Image
+          src="/images/about/hero-bg.webp" // Update path manually in /public
+          alt="Dubai Skyline & Architectural Backdrop"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      </div>
+
+      {/* 2. Outer Multi-Stop Obsidian Depth Scrim */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#07090e]/95 via-[#07090e]/80 to-[#07090e] pointer-events-none" />
+
+      {/* 3. Background Ambient Depth Flares */}
       <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-[#c39967]/[0.05] blur-[160px] pointer-events-none rounded-full" />
       <div className="absolute bottom-10 right-10 w-[500px] h-[350px] bg-[#c39967]/[0.03] blur-[140px] pointer-events-none rounded-full" />
 

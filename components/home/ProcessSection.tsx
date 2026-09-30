@@ -3,7 +3,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Search, Compass, Workflow, CheckCircle2, ArrowRight, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 export default function ProcessSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,7 +35,7 @@ export default function ProcessSection() {
       title: "Discovery & Consultation",
       desc: "We learn about your goals, challenges, audience and budget, then recommend the right approach for your business.",
       deliverable: "Project Brief & Feasibility",
-      icon: Search,
+      icon: "/images/icons/process/discovery.png", // Update path manually in /public
     },
     {
       num: "02",
@@ -42,7 +43,7 @@ export default function ProcessSection() {
       title: "Strategy & Planning",
       desc: "We build a clear roadmap with timelines, responsibilities, deliverables and milestones, agreed with you before any work begins.",
       deliverable: "Roadmap & Milestone Plan",
-      icon: Compass,
+      icon: "/images/icons/process/planning.png", // Update path manually in /public
     },
     {
       num: "03",
@@ -50,7 +51,7 @@ export default function ProcessSection() {
       title: "Execution & Management",
       desc: "Our team manages every stage day to day, with regular updates, quality checks and one point of contact throughout.",
       deliverable: "Progress Reports & Quality Checks",
-      icon: Workflow,
+      icon: "/images/icons/process/execution.png", // Update path manually in /public
     },
     {
       num: "04",
@@ -58,7 +59,7 @@ export default function ProcessSection() {
       title: "Review & Ongoing Support",
       desc: "After delivery, we review the results with you, hand over everything your team needs and stay on hand for ongoing support.",
       deliverable: "Results Review & Handover",
-      icon: CheckCircle2,
+      icon: "/images/icons/process/support.png", // Update path manually in /public
     },
   ];
 
@@ -69,7 +70,7 @@ export default function ProcessSection() {
       className="py-14 sm:py-20 lg:py-24 bg-[#07090e] text-white border-t border-white/10 relative"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div
           className={`max-w-2xl mb-8 sm:mb-12 lg:mb-14 transition-all duration-700 ease-out ${
@@ -96,7 +97,6 @@ export default function ProcessSection() {
         {/* Clean Responsive 4-Column Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch">
           {steps.map((step, idx) => {
-            const Icon = step.icon;
             const delay = idx * 60;
 
             return (
@@ -110,8 +110,15 @@ export default function ProcessSection() {
                 <div>
                   {/* Top Bar: Icon Capsule & Monospace Number */}
                   <div className="flex items-center justify-between mb-4 sm:mb-5">
-                    <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#c39967] group-hover:bg-[#c39967] group-hover:text-[#07090e] transition-colors">
-                      <Icon className="w-4 h-4 stroke-[1.8]" />
+                    {/* Scaled Icon Vessel */}
+                    <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-2 group-hover:bg-[#c39967]/20 group-hover:border-[#c39967]/50 group-hover:scale-105 transition-all flex-shrink-0">
+                      <Image
+                        src={step.icon}
+                        alt={step.title}
+                        width={24}
+                        height={24}
+                        className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+                      />
                     </div>
                     <span className="text-xl font-bold font-mono text-slate-500 group-hover:text-white transition-colors">
                       {step.num}
