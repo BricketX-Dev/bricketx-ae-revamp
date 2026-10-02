@@ -26,6 +26,8 @@ export default function Navbar() {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const isServicesActive = pathname.startsWith("/services");
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -34,14 +36,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menus on route change
+  // Close menus on route change, but expand accordion if navigating within services
   useEffect(() => {
     setMobileMenuOpen(false);
     setServicesOpen(false);
-    setMobileServicesOpen(false);
-  }, [pathname]);
+    setMobileServicesOpen(isServicesActive);
+  }, [pathname, isServicesActive]);
 
-  // Click outside to close
+  // Click outside to close desktop dropdown
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -69,25 +71,23 @@ export default function Navbar() {
       title: "Digital Project Management",
       desc: "Scope governance, critical-path milestones, and platform engineering.",
       href: "/services/project-management",
-      icon: "/images/icons/services/project-management.png", // Update path manually in /public
+      icon: "/images/icons/services/project-management.png",
     },
     {
       code: "PRACTICE 02",
       title: "Advertising & Media",
       desc: "Sheikh Zayed Rd billboards, transit concessions, and digital acquisition.",
       href: "/services/advertising",
-      icon: "/images/icons/services/advertising.png", // Update path manually in /public
+      icon: "/images/icons/services/advertising.png",
     },
     {
       code: "PRACTICE 03",
       title: "Business Consultancy",
       desc: "Operational restructuring, SOPs, and UAE commercial market entry.",
       href: "/services/business-consultancy",
-      icon: "/images/icons/services/consulting.png", // Update path manually in /public
+      icon: "/images/icons/services/consulting.png",
     },
   ];
-
-  const isServicesActive = pathname.startsWith("/services");
 
   return (
     <header
@@ -304,7 +304,7 @@ export default function Navbar() {
           {/* 4. Mobile Menu Trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden text-white hover:text-[#c39967] p-2 rounded-lg bg-white/[0.04] border border-white/10 focus:outline-none transition-colors"
+            className="lg:hidden text-white hover:text-[#c39967] p-2 rounded-lg bg-white/[0.04] border border-white/10 focus:outline-none transition-colors cursor-pointer"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -318,8 +318,8 @@ export default function Navbar() {
         <div className="lg:hidden mt-2.5 max-w-7xl mx-auto rounded-xl bg-[#070a11]/95 backdrop-blur-2xl border border-white/10 p-4 shadow-xl space-y-2">
           <Link
             href="/"
-            className={`block text-xs font-semibold px-3 py-2 rounded-lg ${
-              pathname === "/" ? "bg-[#c39967] text-[#070a11]" : "text-slate-200"
+            className={`block text-xs font-semibold px-3 py-2 rounded-lg transition-colors ${
+              pathname === "/" ? "bg-[#c39967] text-[#070a11]" : "text-slate-200 hover:text-white"
             }`}
           >
             Home
@@ -327,8 +327,8 @@ export default function Navbar() {
 
           <Link
             href="/about"
-            className={`block text-xs font-semibold px-3 py-2 rounded-lg ${
-              pathname === "/about" ? "bg-[#c39967] text-[#070a11]" : "text-slate-200"
+            className={`block text-xs font-semibold px-3 py-2 rounded-lg transition-colors ${
+              pathname === "/about" ? "bg-[#c39967] text-[#070a11]" : "text-slate-200 hover:text-white"
             }`}
           >
             About
@@ -338,50 +338,89 @@ export default function Navbar() {
           <div>
             <button
               onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-              className={`w-full flex items-center justify-between text-xs font-semibold px-3 py-2 rounded-lg transition-colors ${
-                isServicesActive ? "text-[#c39967]" : "text-slate-200"
+              className={`w-full flex items-center justify-between text-xs font-semibold px-3 py-2 rounded-lg transition-colors cursor-pointer ${
+                isServicesActive && !mobileServicesOpen
+                  ? "bg-[#c39967]/15 text-[#c39967] border border-[#c39967]/30"
+                  : isServicesActive
+                  ? "text-[#c39967]"
+                  : "text-slate-200"
               }`}
             >
-              <span>Services</span>
+              <span className="flex items-center gap-2">
+                <span>Services</span>
+                {isServicesActive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
+                )}
+              </span>
               <ChevronDown
-                className={`w-3.5 h-3.5 transition-transform ${
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${
                   mobileServicesOpen ? "rotate-180" : ""
                 }`}
               />
             </button>
 
             {mobileServicesOpen && (
-              <div className="pl-3 pr-1 py-1 space-y-1 bg-white/[0.02] rounded-lg mt-1 border-l-2 border-[#c39967]">
+              <div className="pl-2 pr-1 py-1 space-y-1 bg-white/[0.02] rounded-lg mt-1 border-l-2 border-[#c39967] animate-in fade-in duration-150">
                 <Link
                   href="/services"
-                  className="block text-[11px] font-mono uppercase tracking-wider text-[#c39967] px-2 py-1.5"
+                  className={`flex items-center justify-between text-[11px] font-mono uppercase tracking-wider px-2.5 py-2 rounded-md transition-colors ${
+                    pathname === "/services"
+                      ? "bg-[#c39967] text-[#070a11] font-bold shadow-xs"
+                      : "text-[#c39967] hover:bg-white/[0.04]"
+                  }`}
                 >
-                  All Services Overview →
+                  <span>All Services Overview</span>
+                  <ArrowRight className="w-3 h-3" />
                 </Link>
-                {serviceItems.map((s) => (
-                  <Link
-                    key={s.href}
-                    href={s.href}
-                    className="flex items-center gap-2.5 text-xs text-slate-300 hover:text-white px-2 py-1.5"
-                  >
-                    <Image
-                      src={s.icon}
-                      alt={s.title}
-                      width={16}
-                      height={16}
-                      className="w-4 h-4 object-contain flex-shrink-0"
-                    />
-                    <span>{s.title}</span>
-                  </Link>
-                ))}
+
+                {serviceItems.map((s) => {
+                  const isCurrent = pathname === s.href;
+
+                  return (
+                    <Link
+                      key={s.href}
+                      href={s.href}
+                      className={`flex items-center gap-2.5 text-xs px-2.5 py-2 rounded-lg transition-all ${
+                        isCurrent
+                          ? "bg-[#c39967] text-[#070a11] font-bold shadow-sm"
+                          : "text-slate-300 hover:text-white hover:bg-white/[0.04]"
+                      }`}
+                    >
+                      <div
+                        className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 ${
+                          isCurrent
+                            ? "bg-[#070a11]/20 border border-black/10"
+                            : "bg-black/50 border border-white/10"
+                        }`}
+                      >
+                        <Image
+                          src={s.icon}
+                          alt={s.title}
+                          width={16}
+                          height={16}
+                          className={`w-3.5 h-3.5 object-contain ${
+                            isCurrent ? "brightness-0" : ""
+                          }`}
+                        />
+                      </div>
+
+                      <div className="min-w-0 flex-1 flex items-center justify-between">
+                        <span className="truncate">{s.title}</span>
+                        {isCurrent && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#070a11] flex-shrink-0 ml-1.5" />
+                        )}
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             )}
           </div>
 
           <Link
             href="/how-we-work"
-            className={`block text-xs font-semibold px-3 py-2 rounded-lg ${
-              pathname === "/how-we-work" ? "bg-[#c39967] text-[#070a11]" : "text-slate-200"
+            className={`block text-xs font-semibold px-3 py-2 rounded-lg transition-colors ${
+              pathname === "/how-we-work" ? "bg-[#c39967] text-[#070a11]" : "text-slate-200 hover:text-white"
             }`}
           >
             How We Work
@@ -389,8 +428,8 @@ export default function Navbar() {
 
           <Link
             href="/why-us"
-            className={`block text-xs font-semibold px-3 py-2 rounded-lg ${
-              pathname === "/why-us" ? "bg-[#c39967] text-[#070a11]" : "text-slate-200"
+            className={`block text-xs font-semibold px-3 py-2 rounded-lg transition-colors ${
+              pathname === "/why-us" ? "bg-[#c39967] text-[#070a11]" : "text-slate-200 hover:text-white"
             }`}
           >
             Why Us
@@ -398,8 +437,8 @@ export default function Navbar() {
 
           <Link
             href="/contact"
-            className={`block text-xs font-semibold px-3 py-2 rounded-lg ${
-              pathname === "/contact" ? "bg-[#c39967] text-[#070a11]" : "text-slate-200"
+            className={`block text-xs font-semibold px-3 py-2 rounded-lg transition-colors ${
+              pathname === "/contact" ? "bg-[#c39967] text-[#070a11]" : "text-slate-200 hover:text-white"
             }`}
           >
             Contact

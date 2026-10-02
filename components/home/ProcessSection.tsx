@@ -35,7 +35,7 @@ export default function ProcessSection() {
       title: "Discovery & Consultation",
       desc: "We learn about your goals, challenges, audience and budget, then recommend the right approach for your business.",
       deliverable: "Project Brief & Feasibility",
-      icon: "/images/icons/process/discovery.png", // Update path manually in /public
+      icon: "/images/icons/process/discovery.png",
     },
     {
       num: "02",
@@ -43,7 +43,7 @@ export default function ProcessSection() {
       title: "Strategy & Planning",
       desc: "We build a clear roadmap with timelines, responsibilities, deliverables and milestones, agreed with you before any work begins.",
       deliverable: "Roadmap & Milestone Plan",
-      icon: "/images/icons/process/planning.png", // Update path manually in /public
+      icon: "/images/icons/process/planning.png",
     },
     {
       num: "03",
@@ -51,7 +51,7 @@ export default function ProcessSection() {
       title: "Execution & Management",
       desc: "Our team manages every stage day to day, with regular updates, quality checks and one point of contact throughout.",
       deliverable: "Progress Reports & Quality Checks",
-      icon: "/images/icons/process/execution.png", // Update path manually in /public
+      icon: "/images/icons/process/execution.png",
     },
     {
       num: "04",
@@ -59,7 +59,7 @@ export default function ProcessSection() {
       title: "Review & Ongoing Support",
       desc: "After delivery, we review the results with you, hand over everything your team needs and stay on hand for ongoing support.",
       deliverable: "Results Review & Handover",
-      icon: "/images/icons/process/support.png", // Update path manually in /public
+      icon: "/images/icons/process/support.png",
     },
   ];
 
@@ -94,8 +94,14 @@ export default function ProcessSection() {
           </p>
         </div>
 
-        {/* Clean Responsive 4-Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch">
+        {/* Mobile Swipe Hint */}
+        <div className="sm:hidden -mt-3 mb-4 flex items-center justify-between text-[11px] font-mono text-slate-400">
+          <span>← Swipe phases</span>
+          <span className="text-[#c39967]">01 / 04</span>
+        </div>
+
+        {/* Responsive Grid / Mobile Swipe Carousel */}
+        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 items-stretch overflow-x-auto sm:overflow-x-visible snap-x snap-mandatory sm:snap-none -mx-4 px-4 sm:mx-0 sm:px-0 pb-4 sm:pb-0 scrollbar-none">
           {steps.map((step, idx) => {
             const delay = idx * 60;
 
@@ -103,14 +109,13 @@ export default function ProcessSection() {
               <div
                 key={step.num}
                 style={{ transitionDelay: `${delay}ms` }}
-                className={`group flex flex-col justify-between h-full p-5 sm:p-6 rounded-xl bg-[#0f131c] border border-white/10 hover:border-[#c39967]/50 transition-all duration-300 shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(195,153,103,0.1)] ${
+                className={`group flex flex-col justify-between h-full p-5 sm:p-6 rounded-xl bg-[#0f131c] border border-white/10 hover:border-[#c39967]/50 transition-all duration-300 shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(195,153,103,0.1)] w-[82vw] xs:w-[78vw] sm:w-auto flex-shrink-0 sm:flex-shrink snap-start sm:snap-align-none ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
               >
                 <div>
                   {/* Top Bar: Icon Capsule & Monospace Number */}
                   <div className="flex items-center justify-between mb-4 sm:mb-5">
-                    {/* Scaled Icon Vessel */}
                     <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-2 group-hover:bg-[#c39967]/20 group-hover:border-[#c39967]/50 group-hover:scale-105 transition-all flex-shrink-0">
                       <Image
                         src={step.icon}
