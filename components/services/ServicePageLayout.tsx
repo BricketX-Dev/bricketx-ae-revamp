@@ -26,6 +26,7 @@ export interface ServiceDetailProps {
   subheadline: string;
   description: string;
   heroImage: string;
+  heroBackgroundImage?: string; // Optional dedicated outer background asset
   slaMetrics: {
     value: string;
     label: string;
@@ -50,15 +51,32 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
   const tapeList = data.capabilitiesTape || [];
   const rowOne = [...tapeList, ...tapeList];
   const rowTwo = [...tapeList.slice().reverse(), ...tapeList.slice().reverse()];
+  const outerHeroBg = data.heroBackgroundImage || data.heroImage;
 
   return (
     <main className="min-h-screen bg-[#ffffff] text-[#111827]">
       {/* ========================================================
-          1. HEADER OVERVIEW & PRIMARY SCOPE (Executive Dark Anchor)
+          1. HEADER OVERVIEW & PRIMARY SCOPE (Outer BG Image Layer)
          ======================================================== */}
       <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 bg-[#07090e] text-white border-b border-white/10 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[350px] bg-[#c39967]/[0.05] blur-[150px] pointer-events-none rounded-full" />
-        <div className="absolute bottom-10 right-10 w-[450px] h-[300px] bg-[#c39967]/[0.03] blur-[130px] pointer-events-none rounded-full" />
+        {/* Full-Bleed Outer Background Image */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-20 sm:opacity-25 hero-zoom-bg">
+          <Image
+            src={outerHeroBg}
+            alt={`${data.title} Background Atmosphere`}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+
+        {/* Outer Multi-Stop Obsidian Depth Scrim */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#07090e]/95 via-[#07090e]/85 to-[#07090e] pointer-events-none" />
+
+        {/* Subtle Ambient Glow & Micro-Dot Grid */}
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[350px] bg-[#c39967]/10 blur-[160px] pointer-events-none rounded-full" />
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff05_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-center">
@@ -107,7 +125,7 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
             {/* Right Visual Chamber + SLA Metrics Deck */}
             <div className="lg:col-span-5">
               <ScrollReveal direction="left" distance={24} delay={150}>
-                <div className="rounded-2xl border border-white/15 bg-[#0b0f17] overflow-hidden shadow-2xl">
+                <div className="rounded-2xl border border-white/15 bg-[#0b0f17]/90 backdrop-blur-md overflow-hidden shadow-2xl">
                   
                   {/* Photo Canvas */}
                   <div className="relative aspect-[16/10] w-full bg-slate-950 overflow-hidden">
@@ -164,15 +182,13 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
       </section>
 
       {/* ========================================================
-          CAPABILITIES TAPE SHOWCASE (Identical to Homepage Tape)
+          CAPABILITIES TAPE SHOWCASE
          ======================================================== */}
       {tapeList.length > 0 && (
         <section className="relative py-12 lg:py-16 bg-[#07090e] border-b border-white/10 overflow-hidden">
-          {/* Edge Gradient Scrims */}
           <div className="absolute left-0 top-0 bottom-0 w-28 sm:w-48 bg-gradient-to-r from-[#07090e] to-transparent z-20 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-28 sm:w-48 bg-gradient-to-l from-[#07090e] to-transparent z-20 pointer-events-none" />
 
-          {/* Clean Editorial Header */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
@@ -266,7 +282,7 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
       )}
 
       {/* ========================================================
-          2. HOW WE DELIVER: 3 STAGES DECK (Crisp White Canvas)
+          2. HOW WE DELIVER: 3 STAGES DECK
          ======================================================== */}
       <section id="stages" className="py-16 sm:py-24 bg-[#ffffff] border-b border-slate-200/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -332,7 +348,7 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
       </section>
 
       {/* ========================================================
-          3. OUR ROADMAP: 4-PHASE TIMELINE (Soft Light Gray)
+          3. OUR ROADMAP: 4-PHASE TIMELINE
          ======================================================== */}
       <section className="py-16 sm:py-24 bg-[#f8f9fb] border-b border-slate-200/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -393,18 +409,39 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
       </section>
 
       {/* ========================================================
-          4. GOVERNANCE SPECIFICATIONS & TRUST BANNER (Grounded Dark Terminal)
+          4. GOVERNANCE SPECIFICATIONS & TRUST BANNER
          ======================================================== */}
-      <section className="py-16 sm:py-24 bg-[#ffffff]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 sm:py-24 lg:py-28 bg-[#07090e] text-white border-t border-white/10 overflow-hidden">
+        {/* Full-Bleed Outer Background Image */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-25 sm:opacity-30 hero-zoom-bg">
+          <Image
+            src="/images/services/CTA.webp"
+            alt="Dubai Executive Corporate Operations"
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+
+        {/* Outer Multi-Stop Obsidian Depth Scrim */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#07090e]/95 via-[#07090e]/80 to-[#07090e] pointer-events-none" />
+
+        {/* Ambient Gold Lighting & Micro-Dot Grid */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[800px] h-[300px] bg-[#c39967]/10 blur-[160px] pointer-events-none rounded-full" />
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff05_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up" distance={24}>
-            <div className="rounded-2xl bg-[#07090e] border border-white/10 p-7 sm:p-10 lg:p-12 text-white shadow-xl">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Executive Floating Glass Terminal */}
+            <div className="relative rounded-2xl bg-[#0b0f17]/85 backdrop-blur-xl border border-white/15 p-7 sm:p-10 lg:p-12 text-white shadow-2xl overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#c39967]/70 to-transparent" />
+
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 
                 <div className="lg:col-span-8 space-y-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/5 border border-white/10 text-[10.5px] font-mono text-[#c39967]">
-                    <ShieldCheck className="w-3.5 h-3.5" />
-                    <span>Licensed Dubai Mainland Company</span>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#c39967]/10 border border-[#c39967]/25 text-[10.5px] font-mono font-bold tracking-widest uppercase text-[#c39967] backdrop-blur-xs">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#c39967]" />
+                    <span>Licensed Dubai LLC-FZ Entity</span>
                   </div>
 
                   <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
@@ -424,7 +461,7 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
                 <div className="lg:col-span-4 flex lg:justify-end">
                   <Link
                     href="/contact"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-all duration-200 font-sans shadow-md"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] active:scale-[0.98] transition-all duration-200 font-sans shadow-lg shadow-[#c39967]/15 whitespace-nowrap"
                   >
                     <span>REQUEST A PROJECT PROPOSAL</span>
                     <ArrowUpRight className="w-4 h-4" />

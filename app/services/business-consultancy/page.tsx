@@ -16,7 +16,8 @@ const consultingData: ServiceDetailProps = {
     "BricketX is a business consultancy in Dubai that works with owners and leadership teams to fix what's slowing growth, cut unnecessary costs and build a clear roadmap forward.",
   description:
     "We focus on strategy and operations, not company setup. Our consultants review how your business runs end to end, remove bottlenecks and design a structure that scales, for mainland and free zone companies across the UAE.",
-  heroImage: "/images/services/consulting.webp", // Update path manually in /public
+  heroImage: "/images/services/consulting.webp", // Right card image
+  heroBackgroundImage: "/images/services/consulting.webp", // Full-bleed outer background (update path manually in /public)
   slaMetrics: [
     {
       value: "Tailored",

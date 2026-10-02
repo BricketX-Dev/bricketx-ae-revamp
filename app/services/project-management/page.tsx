@@ -16,7 +16,8 @@ const pmData: ServiceDetailProps = {
     "BricketX is a project management company in Dubai that takes your digital projects, web platforms and technology initiatives from plan to live launch.",
   description:
     "One accountable team manages your scope, timelines, developers and stakeholders at every stage. You get clear milestones, regular updates and a project delivered on time, on budget and to the agreed standard.",
-  heroImage: "/images/services/project-management.webp", // Update path manually in /public
+  heroImage: "/images/services/project-management.webp", // Right card image
+  heroBackgroundImage: "/images/services/project-management.webp", // Full-bleed outer background (update path manually in /public)
   slaMetrics: [
     {
       value: "End-to-End",
