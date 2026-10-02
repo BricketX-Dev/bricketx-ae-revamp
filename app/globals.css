@@ -3,7 +3,6 @@
 @theme {
   --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   
-  /* BricketX Brand Palette */
   --color-brand-gold: #c39967;
   --color-brand-gold-hover: #b28755;
   --color-brand-grey: #a5adb6;
@@ -17,7 +16,7 @@
   --foreground: #212121;
 }
 
-/* FIX: Prevent CSS native smooth scroll from fighting Lenis engine */
+/* Let Lenis / Native handle root scroll directly */
 html {
   scroll-behavior: auto !important;
 }
@@ -27,7 +26,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
@@ -36,7 +34,7 @@ body {
 }
 
 /* ==========================================================
-   OFFICIAL LENIS STYLES (Zero-Stutter CSS Reset)
+   LENIS ENGINE RESET
    ========================================================== */
 html.lenis,
 html.lenis body {
@@ -62,8 +60,6 @@ html.lenis body {
 /* ==========================================================
    KEYFRAME ANIMATIONS
    ========================================================== */
-
-/* Staggered Drop In for Text & Buttons */
 @keyframes textDropIn {
   0% {
     opacity: 0;
@@ -82,17 +78,11 @@ html.lenis body {
   }
 }
 
-/* Background Slow Ambient Zoom */
 @keyframes slowZoom {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.08);
-  }
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
 }
 
-/* Atmospheric Glow Pulse */
 @keyframes ambientPulse {
   0%, 100% {
     opacity: 0.15;
@@ -104,37 +94,20 @@ html.lenis body {
   }
 }
 
-/* Shimmering Metallic Gradient Effect */
 @keyframes goldShimmer {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* Subtle Floating Elements */
 @keyframes subtleFloat {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
 }
 
-/* Border & Shadow Pulse */
 @keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(195, 153, 103, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(195, 153, 103, 0.45);
-  }
+  0%, 100% { box-shadow: 0 0 15px rgba(195, 153, 103, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(195, 153, 103, 0.45); }
 }
 
 @keyframes marquee-left {
@@ -148,9 +121,8 @@ html.lenis body {
 }
 
 /* ==========================================================
-   UTILITY CLASSES & SERVICES 3D STAGE
+   UTILITIES & SERVICES STICKY STACKING RULES
    ========================================================== */
-
 .hero-drop {
   opacity: 0;
   animation: textDropIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -185,13 +157,15 @@ html.lenis body {
   animation: pulseGlow 4s ease-in-out infinite;
 }
 
-/* Card Stacking & Smooth Scale Physics */
+/* STICKY STACKING REQUISITES:
+   Never apply overflow: hidden on the parent of .service-fold */
 .service-fold {
+  position: sticky;
+  top: 96px;
   will-change: transform, opacity;
   transform-origin: top center;
 }
 
-/* Executive 3D Origami Shift */
 .perspective-stage {
   perspective: 1400px;
   perspective-origin: center top;
@@ -215,7 +189,7 @@ html.lenis body {
   animation-play-state: paused;
 }
 
-/* Scrollbar Utility for Carousels */
+/* Hide horizontal scrollbars on mobile carousels */
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }

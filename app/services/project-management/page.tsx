@@ -17,7 +17,7 @@ const pmData: ServiceDetailProps = {
   description:
     "One accountable team manages your scope, timelines, developers and stakeholders at every stage. You get clear milestones, regular updates and a project delivered on time, on budget and to the agreed standard.",
   heroImage: "/images/services/project-management.webp", // Right card image
-  heroBackgroundImage: "/images/services/project-management.webp", // Full-bleed outer background (update path manually in /public)
+  heroBackgroundImage: "/images/services/project-hero-bg.webp", // Full-bleed outer background (update path manually in /public)
   slaMetrics: [
     {
       value: "End-to-End",

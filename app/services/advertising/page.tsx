@@ -17,7 +17,7 @@ const adData: ServiceDetailProps = {
   description:
     "We plan, create and manage campaigns that combine outdoor visibility with measurable digital results. One team handles your strategy, creative, media and reporting, turning attention into real leads for your business across the UAE.",
   heroImage: "/images/services/advertising.webp", // Right card image
-  heroBackgroundImage: "/images/services/advertising.webp", // Full-bleed outer background (update path manually in /public)
+  heroBackgroundImage: "/images/services/advertising-hero-bg.webp", // Full-bleed outer background (update path manually in /public)
   slaMetrics: [
     {
       value: "Outdoor + Digital",

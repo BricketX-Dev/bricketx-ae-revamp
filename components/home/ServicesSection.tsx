@@ -10,183 +10,135 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
+// Declared outside component to guarantee reference stability
+const PILLARS = [
+  {
+    id: "service-01",
+    number: "01",
+    eyebrow: "01 · PROJECT MANAGEMENT",
+    title: "Project Management",
+    h2: "Project Management Services in Dubai, Delivered End-to-End",
+    desc: "BricketX is a project management company in Dubai that takes your digital initiatives from plan to launch. We define scope, manage timelines and resources, and keep every stakeholder aligned, so your project is delivered on time, on budget and to standard.",
+    tags: [
+      "Digital Project Management",
+      "Product Development",
+      "Technology Project Planning",
+      "Project Execution & Delivery",
+      "Quality Assurance",
+      "Support & Maintenance",
+    ],
+    link: "/services/project-management",
+    linkText: "EXPLORE PROJECT MANAGEMENT",
+    statLine: "From discovery to post-launch support, one accountable team.",
+    metricVal: "100%",
+    metricLabel: "Milestone Delivery SLA",
+    image: "/images/services/project-management.webp",
+    icon: "/images/icons/services/project-management.png",
+  },
+  {
+    id: "service-02",
+    number: "02",
+    eyebrow: "02 · ADVERTISING",
+    title: "Advertising",
+    h2: "Advertising Agency in Dubai for Brands That Want to Be Seen",
+    desc: "From billboards on Sheikh Zayed Road to Google Ads and social media campaigns, BricketX connects your brand with the right audience across the UAE. We plan, create and manage campaigns that build visibility and turn attention into real leads.",
+    tags: [
+      "Billboard Advertising",
+      "Outdoor Advertising (OOH)",
+      "Digital Marketing",
+      "Social Media Marketing",
+      "Google Ads",
+      "SEO Services",
+      "Branding & Creative Design",
+      "Lead Generation",
+    ],
+    link: "/services/advertising",
+    linkText: "EXPLORE ADVERTISING SERVICES",
+    statLine: "Outdoor, digital and creative, managed by one team.",
+    metricVal: "3.2M+",
+    metricLabel: "Targeted UAE Impressions",
+    image: "/images/services/advertising.webp",
+    icon: "/images/icons/services/advertising.png",
+  },
+  {
+    id: "service-03",
+    number: "03",
+    eyebrow: "03 · BUSINESS CONSULTANCY",
+    title: "Business Consultancy",
+    h2: "Business Consultancy in Dubai for Smarter, Faster Growth",
+    desc: "Our business consultants in Dubai work alongside owners and leadership teams to find what's holding growth back. We analyse your operations, sharpen your strategy and streamline processes, giving you a clear, practical roadmap to improve performance and scale with confidence.",
+    tags: [
+      "Business Strategy",
+      "Operations Consulting",
+      "Process Optimization",
+      "Business Analysis",
+      "Digital Transformation",
+      "Change Management",
+      "Growth Advisory",
+    ],
+    link: "/services/business-consultancy",
+    linkText: "EXPLORE BUSINESS CONSULTANCY",
+    statLine: "Clear strategy. Leaner operations. Measurable growth.",
+    metricVal: "35%+",
+    metricLabel: "Operational Efficiency Gain",
+    image: "/images/services/consulting.webp",
+    icon: "/images/icons/services/consulting.png",
+  },
+];
+
 export default function ServicesSection() {
   const [activePractice, setActivePractice] = useState("service-01");
   const stackContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const cardRefs = [
-    useRef<HTMLDivElement | null>(null),
-    useRef<HTMLDivElement | null>(null),
-    useRef<HTMLDivElement | null>(null),
-  ];
+  const cardRef0 = useRef<HTMLDivElement | null>(null);
+  const cardRef1 = useRef<HTMLDivElement | null>(null);
+  const cardRef2 = useRef<HTMLDivElement | null>(null);
+  const cardRefs = [cardRef0, cardRef1, cardRef2];
 
-  const pillars = [
-    {
-      id: "service-01",
-      number: "01",
-      eyebrow: "01 · PROJECT MANAGEMENT",
-      title: "Project Management",
-      h2: "Project Management Services in Dubai, Delivered End-to-End",
-      desc: "BricketX is a project management company in Dubai that takes your digital initiatives from plan to launch. We define scope, manage timelines and resources, and keep every stakeholder aligned, so your project is delivered on time, on budget and to standard.",
-      tags: [
-        "Digital Project Management",
-        "Product Development",
-        "Technology Project Planning",
-        "Project Execution & Delivery",
-        "Quality Assurance",
-        "Support & Maintenance",
-      ],
-      link: "/services/project-management",
-      linkText: "EXPLORE PROJECT MANAGEMENT",
-      statLine: "From discovery to post-launch support, one accountable team.",
-      metricVal: "100%",
-      metricLabel: "Milestone Delivery SLA",
-      image: "/images/services/project-management.webp",
-      icon: "/images/icons/services/project-management.png",
-    },
-    {
-      id: "service-02",
-      number: "02",
-      eyebrow: "02 · ADVERTISING",
-      title: "Advertising",
-      h2: "Advertising Agency in Dubai for Brands That Want to Be Seen",
-      desc: "From billboards on Sheikh Zayed Road to Google Ads and social media campaigns, BricketX connects your brand with the right audience across the UAE. We plan, create and manage campaigns that build visibility and turn attention into real leads.",
-      tags: [
-        "Billboard Advertising",
-        "Outdoor Advertising (OOH)",
-        "Digital Marketing",
-        "Social Media Marketing",
-        "Google Ads",
-        "SEO Services",
-        "Branding & Creative Design",
-        "Lead Generation",
-      ],
-      link: "/services/advertising",
-      linkText: "EXPLORE ADVERTISING SERVICES",
-      statLine: "Outdoor, digital and creative, managed by one team.",
-      metricVal: "3.2M+",
-      metricLabel: "Targeted UAE Impressions",
-      image: "/images/services/advertising.webp",
-      icon: "/images/icons/services/advertising.png",
-    },
-    {
-      id: "service-03",
-      number: "03",
-      eyebrow: "03 · BUSINESS CONSULTANCY",
-      title: "Business Consultancy",
-      h2: "Business Consultancy in Dubai for Smarter, Faster Growth",
-      desc: "Our business consultants in Dubai work alongside owners and leadership teams to find what's holding growth back. We analyse your operations, sharpen your strategy and streamline processes, giving you a clear, practical roadmap to improve performance and scale with confidence.",
-      tags: [
-        "Business Strategy",
-        "Operations Consulting",
-        "Process Optimization",
-        "Business Analysis",
-        "Digital Transformation",
-        "Change Management",
-        "Growth Advisory",
-      ],
-      link: "/services/business-consultancy",
-      linkText: "EXPLORE BUSINESS CONSULTANCY",
-      statLine: "Clear strategy. Leaner operations. Measurable growth.",
-      metricVal: "35%+",
-      metricLabel: "Operational Efficiency Gain",
-      image: "/images/services/consulting.webp",
-      icon: "/images/icons/services/consulting.png",
-    },
-  ];
-
-  // 1. Tab Click Handler (mobile & desktop responsive offsets)
+  // Tab Click Handler with accurate scroll calculation
   const handleTabClick = (e: React.MouseEvent<HTMLButtonElement>, index: number, targetId: string) => {
     e.preventDefault();
     setActivePractice(targetId);
 
-    if (!stackContainerRef.current) return;
+    const el = cardRefs[index].current;
+    if (!el) return;
 
-    const containerTop = stackContainerRef.current.getBoundingClientRect().top + window.scrollY;
     const isMobile = window.innerWidth < 640;
-    const gap = isMobile ? 32 : 48;
-
-    let targetScroll = containerTop;
-    for (let i = 0; i < index; i++) {
-      const el = cardRefs[i].current;
-      if (el) {
-        targetScroll += el.offsetHeight + gap;
-      }
-    }
-
-    const stickyOffset = isMobile ? 88 : 160;
+    const navAndTabsOffset = isMobile ? 120 : 170;
+    const elementPosition = el.getBoundingClientRect().top + window.scrollY;
 
     window.scrollTo({
-      top: targetScroll - stickyOffset + 2,
-      behavior: "auto",
+      top: elementPosition - navAndTabsOffset,
+      behavior: "smooth",
     });
   };
 
-  // 2. Mathematical Scroll Physics Engine
+  // Active Tab Spy with stable constant dependency array
   useEffect(() => {
-    let animationFrameId: number;
-
-    const handleScrollPhysics = () => {
-      if (!stackContainerRef.current) {
-        animationFrameId = requestAnimationFrame(handleScrollPhysics);
-        return;
-      }
-
-      const windowHeight = window.innerHeight;
+    const handleObserver = () => {
       const isMobile = window.innerWidth < 640;
-      const containerTop = stackContainerRef.current.getBoundingClientRect().top;
-      const gap = isMobile ? 32 : 48;
-      const stickyOffset = isMobile ? 88 : 160;
-
-      let currentNativeTop = containerTop;
+      const targetThreshold = isMobile ? 180 : 240;
 
       cardRefs.forEach((ref, index) => {
         const el = ref.current;
         if (!el) return;
+        const rect = el.getBoundingClientRect();
 
-        const cardHeight = el.offsetHeight;
-        const nativeTop = currentNativeTop;
-        const nativeBottom = nativeTop + cardHeight + gap;
-
-        if (nativeTop <= stickyOffset + 50 && nativeBottom > stickyOffset + 50) {
-          setActivePractice(pillars[index].id);
+        if (rect.top <= targetThreshold && rect.bottom >= targetThreshold) {
+          setActivePractice(PILLARS[index].id);
         }
-
-        if (index < pillars.length - 1) {
-          const nextNativeTop = currentNativeTop + cardHeight + gap;
-          const overlapDistance = windowHeight - nextNativeTop;
-          const maxOverlap = windowHeight - stickyOffset;
-
-          const progress = Math.max(0, Math.min(1, overlapDistance / maxOverlap));
-
-          if (progress > 0) {
-            const scale = 1 - progress * (isMobile ? 0.025 : 0.04);
-            const translateY = -progress * (isMobile ? 10 : 16);
-            const brightness = 1 - progress * (isMobile ? 0.12 : 0.18);
-
-            el.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale})`;
-            el.style.filter = `brightness(${brightness})`;
-          } else {
-            el.style.transform = "translate3d(0, 0, 0) scale(1)";
-            el.style.filter = "none";
-          }
-        }
-
-        currentNativeTop += cardHeight + gap;
       });
-
-      animationFrameId = requestAnimationFrame(handleScrollPhysics);
     };
 
-    animationFrameId = requestAnimationFrame(handleScrollPhysics);
-    return () => cancelAnimationFrame(animationFrameId);
+    window.addEventListener("scroll", handleObserver, { passive: true });
+    return () => window.removeEventListener("scroll", handleObserver);
   }, []);
 
   return (
-    <section className="relative bg-[#ffffff] text-[#111827] pb-12 sm:pb-16 lg:pb-20">
+    <section className="relative bg-[#ffffff] text-[#111827] pb-12 sm:pb-16 lg:pb-24">
 
-      {/* 1. Header Overview & Precision Tabs */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-4 sm:pt-12 sm:pb-6 lg:pt-16 lg:pb-8">
+      {/* 1. Header Overview */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-4 sm:pt-14 sm:pb-6 lg:pt-18 lg:pb-8">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -206,13 +158,11 @@ export default function ServicesSection() {
         </div>
       </div>
 
-      {/* ========================================================
-          STICKY TAB CONTROLS
-         ======================================================== */}
-      <div className="sticky top-14 sm:top-16 md:top-20 z-30 bg-white/95 backdrop-blur-md py-2.5 sm:py-3 border-y border-slate-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.04)] mb-6 sm:mb-12">
+      {/* 2. STICKY TAB CONTROLS */}
+      <div className="sticky top-14 sm:top-16 md:top-20 z-30 bg-white/95 backdrop-blur-md py-2.5 sm:py-3 border-y border-slate-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] mb-6 sm:mb-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex sm:grid sm:grid-cols-3 gap-2 sm:gap-3.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
-            {pillars.map((p, idx) => {
+          <div className="flex sm:grid sm:grid-cols-3 gap-2 sm:gap-3.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none touch-pan-x">
+            {PILLARS.map((p, idx) => {
               const isActive = activePractice === p.id;
 
               return (
@@ -220,7 +170,7 @@ export default function ServicesSection() {
                   type="button"
                   key={p.id}
                   onClick={(e) => handleTabClick(e, idx, p.id)}
-                  className={`group flex items-center justify-between p-2 sm:p-3 rounded-xl border transition-all text-left flex-shrink-0 min-w-[200px] sm:min-w-0 ${
+                  className={`group flex items-center justify-between p-2 sm:p-3 rounded-xl border transition-all text-left flex-shrink-0 min-w-[210px] sm:min-w-0 cursor-pointer ${
                     isActive
                       ? "border-[#c39967] bg-[#faf8f5] shadow-xs"
                       : "border-slate-200/90 hover:border-slate-300 bg-white"
@@ -269,14 +219,12 @@ export default function ServicesSection() {
         </div>
       </div>
 
-      {/* ========================================================
-          INTERACTIVE FOLD STACKING STAGE (Cards)
-         ======================================================== */}
+      {/* 3. STICKY STACKING CARDS */}
       <div 
         ref={stackContainerRef}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12 pb-[15vh] sm:pb-[20vh]"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-10"
       >
-        {pillars.map((pillar, index) => {
+        {PILLARS.map((pillar, index) => {
           const isAlt = index % 2 === 1;
 
           return (
@@ -284,12 +232,10 @@ export default function ServicesSection() {
               key={pillar.id}
               ref={cardRefs[index]}
               style={{
-                top: "calc(var(--sticky-top, 5.5rem))",
-                zIndex: 10 + index,
-                willChange: "transform, filter",
-                transformOrigin: "center top",
+                top: `calc(5rem + ${index * 12}px)`,
+                zIndex: index + 1,
               }}
-              className="sticky top-[5.5rem] sm:top-[10rem] rounded-xl sm:rounded-2xl border border-slate-200 bg-[#ffffff] p-4 sm:p-8 lg:p-10 shadow-md sm:shadow-lg"
+              className="sticky rounded-xl sm:rounded-2xl border border-slate-200/90 bg-[#ffffff] p-5 sm:p-8 lg:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-10 items-center">
 
@@ -364,7 +310,7 @@ export default function ServicesSection() {
 
                   {/* Specializations Badges */}
                   <div>
-                    <span className="text-[9.5px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1.5 sm:mb-2">
+                    <span className="text-[9.5px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1.5 sm:mb-2 font-medium">
                       Core Specializations &amp; Deliverables:
                     </span>
                     <div className="flex flex-wrap gap-1.5">
@@ -380,8 +326,8 @@ export default function ServicesSection() {
                     </div>
                   </div>
 
-                  {/* Bottom Action Section: Button hidden on mobile, visible on sm+ */}
-                  <div className="pt-2.5 sm:pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                  {/* Bottom Action Bar */}
+                  <div className="pt-3 sm:pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
                     <Link
                       href={pillar.link}
                       className="hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-white bg-[#c39967] hover:bg-[#b28755] transition-colors whitespace-nowrap font-sans active:scale-[0.98]"
@@ -395,7 +341,6 @@ export default function ServicesSection() {
                       <span>{pillar.statLine}</span>
                     </div>
 
-                    {/* Compact Mobile-Only Text Chevron Link */}
                     <Link
                       href={pillar.link}
                       className="sm:hidden inline-flex items-center gap-1 text-[11px] font-semibold text-[#c39967] hover:underline uppercase tracking-wider font-sans ml-auto"
