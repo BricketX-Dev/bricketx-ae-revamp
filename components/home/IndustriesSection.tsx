@@ -77,7 +77,7 @@ export default function IndustriesSection() {
     <section
       ref={sectionRef}
       id="industries"
-      className="py-14 sm:py-24 bg-[#f8f9fb] text-[#0f172a] border-t border-slate-200/80 relative"
+      className="py-14 sm:py-24 bg-[#f8f9fb] text-[#0f172a] border-t border-slate-200/80 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         
@@ -112,7 +112,7 @@ export default function IndustriesSection() {
           <span className="text-[#c39967]">01 / 06</span>
         </div>
 
-        {/* Responsive Container: Swipeable Carousel on Mobile with Partial Card Peek */}
+        {/* Responsive Container: Equal-Height Cards in Grid & Swipe Carousel */}
         <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 overflow-x-auto sm:overflow-x-visible snap-x snap-mandatory sm:snap-none -mx-4 px-4 sm:mx-0 sm:px-0 pb-4 sm:pb-0 scrollbar-none items-stretch">
           {industries.map((ind, i) => {
             const delay = i * 40;
@@ -121,11 +121,11 @@ export default function IndustriesSection() {
               <div
                 key={ind.code}
                 style={{ transitionDelay: `${delay}ms` }}
-                className={`group relative p-5 sm:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-white border border-slate-200/80 hover:border-[#c39967]/70 transition-all duration-300 flex flex-col justify-between h-full shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(195,153,103,0.12)] w-[82vw] xs:w-[78vw] sm:w-auto min-w-[82vw] xs:min-w-[78vw] sm:min-w-0 max-w-[84vw] sm:max-w-none flex-shrink-0 sm:flex-shrink snap-start sm:snap-align-none ${
+                className={`group relative p-5 sm:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-white border border-slate-200/80 hover:border-[#c39967]/70 transition-all duration-300 flex flex-col justify-between h-full shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(195,153,103,0.12)] w-[82vw] xs:w-[78vw] min-w-[82vw] xs:min-w-[78vw] max-w-[82vw] xs:max-w-[78vw] sm:w-auto sm:min-w-0 sm:max-w-none flex-shrink-0 sm:flex-shrink snap-start sm:snap-align-none ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
               >
-                <div>
+                <div className="flex-1 flex flex-col">
                   {/* Top Bar: Icon + Monospace Code */}
                   <div className="flex items-center justify-between mb-4 sm:mb-6">
                     <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#faf6f0] border border-[#c39967]/30 flex items-center justify-center flex-shrink-0 group-hover:bg-[#c39967]/15 group-hover:border-[#c39967]/60 group-hover:scale-105 transition-all duration-300">
@@ -143,18 +143,18 @@ export default function IndustriesSection() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-base sm:text-lg font-bold text-[#0f172a] mb-1.5 sm:mb-2 leading-snug group-hover:text-[#c39967] transition-colors">
+                  <h3 className="text-base sm:text-lg font-bold text-[#0f172a] mb-2 leading-snug group-hover:text-[#c39967] transition-colors min-h-[1.75rem]">
                     {ind.title}
                   </h3>
 
-                  {/* Description */}
-                  <p className="text-xs sm:text-[13px] text-[#475569] leading-relaxed font-normal mb-5 sm:mb-6">
+                  {/* Description: Uniform Clamped Baseline */}
+                  <p className="text-xs sm:text-[13px] text-[#475569] leading-relaxed font-normal mb-5 sm:mb-6 line-clamp-3 min-h-[3.75rem]">
                     {ind.desc}
                   </p>
                 </div>
 
-                {/* Focus Tags Footnote */}
-                <div className="pt-3 sm:pt-4 border-t border-slate-100">
+                {/* Focus Tags Footnote: Unified Baseline */}
+                <div className="pt-3 sm:pt-4 border-t border-slate-100 min-h-[4.75rem] flex flex-col justify-end">
                   <span className="text-[9.5px] sm:text-[10px] font-mono uppercase tracking-wider text-[#94a3b8] block mb-2 font-medium">
                     Focus Areas:
                   </span>
@@ -162,7 +162,7 @@ export default function IndustriesSection() {
                     {ind.tags.map((tag, tIdx) => (
                       <span
                         key={tIdx}
-                        className="text-[10.5px] sm:text-[11px] font-medium text-[#334155] bg-[#f1f5f9] border border-slate-200/60 px-2 sm:px-2.5 py-0.5 rounded-md"
+                        className="text-[10.5px] sm:text-[11px] font-medium text-[#334155] bg-[#f1f5f9] border border-slate-200/60 px-2 sm:px-2.5 py-0.5 rounded-md leading-tight"
                       >
                         {tag}
                       </span>
