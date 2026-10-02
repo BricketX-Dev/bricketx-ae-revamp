@@ -25,13 +25,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="antialiased bg-[#07090e] text-white">
+    <html lang="en" className={`${inter.variable} overflow-x-hidden max-w-full`}>
+      <body className="antialiased bg-[#07090e] text-white overflow-x-hidden max-w-full min-h-screen relative selection:bg-[#c39967] selection:text-[#07090e]">
         <SmoothScrollProvider>
-          <ScrollToTop />
-          <Navbar />
-          {children}
-          <Footer />
+          <div className="relative w-full max-w-full overflow-x-hidden flex flex-col min-h-screen">
+            <ScrollToTop />
+            <Navbar />
+            <div className="flex-1 w-full max-w-full overflow-x-hidden">
+              {children}
+            </div>
+            <Footer />
+          </div>
         </SmoothScrollProvider>
       </body>
     </html>
