@@ -54,6 +54,33 @@ export default function AboutSection() {
       className="py-14 lg:py-20 bg-[#f8f9fb] border-y border-slate-200/80 relative"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* ========================================================
+             MOBILE HEADING (Visible only on mobile/tablet)
+             Ensures Heading -> Image -> Content flow on small screens
+            ======================================================== */}
+        <div className="lg:hidden space-y-4 mb-8">
+          <div
+            className={`flex items-center gap-2 transition-all duration-700 delay-100 transform ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+            }`}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
+            <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-[#c39967]">
+              ABOUT BRICKETX UAE
+            </span>
+          </div>
+
+          <h2
+            className={`text-2xl sm:text-3xl font-extrabold text-[#111827] tracking-tight leading-[1.2] transition-all duration-700 delay-200 transform ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            Connecting Strategy, Delivery &amp; Marketing Through{" "}
+            <span className="text-[#c39967]">One Accountable Team</span>
+          </h2>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           
           {/* ========================================================
@@ -66,7 +93,7 @@ export default function AboutSection() {
                 : "opacity-0 -translate-x-6"
             }`}
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200/90 aspect-[4/5] min-h-[440px] bg-slate-900 group">
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200/90 aspect-[4/5] min-h-[380px] sm:min-h-[440px] bg-slate-900 group">
               <Image
                 src="/images/about/about-main.webp"
                 alt="BricketX Dubai Corporate Headquarters"
@@ -123,37 +150,36 @@ export default function AboutSection() {
              ======================================================== */}
           <div className="lg:col-span-7 space-y-4">
             
-            {/* 1. Eyebrow */}
-            <div
-              className={`flex items-center gap-2 transition-all duration-700 delay-100 transform ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-3"
-              }`}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
-              <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-[#c39967]">
-                ABOUT BRICKETX UAE
-              </span>
-            </div>
+            {/* DESKTOP HEADING (Hidden on mobile) */}
+            <div className="hidden lg:block space-y-4">
+              {/* 1. Eyebrow */}
+              <div
+                className={`flex items-center gap-2 transition-all duration-700 delay-100 transform ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+                }`}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
+                <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-[#c39967]">
+                  ABOUT BRICKETX UAE
+                </span>
+              </div>
 
-            {/* 2. Main Heading */}
-            <h2
-              className={`text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] tracking-tight leading-[1.2] transition-all duration-700 delay-200 transform ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
-              }`}
-            >
-              Connecting Strategy, Delivery &amp; Marketing Through{" "}
-              <span className="text-[#c39967]">
-                One Accountable Team
-              </span>
-            </h2>
+              {/* 2. Main Heading */}
+              <h2
+                className={`text-4xl font-extrabold text-[#111827] tracking-tight leading-[1.2] transition-all duration-700 delay-200 transform ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
+              >
+                Connecting Strategy, Delivery &amp; Marketing Through{" "}
+                <span className="text-[#c39967]">
+                  One Accountable Team
+                </span>
+              </h2>
+            </div>
 
             {/* 3. Narrative Copy */}
             <p
-              className={`text-xs sm:text-sm text-[#4b5563] leading-relaxed font-normal transition-all duration-700 delay-300 transform ${
+              className={`text-sm text-[#4b5563] leading-relaxed font-normal transition-all duration-700 delay-300 transform ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
@@ -200,9 +226,9 @@ export default function AboutSection() {
               ))}
             </div>
 
-            {/* 6. Action Button Links */}
+            {/* 6. Action Button Links (Updated for Mobile Responsiveness) */}
             <div
-              className={`pt-3 flex flex-wrap items-center gap-4 transition-all duration-700 delay-600 transform ${
+              className={`pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 transition-all duration-700 delay-600 transform ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
@@ -210,7 +236,7 @@ export default function AboutSection() {
             >
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] px-5 py-3 rounded-lg shadow-sm transition-all font-sans active:scale-[0.98]"
+                className="inline-flex justify-center items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] px-5 py-3.5 rounded-lg shadow-sm transition-all font-sans active:scale-[0.98] w-full sm:w-auto"
               >
                 <span>Book an Introductory Call</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -222,7 +248,7 @@ export default function AboutSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 download="BricketX_UAE_Company_Profile.pdf"
-                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#111827] hover:text-[#c39967] px-2 py-3 transition-colors font-sans group cursor-pointer"
+                className="inline-flex justify-center items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#111827] hover:text-[#c39967] px-4 py-3.5 border border-slate-200 sm:border-transparent rounded-lg sm:rounded-none bg-white sm:bg-transparent transition-colors font-sans group cursor-pointer w-full sm:w-auto"
               >
                 <FileText className="w-3.5 h-3.5 text-[#c39967] transition-transform group-hover:scale-110" />
                 <span>Company Profile (PDF)</span>
@@ -231,7 +257,6 @@ export default function AboutSection() {
             </div>
 
           </div>
-
         </div>
       </div>
     </section>

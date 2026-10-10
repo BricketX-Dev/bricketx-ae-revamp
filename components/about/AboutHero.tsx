@@ -65,45 +65,45 @@ export default function AboutHero() {
                 BricketX Project Management L.L.C-FZ is a Dubai-based company delivering digital project management, billboard advertising and business consultancy across the UAE under single-vendor accountability.
               </p>
 
-              {/* 3 Balanced Stat Tiles */}
-              <div className="grid grid-cols-3 gap-3 max-w-lg mb-6 sm:mb-8">
-                <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#c39967]/40 transition-colors">
-                  <div className="text-base sm:text-lg font-mono font-bold text-[#c39967]">
+              {/* 3 Balanced Stat Tiles (Updated for Mobile Responsiveness) */}
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-lg mb-6 sm:mb-8">
+                <div className="p-2.5 sm:p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#c39967]/40 transition-colors">
+                  <div className="text-sm sm:text-lg font-mono font-bold text-[#c39967] whitespace-nowrap">
                     3 Pillars
                   </div>
-                  <div className="text-[11px] text-slate-400 mt-1 leading-snug">
+                  <div className="text-[10px] sm:text-[11px] text-slate-400 mt-1 leading-tight sm:leading-snug">
                     Projects, Media &amp; Advisory
                   </div>
                 </div>
 
-                <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#c39967]/40 transition-colors">
-                  <div className="text-base sm:text-lg font-mono font-bold text-[#c39967]">
+                <div className="p-2.5 sm:p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#c39967]/40 transition-colors">
+                  <div className="text-sm sm:text-lg font-mono font-bold text-[#c39967] whitespace-nowrap">
                     1 Team
                   </div>
-                  <div className="text-[11px] text-slate-400 mt-1 leading-snug">
+                  <div className="text-[10px] sm:text-[11px] text-slate-400 mt-1 leading-tight sm:leading-snug">
                     Single Point of Accountability
                   </div>
                 </div>
 
-                <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#c39967]/40 transition-colors">
-                  <div className="text-base sm:text-lg font-mono font-bold text-[#c39967]">
+                <div className="p-2.5 sm:p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#c39967]/40 transition-colors">
+                  <div className="text-sm sm:text-lg font-mono font-bold text-[#c39967] whitespace-nowrap">
                     End-to-End
                   </div>
-                  <div className="text-[11px] text-slate-400 mt-1 leading-snug">
+                  <div className="text-[10px] sm:text-[11px] text-slate-400 mt-1 leading-tight sm:leading-snug">
                     Strategy to Post-Delivery
                   </div>
                 </div>
               </div>
 
-              {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-3.5">
+              {/* CTAs (Updated for Mobile Responsiveness) */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
                 {/* Local PDF Document Asset */}
                 <a
                   href="/documents/bricketx_uae_profile.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   download="BricketX_UAE_Company_Profile.pdf"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] active:scale-[0.98] transition-all duration-200 font-sans shadow-[0_4px_16px_rgba(195,153,103,0.25)] hover:shadow-[0_6px_20px_rgba(195,153,103,0.35)]"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] active:scale-[0.98] transition-all duration-200 font-sans shadow-[0_4px_16px_rgba(195,153,103,0.25)] hover:shadow-[0_6px_20px_rgba(195,153,103,0.35)] w-full sm:w-auto"
                 >
                   <span>DOWNLOAD COMPANY PROFILE</span>
                   <ArrowUpRight className="w-4 h-4" />
@@ -111,7 +111,7 @@ export default function AboutHero() {
 
                 <Link
                   href="/services"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-300 border border-white/15 hover:border-white/30 hover:text-white transition-colors font-sans bg-white/[0.02]"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-300 border border-white/15 hover:border-white/30 hover:text-white transition-colors font-sans bg-white/[0.02] w-full sm:w-auto"
                 >
                   <span>EXPLORE OUR SERVICES</span>
                 </Link>
@@ -125,7 +125,7 @@ export default function AboutHero() {
              ======================================================== */}
           <div className="lg:col-span-5 xl:col-span-6 flex flex-col justify-center">
             <ScrollReveal direction="left" distance={24} delay={150}>
-              <div className="rounded-2xl border border-white/15 bg-[#0b0f17] overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.6)]">
+              <div className="rounded-2xl border border-white/15 bg-[#0b0f17] overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.6)] mt-8 lg:mt-0">
                 
                 {/* Visual Chamber */}
                 <div className="relative aspect-[16/9] w-full bg-slate-950 overflow-hidden">
@@ -154,7 +154,8 @@ export default function AboutHero() {
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>Official License</span>
+                      <span className="hidden sm:inline">Official License</span>
+                      <span className="sm:hidden">License</span>
                       <ArrowUpRight className="w-3 h-3 text-[#c39967]" />
                     </a>
                   </div>
@@ -162,7 +163,7 @@ export default function AboutHero() {
 
                 {/* Statutory Registry Deck */}
                 <div className="p-5 sm:p-6 border-t border-white/10 bg-[#080c14]">
-                  <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-white/10">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3.5 mb-3.5 border-b border-white/10">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
                       <span className="text-[10.5px] font-mono uppercase tracking-widest text-[#c39967] font-bold">
@@ -176,7 +177,7 @@ export default function AboutHero() {
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Verify Official Record on Invest in Dubai (Gov.ae)"
-                      className="group inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white/[0.04] hover:bg-[#c39967]/15 border border-white/10 hover:border-[#c39967]/50 transition-colors"
+                      className="group inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white/[0.04] hover:bg-[#c39967]/15 border border-white/10 hover:border-[#c39967]/50 transition-colors w-max"
                     >
                       <span className="text-[10px] font-mono text-slate-300 tracking-wider">
                         Licence No. 2540036.01

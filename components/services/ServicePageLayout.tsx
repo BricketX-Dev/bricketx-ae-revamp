@@ -103,10 +103,11 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
                   {data.description}
                 </p>
 
-                <div className="pt-4 flex flex-wrap items-center gap-3.5">
+                {/* HERO CTA BUTTONS (Updated for Mobile Responsiveness) */}
+                <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-all duration-200 font-sans shadow-sm"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-all duration-200 font-sans shadow-sm"
                   >
                     <span>BOOK A PROJECT CONSULTATION</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -114,7 +115,7 @@ export default function ServicePageLayout({ data }: { data: ServiceDetailProps }
 
                   <Link
                     href="/services"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-300 border border-white/15 hover:border-white/30 hover:text-white transition-colors font-sans bg-white/[0.02]"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-300 border border-white/15 hover:border-white/30 hover:text-white transition-colors font-sans bg-white/[0.02]"
                   >
                     <span>SEE OUR SERVICES</span>
                   </Link>
