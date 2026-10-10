@@ -81,7 +81,6 @@ export default function FaqSection() {
       : faqs.filter((faq) => faq.category === activeCategory);
 
   const displayedFaqs = showAll ? filteredFaqs : filteredFaqs.slice(0, 5);
-  const remainingCount = filteredFaqs.length - 5;
 
   return (
     <section id="faq" className="py-14 sm:py-20 lg:py-24 bg-[#ffffff] border-t border-slate-200/90 relative">
@@ -126,17 +125,17 @@ export default function FaqSection() {
           </div>
         </div>
 
-        {/* Clean Accordion List with Smooth Physics */}
+        {/* Clean Accordion List with Smooth Physics & Hover Effects */}
         <div className="space-y-3 sm:space-y-4">
           {displayedFaqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div
                 key={index}
-                className={`rounded-xl transition-all duration-300 border ${
+                className={`group rounded-xl transition-all duration-300 border ${
                   isOpen
-                    ? "bg-[#faf8f5] border-[#c39967]/40 shadow-sm"
-                    : "bg-white border-slate-200/90 hover:border-slate-300"
+                    ? "bg-[#faf8f5] border-[#c39967]/40 shadow-md"
+                    : "bg-white border-slate-200/90 hover:border-[#c39967]/40 hover:shadow-[0_8px_20px_rgba(195,153,103,0.08)] hover:-translate-y-[2px]"
                 }`}
               >
                 <button
@@ -145,19 +144,19 @@ export default function FaqSection() {
                 >
                   <div className="flex items-start gap-4 sm:gap-5">
                     <span
-                      className={`font-mono text-xs font-bold pt-0.5 transition-colors ${
-                        isOpen ? "text-[#c39967]" : "text-slate-400"
+                      className={`font-mono text-xs font-bold pt-0.5 transition-colors duration-300 ${
+                        isOpen ? "text-[#c39967]" : "text-slate-400 group-hover:text-[#c39967]"
                       }`}
                     >
                       {index + 1 < 10 ? `0${index + 1}` : index + 1}
                     </span>
                     <div>
-                      <span className="text-[9.5px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
+                      <span className="text-[9.5px] font-mono uppercase tracking-wider text-slate-400 block mb-1 transition-colors duration-300 group-hover:text-slate-500">
                         {faq.tag}
                       </span>
                       <h3
-                        className={`text-sm sm:text-base font-bold transition-colors leading-snug ${
-                          isOpen ? "text-[#111827]" : "text-[#111827]"
+                        className={`text-sm sm:text-base font-bold transition-colors duration-300 leading-snug ${
+                          isOpen ? "text-[#111827]" : "text-[#111827] group-hover:text-[#c39967]"
                         }`}
                       >
                         {faq.q}
@@ -165,26 +164,27 @@ export default function FaqSection() {
                     </div>
                   </div>
 
+                  {/* Icon with interactive spin and scale on hover */}
                   <div
-                    className={`w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-md flex items-center justify-center flex-shrink-0 transition-all duration-500 transform ${
                       isOpen
-                        ? "bg-[#c39967] text-white"
-                        : "bg-slate-100 text-slate-500"
+                        ? "bg-[#c39967] text-white rotate-180 scale-110 shadow-md"
+                        : "bg-slate-100 text-slate-500 group-hover:bg-[#c39967]/10 group-hover:text-[#c39967] group-hover:scale-110 group-hover:rotate-90"
                     }`}
                   >
-                    {isOpen ? <Minus className="w-3.5 h-3.5 stroke-[2]" /> : <Plus className="w-3.5 h-3.5 stroke-[2]" />}
+                    {isOpen ? <Minus className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" /> : <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />}
                   </div>
                 </button>
 
-                {/* CSS Grid Animation for buttery smooth open/close */}
+                {/* CSS Grid Animation with min-h-0 for buttery smooth open/close on mobile */}
                 <div
-                  className={`grid transition-all duration-300 ease-in-out ${
+                  className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
                     isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                   }`}
                 >
-                  <div className="overflow-hidden">
+                  <div className="overflow-hidden min-h-0">
                     <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-1">
-                      <div className="pl-8 sm:pl-9 border-l-2 border-[#c39967] text-xs sm:text-[13px] text-[#4b5563] leading-relaxed">
+                      <div className="pl-8 sm:pl-9 border-l-2 border-[#c39967]/80 text-xs sm:text-[13px] text-[#4b5563] leading-relaxed">
                         {faq.a}
                       </div>
                     </div>
@@ -225,12 +225,12 @@ export default function FaqSection() {
         )}
 
         {/* Bottom Support Bar / Industry CTA */}
-        <div className="mt-10 sm:mt-12 p-6 sm:p-8 rounded-2xl bg-[#07090e] text-white border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-xl relative overflow-hidden">
+        <div className="mt-10 sm:mt-12 p-6 sm:p-8 rounded-2xl bg-[#07090e] text-white border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-xl relative overflow-hidden group">
           {/* Subtle Accent Glow */}
-          <div className="absolute right-0 top-0 w-64 h-64 bg-[#c39967]/10 blur-[80px] pointer-events-none rounded-full" />
+          <div className="absolute right-0 top-0 w-64 h-64 bg-[#c39967]/10 blur-[80px] pointer-events-none rounded-full transition-all duration-700 group-hover:bg-[#c39967]/20 group-hover:scale-110" />
           
           <div className="relative z-10 flex items-start sm:items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#c39967] flex-shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#c39967] flex-shrink-0 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
               <Briefcase className="w-5 h-5 stroke-[1.5]" />
             </div>
             <div>
@@ -247,9 +247,9 @@ export default function FaqSection() {
           </div>
           <Link
             href="/contact"
-            className="relative z-10 flex-shrink-0 w-full sm:w-auto inline-flex justify-center items-center gap-2 min-h-[46px] px-6 py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-all font-sans active:scale-[0.98]"
+            className="relative z-10 flex-shrink-0 w-full sm:w-auto inline-flex justify-center items-center gap-2 min-h-[46px] px-6 py-3 rounded-lg text-xs font-semibold uppercase tracking-wider text-[#080b11] bg-[#c39967] hover:bg-[#d6b48a] transition-all font-sans active:scale-[0.98] shadow-lg shadow-[#c39967]/10 hover:shadow-[#c39967]/30 hover:-translate-y-0.5"
           >
-            <span>TALK TO US ABOUT YOUR INDUSTRY</span>
+            <span>TALK TO US</span>
             <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
