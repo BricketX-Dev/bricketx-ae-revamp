@@ -15,7 +15,7 @@ export default function FaqSection() {
   const faqs = [
     {
       q: "What does BricketX UAE do?",
-      a: "BricketX UAE is a Dubai-based company offering project management, advertising, and business consultancy services. We help businesses across the UAE deliver digital projects on time, reach the right audience through billboard and digital campaigns, and improve their strategy and operations—all through one accountable team.",
+      a: "BricketX UAE is a Dubai-based company offering project management, advertising, and business consultancy services. We help businesses across the UAE deliver digital projects on time, reach the right audience through billboard and digital campaigns, and improve their strategy and operations-all through one accountable team.",
       category: "Company & Setup",
       tag: "Overview",
     },

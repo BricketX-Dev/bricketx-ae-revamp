@@ -60,7 +60,7 @@ export default function WhyUsComparison() {
             </h3>
 
             <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
-              How fragmented procurement introduces risk into Dubai campaigns—and how our structured delivery model neutralizes it.
+              How fragmented procurement introduces risk into Dubai campaigns-and how our structured delivery model neutralizes it.
             </p>
           </div>
         </ScrollReveal>

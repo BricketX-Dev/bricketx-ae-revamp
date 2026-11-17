@@ -1,6 +1,7 @@
-// src/app/page.tsx
+// app/page.tsx
 import HeroSection from "@/components/home/HeroSection";
 import EcosystemAtAGlance from "@/components/home/EcosystemAtAGlance";
+import StrategicCollaborationSection from "@/components/home/StrategicCollaborationSection";
 import AboutSection from "@/components/home/AboutSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import ProcessSection from "@/components/home/ProcessSection";
@@ -21,33 +22,38 @@ export default function HomePage() {
         <EcosystemAtAGlance />
       </ScrollReveal>
 
-      {/* 3. Services Section */}
+      {/* 3. Flagship Strategic Partnership & Developments */}
+      <ScrollReveal direction="up" distance={35} threshold={0.15}>
+        <StrategicCollaborationSection />
+      </ScrollReveal>
+
+      {/* 4. Services Section */}
       <ServicesSection />
 
-      {/* 4. Capabilities Ticker */}
+      {/* 5. Capabilities Ticker */}
       <CapabilitiesTape />
 
-      {/* 5. About */}
+      {/* 6. About */}
       <ScrollReveal direction="up" distance={40} threshold={0.15}>
         <AboutSection />
       </ScrollReveal>
 
-      {/* 6. Process Section */}
+      {/* 7. Process Section */}
       <ScrollReveal direction="up" distance={40} threshold={0.15}>
         <ProcessSection />
       </ScrollReveal>
 
-      {/* 7. Industries Section */}
+      {/* 8. Industries Section */}
       <ScrollReveal direction="up" distance={40} threshold={0.15}>
         <IndustriesSection />
       </ScrollReveal>
 
-      {/* 8. FAQ Section */}
+      {/* 9. FAQ Section */}
       <ScrollReveal direction="up" distance={40} threshold={0.15}>
         <FaqSection />
       </ScrollReveal>
 
-      {/* 9. Contact Consultation CTA */}
+      {/* 10. Contact Consultation CTA */}
       <ScrollReveal direction="up" distance={40} threshold={0.15}>
         <ContactCtaSection />
       </ScrollReveal>

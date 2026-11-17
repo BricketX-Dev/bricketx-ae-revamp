@@ -9,7 +9,7 @@ export default function AboutGovernance() {
     {
       code: "01",
       title: "Senior Leadership, Directly Involved",
-      desc: "Our partners stay hands-on through milestone reviews. No junior hand-offs, no lost directives—just direct access to decision-makers.",
+      desc: "Our partners stay hands-on through milestone reviews. No junior hand-offs, no lost directives-just direct access to decision-makers.",
       icon: "/images/icons/governance/leadership.png",
     },
     {

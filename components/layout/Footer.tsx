@@ -15,6 +15,7 @@ export default function Footer() {
 
   const company = [
     { label: "About BricketX", href: "/about" },
+    { label: "Strategic Partners", href: "/partners/Sheikh-Rashid-Saqar-Al-Qasimi" },
     { label: "How We Work", href: "/how-we-work" },
     { label: "Why Us", href: "/why-us" },
     { label: "Contact Us", href: "/contact" },

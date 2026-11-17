@@ -1,4 +1,4 @@
-// src/components/layout/Navbar.tsx
+// components/layout/Navbar.tsx
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -13,6 +13,7 @@ import {
   ChevronDown,
   Layers,
   ArrowRight,
+  Building2,
 } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 
@@ -21,12 +22,17 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [partnersOpen, setPartnersOpen] = useState(false);
+  const [mobilePartnersOpen, setMobilePartnersOpen] = useState(false);
 
   const pathname = usePathname();
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const servicesDropdownRef = useRef<HTMLDivElement | null>(null);
+  const partnersDropdownRef = useRef<HTMLDivElement | null>(null);
+  const servicesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const partnersTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const isServicesActive = pathname.startsWith("/services");
+  const isPartnersActive = pathname.startsWith("/partners");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,32 +42,58 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menus on route change, but expand accordion if navigating within services
+  // Close menus on route change, expand active accordions on mobile
   useEffect(() => {
     setMobileMenuOpen(false);
     setServicesOpen(false);
+    setPartnersOpen(false);
     setMobileServicesOpen(isServicesActive);
-  }, [pathname, isServicesActive]);
+    setMobilePartnersOpen(isPartnersActive);
+  }, [pathname, isServicesActive, isPartnersActive]);
 
-  // Click outside to close desktop dropdown
+  // Click outside to close desktop dropdowns
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (
+        servicesDropdownRef.current &&
+        !servicesDropdownRef.current.contains(e.target as Node)
+      ) {
         setServicesOpen(false);
+      }
+      if (
+        partnersDropdownRef.current &&
+        !partnersDropdownRef.current.contains(e.target as Node)
+      ) {
+        setPartnersOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleMouseEnter = () => {
-    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+  // Services Dropdown Hover Handlers
+  const handleServicesEnter = () => {
+    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+    setPartnersOpen(false);
     setServicesOpen(true);
   };
 
-  const handleMouseLeave = () => {
-    closeTimeoutRef.current = setTimeout(() => {
+  const handleServicesLeave = () => {
+    servicesTimeoutRef.current = setTimeout(() => {
       setServicesOpen(false);
+    }, 150);
+  };
+
+  // Partners Dropdown Hover Handlers
+  const handlePartnersEnter = () => {
+    if (partnersTimeoutRef.current) clearTimeout(partnersTimeoutRef.current);
+    setServicesOpen(false);
+    setPartnersOpen(true);
+  };
+
+  const handlePartnersLeave = () => {
+    partnersTimeoutRef.current = setTimeout(() => {
+      setPartnersOpen(false);
     }, 150);
   };
 
@@ -89,6 +121,15 @@ export default function Navbar() {
     },
   ];
 
+  const partnerItems = [
+    {
+      code: "PARTNER 01 · SHARJAH & UAE",
+      name: "Sheikh Rashid Saqar Al Qasimi",
+      desc: "Residential towers, retail malls & luxury villa developments across Sharjah.",
+      href: "/partners/Sheikh-Rashid-Saqar-Al-Qasimi",
+    },
+  ];
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
@@ -105,7 +146,6 @@ export default function Navbar() {
         }`}
       >
         <div className="flex items-center justify-between">
-          
           {/* 1. Brand Identity */}
           <div className="flex items-center gap-3">
             <Logo variant="light" />
@@ -113,7 +153,6 @@ export default function Navbar() {
 
           {/* 2. Executive Navigation Dock (Desktop) */}
           <nav className="hidden lg:flex items-center space-x-1 p-1 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md">
-            
             <Link
               href="/"
               className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-colors ${
@@ -138,10 +177,10 @@ export default function Navbar() {
 
             {/* Premium Two-Panel Services Dropdown */}
             <div
-              ref={dropdownRef}
+              ref={servicesDropdownRef}
               className="relative"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={handleServicesEnter}
+              onMouseLeave={handleServicesLeave}
             >
               <Link
                 href="/services"
@@ -170,7 +209,6 @@ export default function Navbar() {
               {servicesOpen && (
                 <div className="absolute top-[calc(100%+8px)] left-1/2 -translate-x-1/2 w-[600px] rounded-2xl bg-[#090d14] border border-white/10 shadow-2xl p-6 z-50 text-white animate-in fade-in slide-in-from-top-2 duration-200">
                   <div className="grid grid-cols-12 gap-6 items-stretch">
-                    
                     {/* Left Architectural Summary Column */}
                     <div className="col-span-5 bg-white/[0.03] border border-white/10 rounded-xl p-4 flex flex-col justify-between">
                       <div>
@@ -240,7 +278,88 @@ export default function Navbar() {
                         );
                       })}
                     </div>
+                  </div>
+                </div>
+              )}
+            </div>
 
+            {/* Strategic Partners Dropdown */}
+            <div
+              ref={partnersDropdownRef}
+              className="relative"
+              onMouseEnter={handlePartnersEnter}
+              onMouseLeave={handlePartnersLeave}
+            >
+              <Link
+                href="/partners/Sheikh-Rashid-Saqar-Al-Qasimi"
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-colors ${
+                  isPartnersActive || partnersOpen
+                    ? "bg-[#c39967] text-[#070a11]"
+                    : "text-slate-300 hover:text-white"
+                }`}
+              >
+                <span>Partners</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    partnersOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </Link>
+
+              {/* Invisible bridge to prevent mouse-leave jitter */}
+              <div
+                className={`absolute top-full left-1/2 -translate-x-1/2 w-[360px] h-3 pointer-events-auto ${
+                  partnersOpen ? "block" : "hidden"
+                }`}
+              />
+
+              {/* Partners Dropdown Panel */}
+              {partnersOpen && (
+                <div className="absolute top-[calc(100%+8px)] left-1/2 -translate-x-1/2 w-[360px] rounded-2xl bg-[#090d14] border border-white/10 shadow-2xl p-4 z-50 text-white animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="flex items-center justify-between px-2 pb-2.5 mb-2 border-b border-white/10">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#c39967] font-bold">
+                      Strategic Alliance
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-400">
+                      UAE
+                    </span>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    {partnerItems.map((partner) => {
+                      const isCurrent = pathname === partner.href;
+
+                      return (
+                        <Link
+                          key={partner.href}
+                          href={partner.href}
+                          className={`group flex items-start gap-3 p-3 rounded-xl border transition-all ${
+                            isCurrent
+                              ? "bg-white/[0.08] border-[#c39967]/50"
+                              : "bg-transparent border-transparent hover:bg-white/[0.04] hover:border-white/10"
+                          }`}
+                        >
+                          <div className="w-9 h-9 rounded-lg bg-black/60 border border-white/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:border-[#c39967]/40 transition-colors">
+                            <Building2 className="w-4 h-4 text-[#c39967]" />
+                          </div>
+
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center justify-between">
+                              <span className="text-[9px] font-mono text-slate-400 uppercase tracking-wider">
+                                {partner.code}
+                              </span>
+                              <ArrowUpRight className="w-3.5 h-3.5 text-[#c39967] opacity-80 group-hover:opacity-100 transition-opacity" />
+                            </div>
+                            <h5 className="text-xs font-bold text-white group-hover:text-[#c39967] transition-colors mt-0.5">
+                              {partner.name}
+                            </h5>
+                            <p className="text-[10.5px] text-slate-400 leading-snug mt-1 font-normal">
+                              {partner.desc}
+                            </p>
+                          </div>
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -309,7 +428,6 @@ export default function Navbar() {
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
-
         </div>
       </div>
 
@@ -334,7 +452,7 @@ export default function Navbar() {
             About
           </Link>
 
-          {/* Mobile Accordion */}
+          {/* Mobile Services Accordion */}
           <div>
             <button
               onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
@@ -406,6 +524,73 @@ export default function Navbar() {
 
                       <div className="min-w-0 flex-1 flex items-center justify-between">
                         <span className="truncate">{s.title}</span>
+                        {isCurrent && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#070a11] flex-shrink-0 ml-1.5" />
+                        )}
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          {/* Mobile Partners Accordion */}
+          <div>
+            <button
+              onClick={() => setMobilePartnersOpen(!mobilePartnersOpen)}
+              className={`w-full flex items-center justify-between text-xs font-semibold px-3 py-2 rounded-lg transition-colors cursor-pointer ${
+                isPartnersActive && !mobilePartnersOpen
+                  ? "bg-[#c39967]/15 text-[#c39967] border border-[#c39967]/30"
+                  : isPartnersActive
+                  ? "text-[#c39967]"
+                  : "text-slate-200"
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <span>Partners</span>
+                {isPartnersActive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#c39967]" />
+                )}
+              </span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  mobilePartnersOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {mobilePartnersOpen && (
+              <div className="pl-2 pr-1 py-1 space-y-1 bg-white/[0.02] rounded-lg mt-1 border-l-2 border-[#c39967] animate-in fade-in duration-150">
+                {partnerItems.map((partner) => {
+                  const isCurrent = pathname === partner.href;
+
+                  return (
+                    <Link
+                      key={partner.href}
+                      href={partner.href}
+                      className={`flex items-center gap-2.5 text-xs px-2.5 py-2 rounded-lg transition-all ${
+                        isCurrent
+                          ? "bg-[#c39967] text-[#070a11] font-bold shadow-sm"
+                          : "text-slate-300 hover:text-white hover:bg-white/[0.04]"
+                      }`}
+                    >
+                      <div
+                        className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 ${
+                          isCurrent
+                            ? "bg-[#070a11]/20 border border-black/10"
+                            : "bg-black/50 border border-white/10"
+                        }`}
+                      >
+                        <Building2
+                          className={`w-3.5 h-3.5 ${
+                            isCurrent ? "text-[#070a11]" : "text-[#c39967]"
+                          }`}
+                        />
+                      </div>
+
+                      <div className="min-w-0 flex-1 flex items-center justify-between">
+                        <span className="truncate">{partner.name}</span>
                         {isCurrent && (
                           <span className="w-1.5 h-1.5 rounded-full bg-[#070a11] flex-shrink-0 ml-1.5" />
                         )}

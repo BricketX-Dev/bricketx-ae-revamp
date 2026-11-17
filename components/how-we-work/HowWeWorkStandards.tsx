@@ -24,7 +24,7 @@ export default function HowWeWorkStandards() {
       index: "03",
       tag: "SINGLE ACCOUNTABILITY",
       title: "One Accountable Team",
-      desc: "BricketX serves as your direct point of contact across digital, outdoor media, and strategy—eliminating blame-shifting between fragmented vendors.",
+      desc: "BricketX serves as your direct point of contact across digital, outdoor media, and strategy-eliminating blame-shifting between fragmented vendors.",
       icon: "/images/icons/how-we-work/standards/team.png",
     },
     {

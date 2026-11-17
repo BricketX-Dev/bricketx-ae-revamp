@@ -17,14 +17,14 @@ export default function WhyUsDifferentiators() {
       code: "02",
       tag: "CAPITAL PROTECTION",
       title: "Deliverables-Gated Budgeting",
-      text: "Retainer bleed and speculative billing have no place in disciplined operations. Client funds are protected by milestone payment gates—next stages only initiate once previous deliverables pass quality inspection.",
+      text: "Retainer bleed and speculative billing have no place in disciplined operations. Client funds are protected by milestone payment gates-next stages only initiate once previous deliverables pass quality inspection.",
       icon: "/images/icons/why-us/differentiators/budget.png",
     },
     {
       code: "03",
       tag: "EXECUTIVE DIRECTORS",
       title: "Direct Access to Decision Makers",
-      text: "Engagements are led directly by managing partners with extensive GCC commercial and technical experience. No intermediary layers or junior message-relaying—you get senior-level strategic velocity.",
+      text: "Engagements are led directly by managing partners with extensive GCC commercial and technical experience. No intermediary layers or junior message-relaying-you get senior-level strategic velocity.",
       icon: "/images/icons/why-us/differentiators/leadership.png",
     },
     {
