@@ -80,12 +80,20 @@ export default function PartnersPortfolioGrid() {
           </div>
         </div>
 
-        {/* 6-Project Architectural Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {/* Mobile X-Axis Swipe Hint */}
+        <div className="flex md:hidden items-center justify-between text-[10.5px] font-mono uppercase tracking-wider text-slate-400 mb-3">
+          <span>Swipe horizontally to explore</span>
+          <span className="text-[#c39967]">
+            {filteredProjects.length.toString().padStart(2, "0")} Projects →
+          </span>
+        </div>
+
+        {/* Mobile: Horizontal X-Axis Carousel | Tablet/Desktop: Grid */}
+        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {filteredProjects.map((project, idx) => (
             <article
               key={project.id}
-              className="group flex flex-col rounded-2xl border border-slate-200/90 bg-[#ffffff] overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:border-[#c39967]/70 transition-all duration-300"
+              className="group flex-shrink-0 w-[84%] sm:w-[68%] md:w-auto snap-start flex flex-col rounded-2xl border border-slate-200/90 bg-[#ffffff] overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:border-[#c39967]/70 transition-all duration-300"
             >
               {/* 4:5 Portrait Architectural Container */}
               <div className="relative aspect-[4/5] bg-slate-100 overflow-hidden">
@@ -93,7 +101,7 @@ export default function PartnersPortfolioGrid() {
                   src={project.image}
                   alt={`${project.titleEn}, ${project.location}, ${project.emirate}`}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 84vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
               </div>

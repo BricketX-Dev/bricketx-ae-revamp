@@ -28,7 +28,7 @@ export default function StrategicCollaborationSection() {
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] tracking-tight leading-[1.18]">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111827] tracking-tight leading-snug">
               In Collaboration with{" "}
               <span className="text-[#c39967]">
                 {COLLABORATION_META.partnerName}
@@ -40,29 +40,35 @@ export default function StrategicCollaborationSection() {
             <p className="text-xs sm:text-sm text-[#4b5563] leading-relaxed font-normal">
               BricketX Project Management LLC-FZ presents a curated portfolio of
               completed residential, commercial, and mixed-use developments
-              across Sharjah, UAE-reflecting disciplined execution and enduring
+              across Sharjah, UAE, reflecting disciplined execution and enduring
               architectural value.
             </p>
           </div>
         </div>
 
+        {/* Mobile X-Axis Swipe Hint */}
+        <div className="mt-8 flex md:hidden items-center justify-between text-[10.5px] font-mono uppercase tracking-wider text-slate-400">
+          <span>Swipe horizontally to explore</span>
+          <span className="text-[#c39967]">03 Featured →</span>
+        </div>
+
         {/* ====================================================
-            2. ARCHITECTURAL 3-COLUMN SHOWCASE
+            2. MOBILE X-AXIS CAROUSEL | DESKTOP 3-COLUMN GRID
            ==================================================== */}
-        <div className="mt-10 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="mt-3 md:mt-12 flex md:grid md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {featuredDevelopments.map((project, idx) => (
             <Link
               key={project.id}
-              href="/partners"
-              className="group flex flex-col rounded-xl border border-slate-200/90 bg-[#ffffff] overflow-hidden hover:border-[#c39967]/80 transition-colors duration-300"
+              href="/partners/Sheikh-Rashid-Saqar-Al-Qasimi"
+              className="group flex-shrink-0 w-[84%] sm:w-[68%] md:w-auto snap-start flex flex-col rounded-xl border border-slate-200/90 bg-[#ffffff] overflow-hidden hover:border-[#c39967]/80 transition-colors duration-300"
             >
               {/* Clean Full-Color Photography (Zero Overlay Clutter) */}
               <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
                 <Image
                   src={project.image}
-                  alt={`${project.titleEn} - ${project.location}, ${project.emirate}`}
+                  alt={`${project.titleEn}, ${project.location}, ${project.emirate}`}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 84vw, 33vw"
                   className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
                 />
               </div>
@@ -116,17 +122,17 @@ export default function StrategicCollaborationSection() {
         {/* ====================================================
             3. QUIET EXECUTIVE FOOTER STRIP
            ==================================================== */}
-        <div className="mt-10 sm:mt-12 pt-6 border-t border-slate-200/90 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="mt-6 md:mt-12 pt-6 border-t border-slate-200/90 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <p className="text-xs font-mono text-slate-500">
             Showing 03 of 06 completed developments · Sharjah &amp; Dubai, UAE
           </p>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="w-full sm:w-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <a
               href={COLLABORATION_META.profilePdfPath}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#111827] hover:text-[#c39967] transition-colors font-sans"
+              className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold text-[#111827] hover:text-[#c39967] transition-colors font-sans"
             >
               <FileText className="w-3.5 h-3.5 text-[#c39967]" />
               <span>Development Profile (PDF)</span>
@@ -134,7 +140,7 @@ export default function StrategicCollaborationSection() {
 
             <Link
               href="/partners/Sheikh-Rashid-Saqar-Al-Qasimi"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-white bg-[#c39967] hover:bg-[#b28755] transition-colors font-sans"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-white bg-[#c39967] hover:bg-[#b28755] transition-colors font-sans"
             >
               <span>View All 6 Developments</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
